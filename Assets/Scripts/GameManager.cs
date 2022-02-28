@@ -10,12 +10,17 @@ public class GameManager : MonoBehaviour
     public bool isTutorialFinished;
     public int Step;
 
-    // ------------ Sprite lists ----------//
+    // ------------ Game Object lists ----------//
     
     public GameObject Bubble;
     public GameObject TrafficLightObj;
     public GameObject HumanObj;
     public GameObject GoStopIndicatorObj;
+
+    // Buttons
+    public GameObject NextButtonObj;
+    public GameObject RunButtonObj;
+    public GameObject SkipButtonObj;
 
     // ------------ Sprite lists ----------//
     public Sprite LightOn;
@@ -152,9 +157,15 @@ public class GameManager : MonoBehaviour
 
         else if ((Step == 10) && (Completed == false))
         {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(1);
             Destroy(SpeechBubble);
+            GoStopIndicatorObj.GetComponent<SpriteRenderer>().enabled = false;
+            NextButtonObj.SetActive(false);
+            SkipButtonObj.SetActive(false);
             // Open Display
             isTutorialFinished = true;
+            // Enable Run Button
+            //RunButtonObj.SetActive(true);
         }
 
 

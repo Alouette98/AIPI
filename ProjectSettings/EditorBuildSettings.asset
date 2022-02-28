@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Pre.unity
+    path: Assets/Scenes/Deprecrated/Pre.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Main.unity
+  - enabled: 0
+    path: Assets/Scenes/Deprecrated/Main.unity
     guid: 3b1875af398bd6148a2d7aac74c8314c
+  - enabled: 1
+    path: Assets/Scenes/Main_Tutorial.unity
+    guid: 04013252c06b48840a7cae1702b9821c
+  - enabled: 1
+    path: Assets/Scenes/Main_Play1.unity
+    guid: 1758b2c5d7b9a1a4aab6fb266484be85
   m_configObjects: {}
