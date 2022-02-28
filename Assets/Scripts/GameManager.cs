@@ -6,22 +6,28 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
     public bool isTutorialFinished;
-    
     public int Step;
 
+    // ------------ Sprite lists ----------//
+    
     public GameObject Bubble;
-
-
     public GameObject TrafficLightObj;
     public GameObject HumanObj;
+    public GameObject GoStopIndicatorObj;
 
-    // Sprite lists
+    // ------------ Sprite lists ----------//
     public Sprite LightOn;
     public Sprite LightOff;
 
     public Sprite HumanGray;
     public Sprite HumanColor;
+
+    public Sprite GreenGo;
+    public Sprite RedStop;
+
+    // ------------------------------------//
 
     public GameObject canv;
 
@@ -94,6 +100,7 @@ public class GameManager : MonoBehaviour
             SpeechBubble = Instantiate(Bubble, new Vector3(-1.82f, -4.02f, 0), Quaternion.identity);
             SpeechBubble.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Whe then brain juice is green, the car goes.";
             SpeechBubble.transform.SetParent(canv.transform, false);
+            GoStopIndicatorObj.GetComponent<SpriteRenderer>().enabled = true;
             Completed = true;
         }
 
@@ -136,14 +143,16 @@ public class GameManager : MonoBehaviour
         {
             Destroy(SpeechBubble);
             SpeechBubble = Instantiate(Bubble, new Vector3(-1.82f, -4.02f, 0), Quaternion.identity);
-            SpeechBubble.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Whe then brain juice is red, the car will stop.";
+            SpeechBubble.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "When then brain juice is red, the car will stop.";
             SpeechBubble.transform.SetParent(canv.transform, false);
+            GoStopIndicatorObj.GetComponent<SpriteRenderer>().sprite = RedStop;
             Completed = true;
             
         }
 
         else if ((Step == 10) && (Completed == false))
         {
+            Destroy(SpeechBubble);
             // Open Display
             isTutorialFinished = true;
         }
