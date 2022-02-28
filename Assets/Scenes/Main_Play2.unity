@@ -679,7 +679,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: be6dbb3625d538149bfd521ad781a52d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ac4440a7f2b05b48b377d6d62f04d85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1963,7 +1963,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'X1=1
+  m_text: 'X1=0
 
 '
   m_isRightToLeft: 0
@@ -4336,7 +4336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 1 Perceptron-Play
+  m_text: Level 1 Perceptron - Play 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -4399,7 +4399,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -728.7874, w: 0}
+  m_margin: {x: 0, y: 0, z: -908.01965, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5307,7 +5307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc63b2f09ec03b44facc821ee07e373c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.89
+      value: 21.88
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc63b2f09ec03b44facc821ee07e373c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6214,7 +6214,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391397336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.233, y: 1.456, z: -3.36}
+  m_LocalPosition: {x: -11.233, y: -1.782, z: -3.36}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7630,7 +7630,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 689cbd2cea0c3354c9e7a8f43b1f10cd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fe853afb1e55cca46b47d86e2ce0d823, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9188,7 +9188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'X2=0
+  m_text: 'X2=1
 
 '
   m_isRightToLeft: 0

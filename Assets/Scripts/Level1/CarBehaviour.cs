@@ -15,6 +15,9 @@ public class CarBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (running == true)
+        {
+            this.gameObject.transform.position += new Vector3(0, 0, 0.001f);
+        }
     }
 }
