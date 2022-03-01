@@ -147,6 +147,7 @@
 
 		void Start()
 		{
+			// Debug.LogWarning(this.gameObject.transform.position);
 			//Application.targetFrameRate = 60;
 
 			_parent = new GameObject ("_metaBalls");
@@ -210,6 +211,7 @@
 
         public void SpawnAll() {
             SpawnAllParticles(gameObject.transform.position, initSpeed, DefaultCount);
+			Debug.Log(gameObject.transform.position);
         }
 
 		public void Spawn(int count, Vector3 pos){

@@ -39,7 +39,7 @@ public class MetaballParticleClass : MonoBehaviour {
 	}
 
 	void Update () {
-
+		
 		if (Active == true) {
 
 			VelocityLimiter ();
@@ -65,6 +65,11 @@ public class MetaballParticleClass : MonoBehaviour {
 		{
 			changeColour(false);
 		}
+
+		if (transform.position.x > -4.4)
+        {
+			GetComponent<Rigidbody2D>().gravityScale = 1;
+        }
 
 	}
 

@@ -6405,6 +6405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1230233677}
   - component: {fileID: 1230233676}
+  - component: {fileID: 1230233678}
   m_Layer: 0
   m_Name: InputTubeX2 (1)
   m_TagString: Untagged
@@ -6477,6 +6478,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &1230233678
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230233675}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 5.3646116, y: 0.62637246}
+  - {x: 4.1135235, y: 0.63537455}
+  - {x: 4.0265284, y: 0.5454385}
+  - {x: 4.011364, y: 0.46482348}
+  - {x: 4.029816, y: 0.26584828}
+  - {x: 4.014366, y: 0.087962866}
+  - {x: 3.9617476, y: -0.10709715}
+  - {x: 3.9488206, y: -0.13939142}
+  - {x: 3.8960834, y: -0.16459787}
+  - {x: 3.7708, y: -0.1652739}
+  - {x: -0.910099, y: -0.15377855}
+  - {x: -1.2433653, y: -0.1626836}
+  - {x: -1.6456499, y: -0.17149627}
+  - {x: -1.6508102, y: 0.17814624}
+  - {x: 3.4778404, y: 0.16567326}
+  - {x: 3.5948753, y: 0.20826852}
+  - {x: 3.6369023, y: 0.30611002}
+  - {x: 3.6492214, y: 0.8526171}
+  - {x: 3.6965737, y: 0.91514015}
+  - {x: 3.7608361, y: 0.9391803}
+  - {x: 5.5349293, y: 0.9456087}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!4 &1239259109 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8024132428712003916, guid: 4790499f550131047966b19658e873de, type: 3}
@@ -7060,7 +7102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1391397337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7280,7 +7322,7 @@ MonoBehaviour:
   WaterMaterial: {fileID: 2100000, guid: d5c0106e08a52ab4c89dabe7772d546e, type: 2}
   FillColor: {r: 0, g: 0.4392157, b: 1, a: 1}
   StrokeColor: {r: 0.015686275, g: 0.6117647, b: 1, a: 1}
-  initSpeed: {x: 2.19, y: -1.8}
+  initSpeed: {x: 2.19, y: 0}
   DynamicChanges: 1
   btn_0: 0
   btn_1: 0
@@ -7551,6 +7593,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: b0a58d042ab47e4459e8de12a0bf051f, type: 2}
+    - target: {fileID: 50136950052901686, guid: 1c5fea894b39b534ca9499ead78fb437, type: 3}
+      propertyPath: m_GravityScale
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 58207158184040794, guid: 1c5fea894b39b534ca9499ead78fb437, type: 3}
       propertyPath: m_Material
       value: 
@@ -7618,6 +7664,14 @@ PrefabInstance:
     - target: {fileID: 96420874952216904, guid: 1c5fea894b39b534ca9499ead78fb437, type: 3}
       propertyPath: m_Parameters.colorGradient.m_NumColorKeys
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815093173730838, guid: 1c5fea894b39b534ca9499ead78fb437, type: 3}
+      propertyPath: slider1
+      value: 
+      objectReference: {fileID: 1784230014}
+    - target: {fileID: 114815093173730838, guid: 1c5fea894b39b534ca9499ead78fb437, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c5fea894b39b534ca9499ead78fb437, type: 3}
@@ -10762,7 +10816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mgr: {fileID: 859460260}
   hintCanvas: {fileID: 1664061331}
-  car: {fileID: 0}
+  car: {fileID: 1526558794}
   NextLevelButton: {fileID: 1279699985}
 --- !u!4 &1918979824 stripped
 Transform:
