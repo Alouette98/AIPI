@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RunPlay1 : MonoBehaviour
+public class RunPlay2 : MonoBehaviour
 {
-
-    public PlayOneManager mgr;
+    // Start is called before the first frame update
+    public PlayTwoManager mgr;
 
     public GameObject hintCanvas;
 
@@ -13,10 +13,11 @@ public class RunPlay1 : MonoBehaviour
 
     public GameObject NextLevelButton;
 
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
 
@@ -24,7 +25,8 @@ public class RunPlay1 : MonoBehaviour
     {
         // Check if it is right
 
-        if (mgr.result <= 0){
+        if (mgr.result >= 0)
+        {
             StartCoroutine("errmessage");
         }
         else
@@ -33,14 +35,11 @@ public class RunPlay1 : MonoBehaviour
 
 
             // Start moving
-            car.running = true;
-
-
-            // allow going to next level
+            car.running = false;
             NextLevelButton.SetActive(true);
         }
 
-        
+
 
 
     }
@@ -48,7 +47,7 @@ public class RunPlay1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
