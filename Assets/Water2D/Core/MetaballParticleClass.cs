@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MetaballParticleClass : MonoBehaviour {
 
@@ -21,17 +22,20 @@ public class MetaballParticleClass : MonoBehaviour {
 	}
 	public bool witinTarget; // si esta dentro de la zona de vaso de vidrio en la meta
 
-
+	public Slider slider1;
+ 
 
 	bool _active;
 	float delta;
 	Rigidbody2D rb;
 	TrailRenderer tr;
+	SpriteRenderer sr;
 
 	void Start () {
 		//MObject = gameObject;
 		rb = GetComponent<Rigidbody2D> ();
 		tr = GetComponent<TrailRenderer> ();
+		sr = GetComponent<SpriteRenderer>();
 	}
 
 	void Update () {
@@ -53,9 +57,31 @@ public class MetaballParticleClass : MonoBehaviour {
 
 		}
 
+		if (transform.position.x > -8.12 && slider1.value > 0) {
+			changeColour(true);
+        }
+
+		if (transform.position.x > -8.12 && slider1.value < 0)
+		{
+			changeColour(false);
+		}
+
 	}
 
 
+	void changeColour(bool sliderSign)
+    {
+		Gradient gradient = new Gradient();
+		GradientColorKey[] colorKey = new GradientColorKey[2];
+		GradientAlphaKey[] alphaKey = new GradientAlphaKey[2];
+		colorKey[0].color = sliderSign ? Color.green : Color.red;
+		colorKey[1].color = Color.white;
+		alphaKey[0].alpha = 1.0f;
+		alphaKey[1].alpha = 1.0f;
+		gradient.SetKeys(colorKey, alphaKey);
+		sr.color = sliderSign ? Color.green : Color.red;
+		tr.colorGradient = gradient;
+	}
 
 	void VelocityLimiter()
 	{
