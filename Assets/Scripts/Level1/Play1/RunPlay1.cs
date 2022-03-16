@@ -13,6 +13,9 @@ public class RunPlay1 : MonoBehaviour
 
     public GameObject NextLevelButton;
 
+    public GameObject StopGoIndicator;
+    public GameObject Brake;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +25,15 @@ public class RunPlay1 : MonoBehaviour
 
     public void Play1()
     {
-        // Check if it is right
+        // Activate stop-go indicator
+        StopGoIndicator.SetActive(true);
 
+        // Disable the brake
+        Brake.SetActive(false);
+
+
+
+        // Check if it is right
         if (mgr.result <= 0){
             StartCoroutine("errmessage");
         }
