@@ -134,12 +134,14 @@
 		int usableDropsCount;
 		int DefaultCount;
 
+		int counter;
+
 
 		// MICRO SPWNS
 		// Used to make spawn in other positions with same properties (use same array of particles)
 		List<microSpawn> microSpawns;
 
-		bool _breakLoop = false;
+		public bool _breakLoop = false;
 
 		GameObject _parent;
 
@@ -147,6 +149,7 @@
 
 		void Start()
 		{
+			counter = 0;
 			// Debug.LogWarning(this.gameObject.transform.position);
 			//Application.targetFrameRate = 60;
 
@@ -180,7 +183,9 @@
             instance.Spawn();
         }
 
-		public void RunMicroSpawn(Vector3 pos, int amount, Vector2 initVel)
+
+
+        public void RunMicroSpawn(Vector3 pos, int amount, Vector2 initVel)
 		{
 			addMicroSpawn (pos, amount, initVel);
 			executeMicroSpawns ();
@@ -191,9 +196,12 @@
 			microSpawns.Add( new microSpawn (pos, amount, initVel));
 		}
 
+   //     public void Update()
+   //     {
+			//Spawn();
+   //     }
 
-
-		public void Spawn(){
+        public void Spawn(){
 			Spawn (DefaultCount);
 		}
 
@@ -204,14 +212,20 @@
                 SpawnAll();
             }
             else {
-                StartCoroutine(loop(gameObject.transform.position, initSpeed, count));
+				if (_breakLoop == false){
+					Debug.Log("=------====");
+					StartCoroutine(loop(gameObject.transform.position, initSpeed, count));
+
+				}
+				
             }
 			
 		}
 
+		// SpawnAll is used when delaybetweenParticles is 0. See Spawn() for details.
         public void SpawnAll() {
             SpawnAllParticles(gameObject.transform.position, initSpeed, DefaultCount);
-			Debug.Log(gameObject.transform.position);
+			//Debug.Log(gameObject.transform.position);
         }
 
 		public void Spawn(int count, Vector3 pos){
@@ -273,6 +287,8 @@
 			_breakLoop = false;
 
 			IsWaterInScene = true;
+
+			
 
 			int auxCount = 0;
 			while (true) {
@@ -337,8 +353,9 @@
                 for (int i = 0; i < WaterDropsObjects.Length; i++)
                 {
 
+				
 
-                    MetaballParticleClass MetaBall = WaterDropsObjects[i].GetComponent<MetaballParticleClass>();
+					MetaballParticleClass MetaBall = WaterDropsObjects[i].GetComponent<MetaballParticleClass>();
 
                     if (MetaBall.Active == true)
                         continue;

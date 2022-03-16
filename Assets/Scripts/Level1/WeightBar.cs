@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Water2D;
 
 public class WeightBar : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class WeightBar : MonoBehaviour
     public TMPro.TextMeshProUGUI WeightText;
 
     public bool firstTime;
+
+    public Water2D_Spawner Spawner;
     void Start()
     {
         weightValue = 0;
@@ -27,6 +30,13 @@ public class WeightBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (weightValue == 0){
+        //    Spawner._breakLoop = true;
+        //}
+        //else
+        //{
+        //    Spawner._breakLoop = false;
+        //}
         if (!firstTime)
         {
             WeightText.text = "W" + weightID.ToString()+ "=" + weightValue.ToString();
