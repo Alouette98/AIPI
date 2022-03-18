@@ -4374,7 +4374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.189, y: -0.33}
+  m_AnchoredPosition: {x: -10.189, y: -0.418}
   m_SizeDelta: {x: 20, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &854209415
@@ -4420,7 +4420,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1699894125}
   m_FillRect: {fileID: 1653081759}
   m_HandleRect: {fileID: 1699894124}
-  m_Direction: 3
+  m_Direction: 2
   m_MinValue: -3
   m_MaxValue: 3
   m_WholeNumbers: 1
@@ -4455,8 +4455,10 @@ MonoBehaviour:
   weightValue: 0
   weightID: 1
   WeightText: {fileID: 570174797}
+  EquationText: {fileID: 2067093740}
   firstTime: 0
   Spawner: {fileID: 1391397337}
+  LevelID: 1
 --- !u!1001 &855458943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6957,7 +6959,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -22}
+  m_AnchoredPosition: {x: 0, y: 22}
   m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1356639848
@@ -6980,7 +6982,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 048c38b1923c93c47bd79d8c47a8dbdd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e8a4dec1fbeddab4ea6e0504413ef3d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8288,7 +8290,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25, y: 0}
   m_AnchorMax: {x: 0.75, y: 1}
-  m_AnchoredPosition: {x: 0, y: 5}
+  m_AnchoredPosition: {x: 0, y: -5}
   m_SizeDelta: {x: 0, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1613448577
@@ -8887,7 +8889,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -12}
+  m_AnchoredPosition: {x: 0, y: 12}
   m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1699894125
@@ -8910,7 +8912,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 048c38b1923c93c47bd79d8c47a8dbdd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e8a4dec1fbeddab4ea6e0504413ef3d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9617,7 +9619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.189, y: -3.5}
+  m_AnchoredPosition: {x: -10.189, y: -3.662}
   m_SizeDelta: {x: 20, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1784230014
@@ -9663,7 +9665,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1356639848}
   m_FillRect: {fileID: 2041701236}
   m_HandleRect: {fileID: 1356639847}
-  m_Direction: 3
+  m_Direction: 2
   m_MinValue: -3
   m_MaxValue: 3
   m_WholeNumbers: 1
@@ -9698,8 +9700,10 @@ MonoBehaviour:
   weightValue: 0
   weightID: 2
   WeightText: {fileID: 1885261411}
+  EquationText: {fileID: 0}
   firstTime: 0
   Spawner: {fileID: 0}
+  LevelID: 0
 --- !u!1 &1789992582 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 199430, guid: 1c5fea894b39b534ca9499ead78fb437, type: 3}
@@ -11712,7 +11716,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25, y: 0}
   m_AnchorMax: {x: 0.75, y: 1}
-  m_AnchoredPosition: {x: 0, y: 5}
+  m_AnchoredPosition: {x: 0, y: -5}
   m_SizeDelta: {x: 0, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2018840903
@@ -12248,7 +12252,7 @@ GameObject:
   - component: {fileID: 2067093741}
   - component: {fileID: 2067093740}
   m_Layer: 5
-  m_Name: Equation_text (1)
+  m_Name: Equation_text_value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12293,7 +12297,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: X1W1+X2W2+X0=Y
+  m_text: "1 \xD7 0  + 0 \xD7 0 + 0 = 0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}

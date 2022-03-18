@@ -11,10 +11,14 @@ public class WeightBar : MonoBehaviour
     public int weightID;
 
     public TMPro.TextMeshProUGUI WeightText;
+    public TMPro.TextMeshProUGUI EquationText;
 
     public bool firstTime;
 
     public Water2D_Spawner Spawner;
+
+    public int LevelID;
+    
     void Start()
     {
         weightValue = 0;
@@ -40,6 +44,13 @@ public class WeightBar : MonoBehaviour
         if (!firstTime)
         {
             WeightText.text = "W" + weightID.ToString()+ "=" + weightValue.ToString();
+            if (LevelID == 1)
+            {
+                EquationText.text = "1 × " + weightValue.ToString() + " + 0 × 0 + 0 = " + weightValue.ToString();
+            }
+            
         }
+
+
     }
 }
