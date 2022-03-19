@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Deprecrated/Main.unity
     guid: 3b1875af398bd6148a2d7aac74c8314c
   - enabled: 1
-    path: Assets/Scenes/Main_Tutorial.unity
+    path: Assets/Scenes/Level1_tutorial.unity
     guid: 04013252c06b48840a7cae1702b9821c
   - enabled: 1
     path: Assets/Scenes/Main_Play1.unity

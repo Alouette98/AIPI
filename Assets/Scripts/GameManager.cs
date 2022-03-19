@@ -10,12 +10,24 @@ public class GameManager : MonoBehaviour
     public bool isTutorialFinished;
     public int Step;
 
+
+    
+
     // ------------ Game Object lists ----------//
     
     public GameObject Bubble;
     public GameObject TrafficLightObj;
     public GameObject HumanObj;
     public GameObject GoStopIndicatorObj;
+
+    // Half Show
+    public GameObject HalfShowObj;
+
+    // background object and the fixed 2d on it
+    public GameObject BackgroundObj;
+    public GameObject FixedObj;
+    public GameObject FixedObj2;
+
 
     // Buttons
     public GameObject NextButtonObj;
@@ -50,17 +62,40 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Step = 0;
+        Step = -1;
         isTutorialFinished = false;
+        // When the game starts, automaticlly add a bubble to the scene.
+        SpeechBubble = Instantiate(Bubble, new Vector3(-5.89f, -2.08f, 0), Quaternion.identity);
+        SpeechBubble.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Now... You are the self-driving car!";
+        SpeechBubble.transform.SetParent(canv.transform, false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // -- Step logic here ---
-        if ((Step == 1) && (Completed == false))
-        // Meaning it just starts.
+        // -- Tutorial every step logic here ---
+
+        // Step 0:
+        if (Step == 0)
         {
+            HalfShowObj.SetActive(true);
+            Destroy(SpeechBubble);
+            SpeechBubble = Instantiate(Bubble, new Vector3(-5.89f, -2.08f, 0), Quaternion.identity);
+            SpeechBubble.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "On the right side is your brain to control the car run or stop.";
+            SpeechBubble.transform.SetParent(canv.transform, false);
+            Completed = true;
+        }
+        
+
+        if ((Step == 1) && (Completed == false))
+        // Disable halfshow and go to original tutorial.
+        {
+            HalfShowObj.SetActive(false);
+            BackgroundObj.SetActive(true);
+            FixedObj.SetActive(true);
+            FixedObj2.SetActive(true);
+
+            Destroy(SpeechBubble);
             SpeechBubble = Instantiate(Bubble, new Vector3(-10.55f, 0.63f, 0), Quaternion.identity);
             SpeechBubble.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "X1 is Traffic Lights Sensor Input. If X1 = 0, light sensor is off";
             SpeechBubble.transform.SetParent(canv.transform, false);

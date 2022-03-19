@@ -46,7 +46,7 @@ public class WeightBar : MonoBehaviour
             WeightText.text = "W" + weightID.ToString()+ "=" + weightValue.ToString();
             if (LevelID == 1)
             {
-                EquationText.text = "1 × " + weightValue.ToString() + " + 0 × 0 + 0 = " + weightValue.ToString();
+                EquationText.text = "1 x" + weightValue.ToString() + " + 0 x 0 + 0 = " + weightValue.ToString();
             }
             
         }
