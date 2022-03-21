@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class RunPlay1 : MonoBehaviour
 {
 
@@ -36,6 +37,7 @@ public class RunPlay1 : MonoBehaviour
         // Check if it is right
         if (mgr.result <= 0){
             StartCoroutine("errmessage");
+            //StartCoroutine(FullScreenPop("Start", 1.0f, true));
         }
         else
         {
