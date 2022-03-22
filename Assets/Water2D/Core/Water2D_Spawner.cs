@@ -179,8 +179,8 @@
 
 			microSpawns = new List<microSpawn>(5); // Up to 5 microspwawn
 
-
-            instance.Spawn();
+			Debug.Log("Start spawning!");
+			instance.Spawn();
         }
 
 
@@ -196,11 +196,6 @@
 			microSpawns.Add( new microSpawn (pos, amount, initVel));
 		}
 
-   //     public void Update()
-   //     {
-			//Spawn();
-   //     }
-
         public void Spawn(){
 			Spawn (DefaultCount);
 		}
@@ -213,7 +208,7 @@
             }
             else {
 				if (_breakLoop == false){
-					Debug.Log("=------====");
+					Debug.Log("Spawn...");
 					StartCoroutine(loop(gameObject.transform.position, initSpeed, count));
 
 				}
@@ -292,8 +287,9 @@
 
 			int auxCount = 0;
 			while (true) {
+				Debug.Log("entered loop!");
 				for (int i = 0; i < WaterDropsObjects.Length; i++) {
-
+					//Debug.Log(i);
 					if (_breakLoop)
 						yield break;
 
@@ -316,7 +312,7 @@
 						SetWaterColor (FillColor, StrokeColor);
 					}
 
-					WaterDropsObjects [i].GetComponent<Rigidbody2D> ().velocity = _initSpeed;
+					WaterDropsObjects [i].GetComponent<Rigidbody2D>().velocity = _initSpeed;
 
 
 					// Count limiter
@@ -348,8 +344,9 @@
             IsWaterInScene = true;
 
             int auxCount = 0;
-           // while (true)
-            //{
+            while (true)
+            {
+				Debug.Log("-----SpawnAllParticles----");
                 for (int i = 0; i < WaterDropsObjects.Length; i++)
                 {
 
@@ -395,7 +392,7 @@
                 alreadySpawned = true;
 
              
-           // }
+            }
         }
 
         public void SetWaterColor(Color fill, Color stroke)
