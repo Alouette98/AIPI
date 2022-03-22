@@ -134,7 +134,7 @@
 		int usableDropsCount;
 		int DefaultCount;
 
-		int counter;
+		
 
 
 		// MICRO SPWNS
@@ -147,9 +147,15 @@
 
 
 
-		void Start()
+        private void Start()
+        {
+			GenerateAndSpawn();
+        }
+
+
+        public void GenerateAndSpawn()
 		{
-			counter = 0;
+			
 			// Debug.LogWarning(this.gameObject.transform.position);
 			//Application.targetFrameRate = 60;
 
@@ -206,14 +212,12 @@
             {
                 SpawnAll();
             }
-            else {
-				if (_breakLoop == false){
-					Debug.Log("Spawn...");
-					StartCoroutine(loop(gameObject.transform.position, initSpeed, count));
-
-				}
+            else 
+			{
+				StartCoroutine(loop(gameObject.transform.position, initSpeed, count));
+			}
 				
-            }
+        
 			
 		}
 
@@ -283,15 +287,14 @@
 
 			IsWaterInScene = true;
 
-			
-
 			int auxCount = 0;
 			while (true) {
-				Debug.Log("entered loop!");
+
+				Debug.Log("Loop!");
 				for (int i = 0; i < WaterDropsObjects.Length; i++) {
-					//Debug.Log(i);
-					if (_breakLoop)
-						yield break;
+					
+					//if (_breakLoop)
+					//	yield break;
 
 					MetaballParticleClass MetaBall = WaterDropsObjects [i].GetComponent<MetaballParticleClass> ();
 
