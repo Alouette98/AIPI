@@ -149,11 +149,11 @@
 
         private void Start()
         {
-			GenerateAndSpawn();
+			//GenerateAndSpawn();
         }
 
 
-        public void GenerateAndSpawn()
+        public Coroutine GenerateAndSpawn()
 		{
 			
 			// Debug.LogWarning(this.gameObject.transform.position);
@@ -186,7 +186,8 @@
 			microSpawns = new List<microSpawn>(5); // Up to 5 microspwawn
 
 			Debug.Log("Start spawning!");
-			instance.Spawn();
+			return instance.Spawn();
+
         }
 
 
@@ -202,19 +203,21 @@
 			microSpawns.Add( new microSpawn (pos, amount, initVel));
 		}
 
-        public void Spawn(){
-			Spawn (DefaultCount);
+        public Coroutine Spawn(){
+			return Spawn (DefaultCount);
 		}
 
-		public void Spawn(int count){
+		public Coroutine Spawn(int count){
 			executeMicroSpawns ();
             if (DelayBetweenParticles == 0f)
             {
                 SpawnAll();
+				return null;
             }
             else 
 			{
-				StartCoroutine(loop(gameObject.transform.position, initSpeed, count));
+				Coroutine a = StartCoroutine(loop(gameObject.transform.position, initSpeed, count));
+				return a;
 			}
 				
         

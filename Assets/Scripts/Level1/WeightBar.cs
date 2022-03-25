@@ -34,13 +34,7 @@ public class WeightBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (weightValue == 0){
-        //    Spawner._breakLoop = true;
-        //}
-        //else
-        //{
-        //    Spawner._breakLoop = false;
-        //}
+
         if (!firstTime)
         {
             WeightText.text = "W" + weightID.ToString()+ "=" + weightValue.ToString();
@@ -50,6 +44,16 @@ public class WeightBar : MonoBehaviour
             }
             
         }
+
+        if (weightValue == 0)
+        {
+            this.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
+        }
+        else
+        {
+            this.gameObject.GetComponentInChildren<Collider2D>().enabled = false;
+        }
+
 
 
     }

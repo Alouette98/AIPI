@@ -5,7 +5,14 @@ using Water2D;
 
 public class PlayOneManager : MonoBehaviour
 {
+    // ---- CaseID ----
+    public int CaseID;
+    public bool hasEnteredCase;
 
+    // ---- IEnumerator ----
+    public IEnumerator startCoroutine;
+
+    
     public float result;
     public WeightBar wb1;
     public GameObject GoStopIndicatorObj;
@@ -23,22 +30,67 @@ public class PlayOneManager : MonoBehaviour
     public GameObject CameraFluid;
 
     public GameObject Brake;
-    public Water2D_Spawner spawner;
+    public Water2D_Spawner spawner1;
+    public Water2D_Spawner spawner2;
 
     public GameObject nextLevelButton;
 
     // ---------- Animation ----------
     public CarBehaviour car;
 
-    // Start is called before the first frame update
+    //
+    public List<Coroutine> coroutineList = new List<Coroutine>();
+
     void Start()
     {
-        StartCoroutine(FullScreenPop("Start",0.5f, 2f, true, false));
+        hasEnteredCase = false;
+        CaseID = 1;
+        LevelStart(CaseID);
     }
 
-    // Update is called once per frame
+    void LevelStart(int levelID)
+    {
+        // Set flag to true to avoid repeated corouotine calling.
+
+        // Show fullscreen text:"start level ?"
+        startCoroutine = FullScreenPop("Start" + levelID.ToString(), 0.5f, 2f, true, false);
+        StartCoroutine(startCoroutine);
+        
+        // Let brake reactivate again.
+        Brake.SetActive(true);
+
+
+        // CaseID, spawn water;
+        if (CaseID == 2)
+        {
+            
+        }
+        
+        hasEnteredCase = true;
+
+    }
+
     void Update()
     {
+        // Use car position to identify the CaseID;
+        if (car.gameObject.transform.position.z > 20 && car.gameObject.transform.position.z <= 35)
+        {
+            CaseID = 2;
+            if (!hasEnteredCase)
+            {
+                LevelStart(CaseID);
+            }
+
+        }else if (car.gameObject.transform.position.z > 35)
+        {
+            CaseID = 3;
+            if (!hasEnteredCase)
+            {
+                LevelStart(CaseID);
+            }
+        }
+
+        // Calculate the value result
         result = wb1.weightValue * 1f;
     }
 
@@ -51,6 +103,7 @@ public class PlayOneManager : MonoBehaviour
         if (nextLevel)
         {
             EnableNextLevelButton();
+            hasEnteredCase = false;
         }
         yield return new WaitForSeconds(PopUpTime);
         TextOnFullObj.SetActive(false);
@@ -133,7 +186,24 @@ public class PlayOneManager : MonoBehaviour
     public void EnableHalf()
     {
         HalfCanvas.SetActive(true);
-        spawner.GenerateAndSpawn();
+        if (CaseID == 1)
+        {
+            spawner1.gameObject.SetActive(true);
+            coroutineList.Add(spawner1.GenerateAndSpawn());
+        } 
+        else if (CaseID == 2)
+        {
+            spawner1.gameObject.SetActive(false);
+            spawner2.gameObject.SetActive(true);
+            spawner2.GenerateAndSpawn();
+        }
+        //else if (CaseID == 3)
+        //{
+        //    spawner1.gameObject.SetActive(true);
+        //    spawner1.GenerateAndSpawn();
+        //    spawner2.GenerateAndSpawn();
+        //}
+        
     }
 
     public void DisableLiquidCamera()
@@ -148,7 +218,6 @@ public class PlayOneManager : MonoBehaviour
 
     public void EnableNextLevelButton()
     {
-        Debug.Log("ddddd");
         nextLevelButton.SetActive(true);
     }
 
