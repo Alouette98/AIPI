@@ -5,16 +5,26 @@ using Water2D;
 
 public class PlayOneManager : MonoBehaviour
 {
+    // === Numerical ===
+    public int X1;
+    public int X2;
+
     // ---- CaseID ----
     public int CaseID;
     public bool hasEnteredCase;
+
+    public float result;
+    public WeightBar wb1;
+    public WeightBar wb2;
+
+    public TMPro.TextMeshProUGUI EquationText;
 
     // ---- IEnumerator ----
     public IEnumerator startCoroutine;
 
     
-    public float result;
-    public WeightBar wb1;
+
+
     public GameObject GoStopIndicatorObj;
 
     public Sprite GoSprite;
@@ -39,18 +49,21 @@ public class PlayOneManager : MonoBehaviour
     public CarBehaviour car;
 
     //
-    public List<Coroutine> coroutineList = new List<Coroutine>();
+    //public List<Coroutine> coroutineList = new List<Coroutine>();
 
     void Start()
     {
         hasEnteredCase = false;
         CaseID = 1;
-        LevelStart(CaseID);
+        StartCoroutine(LevelStart(CaseID, 0f));
     }
 
-    void LevelStart(int levelID)
+    public IEnumerator LevelStart(int levelID, float waitTime)
+
     {
-        // Set flag to true to avoid repeated corouotine calling.
+        yield return new WaitForSeconds(waitTime);
+        
+        DisableNextLevelButton();
 
         // Show fullscreen text:"start level ?"
         startCoroutine = FullScreenPop("Start" + levelID.ToString(), 0.5f, 2f, true, false);
@@ -59,39 +72,59 @@ public class PlayOneManager : MonoBehaviour
         // Let brake reactivate again.
         Brake.SetActive(true);
 
+        // Set X1,X2;
+        SetInput();
 
-        // CaseID, spawn water;
-        if (CaseID == 2)
-        {
-            
-        }
-        
+        // Car move to original position(TODO)
+        ResetCarPosition(levelID);
+
+        // Set boolean to true to avoid repeated LevelStart
         hasEnteredCase = true;
 
+        
+    }
+
+    void SetInput()
+    {
+        if (CaseID == 1)
+        {
+            X1 = 1;
+            X2 = 0;
+        }else if(CaseID == 2)
+        {
+            X1 = 0;
+            X2 = 1;
+        }else if(CaseID == 3)
+        {
+            X1 = 1;
+            X2 = 1;
+        }
     }
 
     void Update()
     {
         // Use car position to identify the CaseID;
-        if (car.gameObject.transform.position.z > 20 && car.gameObject.transform.position.z <= 35)
+        if (car.gameObject.transform.position.z > 20 && car.gameObject.transform.position.z <= 21)
         {
             CaseID = 2;
             if (!hasEnteredCase)
             {
-                LevelStart(CaseID);
+                StartCoroutine(LevelStart(CaseID,0f));
             }
 
-        }else if (car.gameObject.transform.position.z > 35)
+        }else if (car.gameObject.transform.position.z > 35 && car.gameObject.transform.position.z <=36)
         {
             CaseID = 3;
             if (!hasEnteredCase)
             {
-                LevelStart(CaseID);
+                StartCoroutine(LevelStart(CaseID, 0f));
             }
         }
 
-        // Calculate the value result
-        result = wb1.weightValue * 1f;
+        // Calculate the value result and update it to canvas
+        result = wb1.weightValue * X1 + wb2.weightValue * X2;
+        EquationText.text = X1.ToString()+" x " + wb1.weightValue.ToString() + " + " + X2.ToString() + " x "+ wb2.weightValue.ToString() +" = " + result.ToString();
+
     }
 
     public IEnumerator FullScreenPop(string TextString, float waitTime, float PopUpTime,bool showHalf, bool nextLevel)
@@ -163,18 +196,67 @@ public class PlayOneManager : MonoBehaviour
         // Disable the brake, let liquid flow
         Brake.SetActive(false);
 
-        if (result > 0)
+
+        // OK, lets check whether the result is correct according to the caseID;
+        if (CaseID == 1)
         {
-            StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
-            StartCoroutine(CarRunning(2f));
-            StartCoroutine(FullScreenPop("Success!", 5f, 50f, false, true));
+            if (result > 0)
+            {
+                StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
+                StartCoroutine(CarRunning(2f));
+                StartCoroutine(FullScreenPop("Success!", 5f, 2f, false, true));
+            }
+            else
+            {
+                StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+                StartCoroutine(FullScreenPop("Fail", 5f, 2f, false, false));
+                StartCoroutine(HalfScreenShow(8f));
+            }
+        } else if (CaseID == 2)
+        {
+            if (result > 0)
+            {
+                // no car shall go so fail
+                StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
+                StartCoroutine(CarRunning(2f));
+                StartCoroutine(FullScreenPop("Fail", 5f, 2f, false, false));
+                StartCoroutine(LevelStart(CaseID, 7f));
+            }
+            else
+            {
+                StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+                StartCoroutine(FullScreenPop("Success!", 5f, 2f, false, true));
+                
+                // #TODO NEED UPDATE
+                StartCoroutine(LevelStart(3, 7f));
+                CaseID = 3;
+
+                StartCoroutine(HalfScreenShow(8f));
+            }
+        }else if (CaseID == 3)
+        {
+
+            if (result > 0)
+            {
+                // no car shall go so fail
+                StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
+                StartCoroutine(CarRunning(2f));
+                StartCoroutine(FullScreenPop("Fail", 5f, 2f, false, false));
+                StartCoroutine(LevelStart(CaseID, 7f));
+            }
+            else if (result == 0)
+            {
+                StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+                StartCoroutine(FullScreenPop("0 make NN confused", 5f, 2f, true, false));
+            }
+            else
+            {
+                StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+                StartCoroutine(FullScreenPop("Success!", 5f, 2f, false, true));
+                StartCoroutine(HalfScreenShow(8f));
+            }
         }
-        else
-        {
-            StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-            StartCoroutine(FullScreenPop("Fail", 5f, 2f, false, false));
-            StartCoroutine(HalfScreenShow(8f));
-        } 
+        
 
     }
 
@@ -188,22 +270,19 @@ public class PlayOneManager : MonoBehaviour
         HalfCanvas.SetActive(true);
         if (CaseID == 1)
         {
-            spawner1.gameObject.SetActive(true);
-            coroutineList.Add(spawner1.GenerateAndSpawn());
+            spawner1.GenerateAndSpawn();
+            //spawner2.GenerateAndSpawn();
         } 
         else if (CaseID == 2)
         {
-            spawner1.gameObject.SetActive(false);
-            spawner2.gameObject.SetActive(true);
             spawner2.GenerateAndSpawn();
         }
-        //else if (CaseID == 3)
-        //{
-        //    spawner1.gameObject.SetActive(true);
-        //    spawner1.GenerateAndSpawn();
-        //    spawner2.GenerateAndSpawn();
-        //}
-        
+        else if (CaseID == 3)
+        {
+            spawner1.GenerateAndSpawn();
+            spawner2.GenerateAndSpawn();
+        }
+
     }
 
     public void DisableLiquidCamera()
@@ -219,6 +298,38 @@ public class PlayOneManager : MonoBehaviour
     public void EnableNextLevelButton()
     {
         nextLevelButton.SetActive(true);
+    }
+
+    public void DisableNextLevelButton()
+    {
+        nextLevelButton.SetActive(false);
+    }
+
+    public void ResetCarPosition(int CaseID)
+    {
+        if (CaseID == 2)
+        {
+            car.running = false;
+            car.transform.position = new Vector3(27.1100006f, -4.27790403f, 23.3939075f);
+
+        }
+        else if (CaseID == 3)
+        {
+            car.running = false;
+            car.transform.position = new Vector3(27.1100006f, -4.27790403f, 37.4686317f);
+        }
+
+    }
+
+    public IEnumerator ResetCarPosition(float waitTime, int CaseID)
+    {
+        yield return new WaitForSeconds(waitTime);
+        ResetCarPosition(CaseID);
+    }
+
+    public void ResetPedestrian(int PedestrianID)
+    {
+        
     }
 
 }

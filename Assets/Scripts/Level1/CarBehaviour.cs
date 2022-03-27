@@ -13,7 +13,6 @@ public class CarBehaviour : MonoBehaviour
     void Start()
     {
         running = false;
-        velocity = 0.005f;
         firstCheckpoint = 25f;
         secondCheckpoint = 37f;
     }
