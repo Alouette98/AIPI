@@ -9,6 +9,10 @@ public class PlayOneManager : MonoBehaviour
     public int X1;
     public int X2;
 
+    // Animation speed
+    // -- Ped: 0.31f default
+    public float pedAniSpeed;
+
     // ---- CaseID ----
     public int CaseID;
     public bool hasEnteredCase;
@@ -22,7 +26,10 @@ public class PlayOneManager : MonoBehaviour
     // ---- IEnumerator ----
     public IEnumerator startCoroutine;
 
-    
+
+    // --- Object ---
+    public GameObject Ped1;
+    public GameObject Ped2;
 
 
     public GameObject GoStopIndicatorObj;
