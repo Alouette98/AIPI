@@ -46,8 +46,8 @@ public class RunPlay1 : MonoBehaviour
         {
             StartCoroutine(mgr.FullScreenPopImage(mgr.StopSprite, 0f, 1.5f, false));
         }
-        
-        
+
+        mgr.LiquidMixing();
 
 
         // Check if it is right

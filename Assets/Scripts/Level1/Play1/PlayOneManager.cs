@@ -5,6 +5,11 @@ using Water2D;
 
 public class PlayOneManager : MonoBehaviour
 {
+    // Particle list;
+    public List<GameObject> particles = new List<GameObject>();
+    public GameObject PositiveParticle;
+    public GameObject NegativeParticle;
+
     // private int clickedTime;
     public int clickedTime;
 
@@ -94,6 +99,11 @@ public class PlayOneManager : MonoBehaviour
         // Set boolean to true to avoid repeated LevelStart
         hasEnteredCase = true;
 
+        // Clear list
+        wb1.positiveParticles.RemoveAll(item => item);
+        wb1.negativeParticles.RemoveAll(item => item);
+        wb2.positiveParticles.RemoveAll(item => item);
+        wb2.negativeParticles.RemoveAll(item => item);
         
     }
 
@@ -355,9 +365,30 @@ public class PlayOneManager : MonoBehaviour
         car.running = false;
     }
 
+    //public 
+
     public void ResetPedestrian(int PedestrianID)
     {
         
+    }
+
+    public void LiquidMixing()
+    {
+         while (wb1.negativeParticles.Count != 0 && wb2.positiveParticles.Count!= 0)
+        {
+            Destroy(wb1.negativeParticles[0]);
+            wb1.negativeParticles.RemoveAt(0);
+            Destroy(wb2.positiveParticles[0]);
+            wb2.positiveParticles.RemoveAt(0);
+        }
+
+        while (wb1.positiveParticles.Count != 0 && wb2.negativeParticles.Count != 0)
+        {
+            Destroy(wb1.positiveParticles[0]);
+            wb1.positiveParticles.RemoveAt(0);
+            Destroy(wb2.negativeParticles[0]);
+            wb2.negativeParticles.RemoveAt(0);
+        }
     }
 
 }
