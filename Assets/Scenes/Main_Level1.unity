@@ -5728,7 +5728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &888475806
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7117,106 +7117,6 @@ MonoBehaviour:
   - {fileID: 1662669062}
   - {fileID: 1662669062}
   - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
-  - {fileID: 1662669062}
   size: 0.13
   LifeTime: 33.6
   DelayBetweenParticles: 0.05
@@ -7382,7 +7282,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.17218, y: 0.10045}
+  m_AnchoredPosition: {x: -0.331, y: 0.33}
   m_SizeDelta: {x: 507.11438, y: 54.26547}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1072384813
@@ -7432,8 +7332,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 300
-  m_fontSizeBase: 300
+  m_fontSize: 155.68
+  m_fontSizeBase: 155.68
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7468,7 +7368,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -986.96, w: 0}
+  m_margin: {x: 0, y: 0, z: -1730.8813, w: -553.0895}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8807,9 +8707,11 @@ EdgeCollider2D:
   m_Points:
   - {x: -0.11971459, y: 0.47397393}
   - {x: -0.12110703, y: -0.38685325}
-  - {x: -1.9553174, y: -0.36791503}
-  - {x: -1.9653859, y: -1.1676416}
-  - {x: -4.329358, y: -1.1648427}
+  - {x: -1.9732933, y: -0.35308948}
+  - {x: -1.7032558, y: -0.43528727}
+  - {x: -1.9123323, y: -0.46007192}
+  - {x: -1.9593939, y: -1.152816}
+  - {x: -4.33535, y: -1.1895518}
   - {x: -4.3351617, y: -1.4729093}
   - {x: -1.5925245, y: -1.4861463}
   - {x: -1.6063879, y: -0.69733554}
@@ -8910,106 +8812,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnerID: 1
   WaterDropsObjects:
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
-  - {fileID: 891758805}
   - {fileID: 891758805}
   - {fileID: 891758805}
   - {fileID: 891758805}
@@ -10767,6 +10569,18 @@ TrailRenderer:
   m_MinVertexDistance: 0.0001
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &1662669066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662669062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584a62e32cdef094397aedb178c6d3bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1664061331
 GameObject:
   m_ObjectHideFlags: 0

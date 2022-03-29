@@ -17,6 +17,8 @@ public class RunPlay1 : MonoBehaviour
     public GameObject StopGoIndicator;
     public GameObject Brake;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,8 @@ public class RunPlay1 : MonoBehaviour
 
     public void Play1()
     {
-
+        //mgr.clickedTime += 1;
+        Debug.Log("Clicked");
         // Disable the brake, let liquid flow
         Brake.SetActive(false);
 

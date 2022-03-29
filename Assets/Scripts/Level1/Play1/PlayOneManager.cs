@@ -5,6 +5,9 @@ using Water2D;
 
 public class PlayOneManager : MonoBehaviour
 {
+    // private int clickedTime;
+    public int clickedTime;
+
     // === Numerical ===
     public int X1;
     public int X2;
@@ -60,9 +63,12 @@ public class PlayOneManager : MonoBehaviour
 
     void Start()
     {
+        clickedTime = 0;
         hasEnteredCase = false;
         CaseID = 1;
+        pedAniSpeed = 0.31f;
         StartCoroutine(LevelStart(CaseID, 0f));
+
     }
 
     public IEnumerator LevelStart(int levelID, float waitTime)
@@ -254,13 +260,22 @@ public class PlayOneManager : MonoBehaviour
             else if (result == 0)
             {
                 StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                StartCoroutine(FullScreenPop("0 make NN confused", 5f, 2f, true, false));
+                StartCoroutine(FullScreenPop("0 make Neural Network confused", 5f, 2f, true, false));
+                StartCoroutine(LevelStart(CaseID, 7f));
             }
-            else
+            else if (result < 0 && wb1.weightValue < 0 )
             {
                 StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                StartCoroutine(FullScreenPop("Success!", 5f, 2f, false, true));
-                StartCoroutine(HalfScreenShow(8f));
+                StartCoroutine(FullScreenPop("Hmm, if no one cross the road later, the car probably won't go...", 5f, 2f, true, false));
+                StartCoroutine(LevelStart(CaseID, 7f));
+            }
+            else if (result < 0 && wb1.weightValue > 0 )
+            {
+
+                StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+                StartCoroutine(FullScreenPop("Success, Lv1 passed!", 5f, 200f, false, true));
+                StartCoroutine(StopCar(7f));
+                
             }
         }
         
@@ -332,6 +347,12 @@ public class PlayOneManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         ResetCarPosition(CaseID);
+    }
+
+    public IEnumerator StopCar(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        car.running = false;
     }
 
     public void ResetPedestrian(int PedestrianID)
