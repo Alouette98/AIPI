@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Water2D;
 
-public class PlayOneManager : MonoBehaviour
+public class PlayZeroManager : MonoBehaviour
 {
     // Particle list;
     public List<GameObject> particles = new List<GameObject>();
@@ -80,7 +80,7 @@ public class PlayOneManager : MonoBehaviour
     {
         clickedTime = 0;
         hasEnteredCase = false;
-        //CaseID = 1;
+        CaseID = 1;
         pedAniSpeed = 0.31f;
         StartCoroutine(LevelStart(CaseID, 0f));
         mixed = false;
@@ -95,7 +95,7 @@ public class PlayOneManager : MonoBehaviour
         DisableNextLevelButton();
 
         // Show fullscreen text:"start level ?"
-        startCoroutine = FullScreenPop("Round " + levelID.ToString(), 0.5f, 2f, true, false);
+        startCoroutine = FullScreenPop("Start" + levelID.ToString(), 0.5f, 2f, true, false);
         StartCoroutine(startCoroutine);
 
         // Let brake reactivate again.
@@ -113,7 +113,7 @@ public class PlayOneManager : MonoBehaviour
 
         // Clear list
         wb1.ClearAllParticles();
-        if (CaseID != 0) { wb2.ClearAllParticles(); }
+        wb2.ClearAllParticles();
 
         // Reset water color
         SetWaterColor(defaultWater);
@@ -122,11 +122,6 @@ public class PlayOneManager : MonoBehaviour
 
     void SetInput()
     {
-        if (CaseID == 0)
-        {
-            X1 = 1;
-            X2 = 0;
-        }
         if (CaseID == 1)
         {
             X1 = 1;
@@ -166,18 +161,8 @@ public class PlayOneManager : MonoBehaviour
         }
 
         // Calculate the value result and update it to canvas
-        
-        
-        if (CaseID == 0)
-        {
-            result = wb1.weightValue;
-            EquationText.text = X1.ToString() + " x " + wb1.weightValue.ToString() + "+ = " + result.ToString();
-        } 
-        else
-        {
-            result = wb1.weightValue * X1 + wb2.weightValue * X2;
-            EquationText.text = X1.ToString() + " x " + wb1.weightValue.ToString() + " + " + X2.ToString() + " x " + wb2.weightValue.ToString() + " = " + result.ToString();
-        }
+        result = wb1.weightValue * X1 + wb2.weightValue * X2;
+        EquationText.text = X1.ToString() + " x " + wb1.weightValue.ToString() + " + " + X2.ToString() + " x " + wb2.weightValue.ToString() + " = " + result.ToString();
 
     }
 
@@ -201,7 +186,6 @@ public class PlayOneManager : MonoBehaviour
         {
             EnableHalf();
             EnableLiquidCamera();
-            //SetWaterColor(defaultWater); 
         }
         else
         {
@@ -245,7 +229,6 @@ public class PlayOneManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         EnableHalf();
         EnableLiquidCamera();
-        SetWaterColor(defaultWater);
     }
 
     public void Play1()
@@ -255,23 +238,7 @@ public class PlayOneManager : MonoBehaviour
         LiquidMixing();
         Brake.SetActive(false);
         // OK, lets check whether the result is correct according to the caseID;
-        if (CaseID == 0)
-        {
-            if (result > 0)
-            {
-                StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
-                StartCoroutine(CarRunning(2f));
-                StartCoroutine(FullScreenPop("Great job! Now you know that controlling the weight can decide car's movement.", 5f, 2f, false, true));
-            }
-            else
-            {
-                StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                StartCoroutine(FullScreenPop("The green light is on, and the cars behind beeps you", 5f, 2f, false, false));
-                StartCoroutine(HalfScreenShow(8f));
-                //SetWaterColor(defaultWater);
-            }
-        }
-        else if (CaseID == 1)
+        if (CaseID == 1)
         {
             if (result > 0)
             {
@@ -284,7 +251,7 @@ public class PlayOneManager : MonoBehaviour
                 StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
                 StartCoroutine(FullScreenPop("Fail", 5f, 2f, false, false));
                 StartCoroutine(HalfScreenShow(8f));
-                //SetWaterColor(defaultWater);
+                SetWaterColor(defaultWater);
             }
         }
         else if (CaseID == 2)
@@ -354,11 +321,7 @@ public class PlayOneManager : MonoBehaviour
     public void EnableHalf()
     {
         HalfCanvas.SetActive(true);
-        if (CaseID == 0)
-        {
-            spawner1.GenerateAndSpawn();
-        }
-        else if (CaseID == 1)
+        if (CaseID == 1)
         {
             spawner1.GenerateAndSpawn();
             //spawner2.GenerateAndSpawn();
@@ -374,14 +337,10 @@ public class PlayOneManager : MonoBehaviour
         }
 
         wb1.ParticleCheck();
-        if (CaseID != 0)
-        {
-            wb2.ParticleCheck();
-        }
+        wb2.ParticleCheck();
 
         // Reset water material;
         //SetWaterColor(waterMaterial);
-
 
     }
 
@@ -442,75 +401,51 @@ public class PlayOneManager : MonoBehaviour
 
     public void LiquidMixing()
     {
-        // if this is tutorial :
-        if (CaseID == 0)
+        mixed = true;
+        Debug.Log("----Mixing Liquid---");
+        while (wb1.negativeParticles.Count != 0 && wb2.positiveParticles.Count != 0)
         {
-            mixed = true;
-            if (result > 0)
-            {
-                SetWaterColor(GreenWater);
-            }
-            else if (result < 0)
-            {
-                SetWaterColor(RedWater);
-            }
+            Debug.Log("-------Step1------");
+            Destroy(wb1.negativeParticles[0]);
+            wb1.negativeParticles.RemoveAt(0);
+            Destroy(wb2.positiveParticles[0]);
+            wb2.positiveParticles.RemoveAt(0);
         }
-        else
+
+        while (wb1.positiveParticles.Count != 0 && wb2.negativeParticles.Count != 0)
         {
-
-            mixed = true;
-            Debug.Log("----Mixing Liquid---");
-            while (wb1.negativeParticles.Count != 0 && wb2.positiveParticles.Count != 0)
-            {
-                Debug.Log("-------Step1------");
-                Destroy(wb1.negativeParticles[0]);
-                wb1.negativeParticles.RemoveAt(0);
-                Destroy(wb2.positiveParticles[0]);
-                wb2.positiveParticles.RemoveAt(0);
-            }
-
-            while (wb1.positiveParticles.Count != 0 && wb2.negativeParticles.Count != 0)
-            {
-                Debug.Log("-------Step2------");
-                Destroy(wb1.positiveParticles[0]);
-                wb1.positiveParticles.RemoveAt(0);
-                Destroy(wb2.negativeParticles[0]);
-                wb2.negativeParticles.RemoveAt(0);
-            }
-
-            if (result > 0)
-            {
-                SetWaterColor(GreenWater);
-            }
-            else if (result < 0)
-            {
-                SetWaterColor(RedWater);
-            }
+            Debug.Log("-------Step2------");
+            Destroy(wb1.positiveParticles[0]);
+            wb1.positiveParticles.RemoveAt(0);
+            Destroy(wb2.negativeParticles[0]);
+            wb2.negativeParticles.RemoveAt(0);
         }
+
+        if (result > 0)
+        {
+            SetWaterColor(GreenWater);
+        }
+        else if (result < 0)
+        {
+            SetWaterColor(RedWater);
+        }
+
     }
 
     public void SetWaterColor(Color newColor)
     {
-        
-        if (CaseID == 0)
+        Debug.Log("setcolor!!!!");
+        if (X1== 1)
         {
-            Debug.Log("setcolor!!!!");
             spawner1.FillColor = newColor;
             spawner1.SetWaterColor(spawner1.FillColor, spawner1.StrokeColor);
         }
-        else
+        if (X2 == 1)
         {
-            if (X1 == 1)
-            {
-                spawner1.FillColor = newColor;
-                spawner1.SetWaterColor(spawner1.FillColor, spawner1.StrokeColor);
-            }
-            if (X2 == 1)
-            {
-                spawner2.FillColor = newColor;
-                spawner2.SetWaterColor(spawner2.FillColor, spawner2.StrokeColor);
-            }
+            spawner2.FillColor = newColor;
+            spawner2.SetWaterColor(spawner2.FillColor, spawner2.StrokeColor);
         }
+        
     }
 
 }

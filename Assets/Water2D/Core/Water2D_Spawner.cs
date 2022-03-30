@@ -182,7 +182,7 @@
 
 			microSpawns = new List<microSpawn>(5); // Up to 5 microspwawn
 
-			Debug.Log("Start spawning!");
+			//Debug.Log("Start spawning!");
 			return Spawn();
 
         }
@@ -286,7 +286,7 @@
 
 			int auxCount = 0;
 			while (true) {
-
+				SetWaterColor(FillColor, StrokeColor);
 
 				for (int i = 0; i < WaterDropsObjects.Length; i++) {
 
@@ -309,9 +309,9 @@
 					if (DynamicChanges) {
 						_initSpeed = initSpeed;
 						MetaBall.transform.localScale = new Vector3 (size, size, 1f);
-						SetWaterColor (FillColor, StrokeColor);
+						
 					}
-
+					
 					WaterDropsObjects [i].GetComponent<Rigidbody2D>().velocity = _initSpeed;
 
 

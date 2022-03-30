@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
+/// <summary>
+/// The code is now deprecated.
+/// </summary>
+
 public class RunPlay1 : MonoBehaviour
 {
 
@@ -32,9 +37,13 @@ public class RunPlay1 : MonoBehaviour
         Debug.Log("Clicked");
         // Disable the brake, let liquid flow
         Brake.SetActive(false);
+        
+        
 
-        mgr.HalfCanvas.SetActive(false);
-        mgr.CameraFluid.SetActive(false);
+        //mgr.HalfCanvas.SetActive(false);
+        //mgr.CameraFluid.SetActive(false);
+
+
         // After 0 seconds(liquid flow to bottom),
         // show Stop/Go indicator
 
@@ -47,7 +56,7 @@ public class RunPlay1 : MonoBehaviour
             StartCoroutine(mgr.FullScreenPopImage(mgr.StopSprite, 0f, 1.5f, false));
         }
 
-        mgr.LiquidMixing();
+        
 
 
         // Check if it is right

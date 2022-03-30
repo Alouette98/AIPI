@@ -41,7 +41,7 @@ public class PedestrianBehaviour : MonoBehaviour
         if (state == 1)
         {
             // Do nothing
-            pedAnimator.speed = mgr.pedAniSpeed;
+            //pedAnimator.speed = mgr.pedAniSpeed;
         }
         if (state == 2)
         {
