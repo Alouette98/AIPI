@@ -70,7 +70,7 @@ public class PlayOneManager : MonoBehaviour
     // -- Liquid Color ---
     private Color defaultWater = new Color(0, 112 / 255f, 255 / 255f, 1);
     private Color RedWater = new Color(200 / 255f, 55 / 255f, 20 / 255f, 1);
-    private Color GreenWater = new Color(26 / 255f, 192 / 255f, 73/255f);
+    private Color GreenWater = new Color(26 / 255f, 192 / 255f, 73 / 255f);
 
     public Material waterMaterial;
 
@@ -116,7 +116,7 @@ public class PlayOneManager : MonoBehaviour
         if (CaseID != 0) { wb2.ClearAllParticles(); }
 
         // Reset water color
-        SetWaterColor(defaultWater);
+        //SetWaterColor(defaultWater);
 
     }
 
@@ -248,7 +248,7 @@ public class PlayOneManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         EnableHalf();
         EnableLiquidCamera();
-        SetWaterColor(defaultWater);
+        //SetWaterColor(defaultWater);
     }
 
     public void Play1()
@@ -449,14 +449,14 @@ public class PlayOneManager : MonoBehaviour
         if (CaseID == 0)
         {
             mixed = true;
-            if (result > 0)
-            {
-                SetWaterColor(GreenWater);
-            }
-            else if (result < 0)
-            {
-                SetWaterColor(RedWater);
-            }
+            //if (result > 0)
+            //{
+            //    SetWaterColor(GreenWater);
+            //}
+            //else if (result < 0)
+            //{
+            //    SetWaterColor(RedWater);
+            //}
         }
         else
         {
@@ -481,39 +481,39 @@ public class PlayOneManager : MonoBehaviour
                 wb2.negativeParticles.RemoveAt(0);
             }
 
-            if (result > 0)
-            {
-                SetWaterColor(GreenWater);
-            }
-            else if (result < 0)
-            {
-                SetWaterColor(RedWater);
-            }
+            //if (result > 0)
+            //{
+            //    SetWaterColor(GreenWater);
+            //}
+            //else if (result < 0)
+            //{
+            //    SetWaterColor(RedWater);
+            //}
         }
     }
 
-    public void SetWaterColor(Color newColor)
-    {
+    //public void SetWaterColor(Color newColor)
+    //{
         
-        if (CaseID == 0)
-        {
-            Debug.Log("setcolor!!!!");
-            spawner1.FillColor = newColor;
-            spawner1.SetWaterColor(spawner1.FillColor, spawner1.StrokeColor);
-        }
-        else
-        {
-            if (X1 == 1)
-            {
-                spawner1.FillColor = newColor;
-                spawner1.SetWaterColor(spawner1.FillColor, spawner1.StrokeColor);
-            }
-            if (X2 == 1)
-            {
-                spawner2.FillColor = newColor;
-                spawner2.SetWaterColor(spawner2.FillColor, spawner2.StrokeColor);
-            }
-        }
-    }
+    //    if (CaseID == 0)
+    //    {
+    //        Debug.Log("setcolor!!!!");
+    //        spawner1.FillColor = newColor;
+    //        spawner1.SetWaterColor(spawner1.FillColor, spawner1.StrokeColor);
+    //    }
+    //    else
+    //    {
+    //        if (X1 == 1)
+    //        {
+    //            spawner1.FillColor = newColor;
+    //            spawner1.SetWaterColor(spawner1.FillColor, spawner1.StrokeColor);
+    //        }
+    //        if (X2 == 1)
+    //        {
+    //            spawner2.FillColor = newColor;
+    //            spawner2.SetWaterColor(spawner2.FillColor, spawner2.StrokeColor);
+    //        }
+    //    }
+    //}
 
 }
