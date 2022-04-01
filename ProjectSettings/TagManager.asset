@@ -7,6 +7,7 @@ TagManager:
   - Metaball_liquid
   - car
   - liquid
+  - changeColor
   layers:
   - Default
   - TransparentFX
