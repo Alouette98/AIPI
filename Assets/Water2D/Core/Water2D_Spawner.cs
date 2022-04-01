@@ -69,6 +69,8 @@
 
 		[Header("Material & color")]
 		public Material WaterMaterial;
+		public Material NoChangeMaterial;
+
 		public Color FillColor = new Color(0f,112/255f,1f);
 		public Color StrokeColor = new Color(4/255f,156/255f,1f);
 

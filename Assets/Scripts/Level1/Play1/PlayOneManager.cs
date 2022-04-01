@@ -146,6 +146,9 @@ public class PlayOneManager : MonoBehaviour
 
     void Update()
     {
+        // Liquid mixing;
+        LiquidMixing();
+
         // Use car position to identify the CaseID;
         if (car.gameObject.transform.position.z > 20 && car.gameObject.transform.position.z <= 21)
         {
@@ -252,7 +255,7 @@ public class PlayOneManager : MonoBehaviour
     {
 
         // Disable the brake, let liquid flow
-        LiquidMixing();
+        //LiquidMixing();
         Brake.SetActive(false);
         // OK, lets check whether the result is correct according to the caseID;
         if (CaseID == 0)
