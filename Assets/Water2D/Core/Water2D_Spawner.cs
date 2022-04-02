@@ -23,18 +23,27 @@
 	public class Water2D_Spawner : MonoBehaviour
 	{
 
-		public static Water2D_Spawner instance;
+		public int SpawnerID;
 
-		void Awake()
-		{
-			if (instance == null)
-				instance = this;
+		//public static Water2D_Spawner instance;
 
-		}
+		//void Awake()
+		//{
+		//	if (instance == null)
+		//	{
+		//		instance = this;
+		//		instanceList.Add(instance);
+		//	}
+		//	else
+		//	{
+		//		Debug.Log("Multiple Instances");
+		//	}
 
-		[Title("Water 2D", 20f, 20)]
+		//}
 
-		[Space(25f)]
+		//      [Title("Water 2D", 20f, 20)]
+
+		//[Space(25f)]
 
 		/// <summary>
 		/// Drops objects array.
@@ -88,36 +97,25 @@
 		[Header("Runtime actions")]
 
 		[ButtonAttribute("Start!", "Water2D.Water2D_Spawner", "RunSpawner")] public bool btn_0;
-		static void RunSpawner()
-		{
-			instance.Spawn();
 
-		}
+		//static void RunSpawner()
+		//{
+		//          instance.Spawn();
+
+		//      }
 
 		[ButtonAttribute("Stop", "Water2D.Water2D_Spawner", "JustStopSpawner")] public bool btn_1;
-		static void JustStopSpawner()
-		{
-			instance._breakLoop = true;
+		//static void JustStopSpawner()
+		//{
+		//    instance._breakLoop = true;
 
-		}
-		[ButtonAttribute("Stop and restore", "Water2D.Water2D_Spawner", "StopSpawner")] public bool btn_2;
-		static void StopSpawner()
-		{
-			instance.Restore();
+		//}
+		//[ButtonAttribute("Stop and restore", "Water2D.Water2D_Spawner", "StopSpawner")] public bool btn_2;
+		//static void StopSpawner()
+		//{
+		//    instance.Restore();
 
-		}
-
-		[Separator()]
-
-		[ButtonAttribute("Help?", "Water2D.Water2D_Spawner", "askHelp")] public bool btn;
-		static void askHelp()
-		{
-			string email = "info@2ddlpro.com";
-			string subject = "Water 2D Help!";
-			Application.OpenURL("mailto:" + email + "?subject=" + subject + "&body=" + "");
-		}
-
-
+		//}
 
 		bool _dynamic = true;
 		public bool Dynamic
@@ -139,7 +137,7 @@
 		int usableDropsCount;
 		int DefaultCount;
 
-		int counter;
+
 
 
 		// MICRO SPWNS
@@ -152,9 +150,15 @@
 
 
 
-		void Start()
+		private void Start()
 		{
-			counter = 0;
+			//GenerateAndSpawn();
+		}
+
+
+		public Coroutine GenerateAndSpawn()
+		{
+
 			// Debug.LogWarning(this.gameObject.transform.position);
 			//Application.targetFrameRate = 60;
 
@@ -182,121 +186,104 @@
 
 			AllBallsCount = WaterDropsObjects.Length;
 
-
 			microSpawns = new List<microSpawn>(5); // Up to 5 microspwawn
 
+			//Debug.Log("Start spawning!");
+			return Spawn();
 
-			instance.Spawn();
 		}
 
 
 
-		public void RunMicroSpawn(Vector3 pos, int amount, Vector2 initVel)
+		//      public void RunMicroSpawn(Vector3 pos, int amount, Vector2 initVel)
+		//{
+		//	addMicroSpawn (pos, amount, initVel);
+		//	executeMicroSpawns ();
+		//}
+
+		//public void addMicroSpawn(Vector3 pos, int amount, Vector2 initVel)
+		//{
+		//	microSpawns.Add( new microSpawn (pos, amount, initVel));
+		//}
+
+		public Coroutine Spawn()
 		{
-			addMicroSpawn(pos, amount, initVel);
-			executeMicroSpawns();
+			return Spawn(DefaultCount);
 		}
 
-		public void addMicroSpawn(Vector3 pos, int amount, Vector2 initVel)
+		public Coroutine Spawn(int count)
 		{
-			microSpawns.Add(new microSpawn(pos, amount, initVel));
-		}
+			//executeMicroSpawns ();
+			//         if (DelayBetweenParticles == 0f)
+			//         {
+			//             SpawnAll();
+			//	return null;
+			//         }
+			//         else 
+			//{
+			Coroutine a = StartCoroutine(loop(gameObject.transform.position, initSpeed, count));
+			return a;
+			//}
 
-		//     public void Update()
-		//     {
-		//Spawn();
-		//     }
-
-		public void Spawn()
-		{
-			Spawn(DefaultCount);
-		}
-
-		public void Spawn(int count)
-		{
-			executeMicroSpawns();
-			if (DelayBetweenParticles == 0f)
-			{
-				SpawnAll();
-			}
-			else
-			{
-				if (_breakLoop == false)
-				{
-					Debug.Log("=------====");
-					StartCoroutine(loop(gameObject.transform.position, initSpeed, count));
-
-				}
-
-			}
 
 		}
 
 		// SpawnAll is used when delaybetweenParticles is 0. See Spawn() for details.
-		public void SpawnAll()
-		{
-			SpawnAllParticles(gameObject.transform.position, initSpeed, DefaultCount);
-			//Debug.Log(gameObject.transform.position);
-		}
+		//public void SpawnAll() {
+		//    SpawnAllParticles(gameObject.transform.position, initSpeed, DefaultCount);
+		//Debug.Log(gameObject.transform.position);
+		//}
 
-		public void Spawn(int count, Vector3 pos)
-		{
-			executeMicroSpawns();
-			StartCoroutine(loop(pos, initSpeed, count));
-		}
+		//public void Spawn(int count, Vector3 pos){
+		//	executeMicroSpawns ();
+		//	StartCoroutine (loop(pos, initSpeed, count));
+		//}
 
-		public void Spawn(int count, Vector3 pos, Vector2 InitVelocity, float delay = 0f)
-		{
-			executeMicroSpawns();
-			StartCoroutine(loop(pos, InitVelocity, count, delay));
-		}
+		//public void Spawn(int count, Vector3 pos, Vector2 InitVelocity, float delay = 0f){
+		//	executeMicroSpawns ();
+		//	StartCoroutine (loop(pos, InitVelocity, count, delay));
+		//}
 
-		void executeMicroSpawns()
-		{
-			if (microSpawns == null)
-				return;
+		//void executeMicroSpawns()
+		//{
+		//	if (microSpawns == null)
+		//		return;
 
-			if (microSpawns.Count > 0 && microSpawns.Capacity > 0)
-			{
-				for (int i = 0; i < microSpawns.Count; i++)
-				{
-					//Spawn (microSpawns [i].amount, microSpawns [i].pos, microSpawns [i].initVel);
-					DynamicChanges = false;
-					StartCoroutine(loop(microSpawns[i].pos, microSpawns[i].initVel, microSpawns[i].amount, 0f));
-				}
+		//	if (microSpawns.Count > 0 && microSpawns.Capacity > 0) {
+		//		for (int i = 0; i < microSpawns.Count; i++) {
+		//			//Spawn (microSpawns [i].amount, microSpawns [i].pos, microSpawns [i].initVel);
+		//			DynamicChanges = false;
+		//			StartCoroutine (loop(microSpawns [i].pos, microSpawns [i].initVel, microSpawns [i].amount ,0f));
+		//		}
 
-				microSpawns.Clear();
-			}
-		}
+		//		microSpawns.Clear ();
+		//	}
+		//}
 
-		public void Restore()
-		{
+		//public void Restore()
+		//{
 
-			IsWaterInScene = false;
-			_breakLoop = true;
+		//	IsWaterInScene = false;
+		//	_breakLoop = true;
 
-			microSpawns.Clear();
+		//	microSpawns.Clear ();
 
 
-			for (int i = 0; i < WaterDropsObjects.Length; i++)
-			{
-				if (WaterDropsObjects[i].GetComponent<MetaballParticleClass>().Active == true)
-				{
-					WaterDropsObjects[i].GetComponent<MetaballParticleClass>().Active = false;
-				}
-				WaterDropsObjects[i].GetComponent<MetaballParticleClass>().witinTarget = false;
-			}
+		//	for (int i = 0; i < WaterDropsObjects.Length; i++) {
+		//		if (WaterDropsObjects [i].GetComponent<MetaballParticleClass> ().Active == true) {
+		//			WaterDropsObjects [i].GetComponent<MetaballParticleClass> ().Active = false;
+		//		}
+		//		WaterDropsObjects [i].GetComponent<MetaballParticleClass> ().witinTarget = false;			
+		//	}
 
 
+		//	gameObject.transform.localEulerAngles = Vector3.zero;
+		//	initSpeed = new Vector2 (0, -2f);
 
-
-			gameObject.transform.localEulerAngles = Vector3.zero;
-			initSpeed = new Vector2(0, -2f);
-
-			DefaultCount = AllBallsCount;
-			usableDropsCount = DefaultCount;
-			//Dynamic = false;
-		}
+		//	DefaultCount = AllBallsCount;
+		//	usableDropsCount = DefaultCount;
+		//	//Dynamic = false;
+		//}
 
 		IEnumerator loop(Vector3 _pos, Vector2 _initSpeed, int count = -1, float delay = 0f, bool waitBetweenDropSpawn = true)
 		{
@@ -306,16 +293,82 @@
 
 			IsWaterInScene = true;
 
+			int auxCount = 0;
+			while (true)
+			{
+				SetWaterColor(FillColor, StrokeColor);
 
+				for (int i = 0; i < WaterDropsObjects.Length; i++)
+				{
+
+					//if (_breakLoop)
+					//	yield break;
+
+					MetaballParticleClass MetaBall = WaterDropsObjects[i].GetComponent<MetaballParticleClass>();
+
+					if (MetaBall.Active == true)
+						break;
+
+					MetaBall.LifeTime = LifeTime;
+					WaterDropsObjects[i].transform.position = transform.position;
+					MetaBall.Active = true;
+					MetaBall.witinTarget = false;
+
+					if (_initSpeed == Vector2.zero)
+						_initSpeed = initSpeed;
+
+					if (DynamicChanges)
+					{
+						_initSpeed = initSpeed;
+						MetaBall.transform.localScale = new Vector3(size, size, 1f);
+
+					}
+
+					WaterDropsObjects[i].GetComponent<Rigidbody2D>().velocity = _initSpeed;
+
+
+					// Count limiter
+					if (count > -1)
+					{
+						auxCount++;
+						if (auxCount >= count && !Dynamic)
+						{
+							Debug.Log("||||||Exceed limit");
+							yield break;
+						}
+					}
+
+					if (waitBetweenDropSpawn)
+						yield return new WaitForSeconds(DelayBetweenParticles);
+
+				}
+				yield return new WaitForEndOfFrame();
+				alreadySpawned = true;
+
+				if (!Dynamic)
+				{
+					Debug.Log("||||||Dynamimc");
+					yield break;
+				}
+
+			}
+		}
+
+
+		void SpawnAllParticles(Vector3 _pos, Vector2 _initSpeed, int count = -1, float delay = 0f, bool waitBetweenDropSpawn = true)
+		{
+
+
+			IsWaterInScene = true;
 
 			int auxCount = 0;
 			while (true)
 			{
+				Debug.Log("-----SpawnAllParticles----");
 				for (int i = 0; i < WaterDropsObjects.Length; i++)
 				{
 
-					if (_breakLoop)
-						yield break;
+
 
 					MetaballParticleClass MetaBall = WaterDropsObjects[i].GetComponent<MetaballParticleClass>();
 
@@ -346,79 +399,18 @@
 						auxCount++;
 						if (auxCount >= count && !Dynamic)
 						{
-							yield break;
+							break;
 						}
 					}
 
-					if (waitBetweenDropSpawn)
-						yield return new WaitForSeconds(DelayBetweenParticles);
+
 
 				}
-				yield return new WaitForEndOfFrame();
+
 				alreadySpawned = true;
 
-				if (!Dynamic)
-					yield break;
 
 			}
-		}
-
-
-		void SpawnAllParticles(Vector3 _pos, Vector2 _initSpeed, int count = -1, float delay = 0f, bool waitBetweenDropSpawn = true)
-		{
-
-
-			IsWaterInScene = true;
-
-			int auxCount = 0;
-			// while (true)
-			//{
-			for (int i = 0; i < WaterDropsObjects.Length; i++)
-			{
-
-
-
-				MetaballParticleClass MetaBall = WaterDropsObjects[i].GetComponent<MetaballParticleClass>();
-
-				if (MetaBall.Active == true)
-					continue;
-
-				MetaBall.LifeTime = LifeTime;
-				WaterDropsObjects[i].transform.position = transform.position;
-				MetaBall.Active = true;
-				MetaBall.witinTarget = false;
-
-				if (_initSpeed == Vector2.zero)
-					_initSpeed = initSpeed;
-
-				if (DynamicChanges)
-				{
-					_initSpeed = initSpeed;
-					MetaBall.transform.localScale = new Vector3(size, size, 1f);
-					SetWaterColor(FillColor, StrokeColor);
-				}
-
-				WaterDropsObjects[i].GetComponent<Rigidbody2D>().velocity = _initSpeed;
-
-
-				// Count limiter
-				if (count > -1)
-				{
-					auxCount++;
-					if (auxCount >= count && !Dynamic)
-					{
-						break;
-					}
-				}
-
-
-
-			}
-
-			alreadySpawned = true;
-
-
-			// }
 		}
 
 		public void SetWaterColor(Color fill, Color stroke)
