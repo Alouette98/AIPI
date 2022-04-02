@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
 
         else if ((Step == 6) && (Completed == false))
         {
-            SceneManager.LoadSceneAsync(1);
+            SceneManager.LoadSceneAsync(2);
         }
 
 

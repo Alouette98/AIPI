@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Water2D;
 
 public class PlayOneManager : MonoBehaviour
@@ -54,7 +57,7 @@ public class PlayOneManager : MonoBehaviour
     public GameObject TextOnFullObj;
     public GameObject SpriteOnFullObj;
 
-    public GameObject CameraFluid;
+    //public GameObject CameraFluid;
 
     public GameObject Brake;
     public Water2D_Spawner spawner1;
@@ -65,6 +68,14 @@ public class PlayOneManager : MonoBehaviour
     // ---------- Animation ----------
     public CarBehaviour car;
 
+
+    //public GameObject trafficLogo;
+    //public GameObject pedestrianLogo;
+
+    //public Sprite traffic_green;
+    //public Sprite traffic_gray;
+    //public Sprite ped_green;
+    //public Sprite ped_gray;
 
 
     // -- Liquid Color ---
@@ -117,6 +128,9 @@ public class PlayOneManager : MonoBehaviour
 
         // Reset water color
         //SetWaterColor(defaultWater);
+
+
+        // Detect x1,x2, change traffic sprites.
 
     }
 
@@ -174,7 +188,7 @@ public class PlayOneManager : MonoBehaviour
         if (CaseID == 0)
         {
             result = wb1.weightValue;
-            EquationText.text = X1.ToString() + " x " + wb1.weightValue.ToString() + "+ = " + result.ToString();
+            EquationText.text = X1.ToString() + " x " + wb1.weightValue.ToString() + "+ 0 = " + result.ToString();
         } 
         else
         {
@@ -192,7 +206,7 @@ public class PlayOneManager : MonoBehaviour
         TextOnFullObj.GetComponent<TMPro.TextMeshProUGUI>().text = TextString;
         if (nextLevel)
         {
-            EnableNextLevelButton();
+            //EnableNextLevelButton();
             hasEnteredCase = false;
         }
         yield return new WaitForSeconds(PopUpTime);
@@ -251,6 +265,11 @@ public class PlayOneManager : MonoBehaviour
         //SetWaterColor(defaultWater);
     }
 
+    public IEnumerator LoadSceneWithID(float waitTime, int id)
+    {
+        yield return new WaitForSeconds(waitTime);
+        SceneManager.LoadScene(id);
+    }
     public void Play1()
     {
 
@@ -264,13 +283,19 @@ public class PlayOneManager : MonoBehaviour
             {
                 StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                 StartCoroutine(CarRunning(2f));
-                StartCoroutine(FullScreenPop("Great job! Now you know that controlling the weight can decide car's movement.", 5f, 2f, false, true));
+                StartCoroutine(FullScreenPop("Great Job! Now you know that controlling the weight can decide the output of the Neural Networks!", 5f, 6f, false, true));
+                StartCoroutine(LoadSceneWithID(12f, 3));
             }
-            else
+            else if (result == 0)
             {
                 StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                StartCoroutine(FullScreenPop("The green light is on, and the cars behind beeps you", 5f, 2f, false, false));
-                StartCoroutine(HalfScreenShow(8f));
+                StartCoroutine(FullScreenPop("0 in input means disabling the input, and 0 in output confuses Neural Network. Try again!", 5f, 4f, false, false));
+                StartCoroutine(HalfScreenShow(12f));
+            }else
+            {
+                StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+                StartCoroutine(FullScreenPop("Postive Green means GO. Negative Red means STOP. Now green light is on. Try Again!", 5f, 4f, false, false));
+                StartCoroutine(HalfScreenShow(12f));
                 //SetWaterColor(defaultWater);
             }
         }
@@ -280,13 +305,13 @@ public class PlayOneManager : MonoBehaviour
             {
                 StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                 StartCoroutine(CarRunning(2f));
-                StartCoroutine(FullScreenPop("Success!", 5f, 2f, false, true));
+                StartCoroutine(FullScreenPop("Great Job! Keep on training the network!", 5f, 4f, false, true));
             }
             else
             {
                 StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                StartCoroutine(FullScreenPop("Fail", 5f, 2f, false, false));
-                StartCoroutine(HalfScreenShow(8f));
+                StartCoroutine(FullScreenPop("Not moving? GREEN light is on!", 5f, 4f, false, false));
+                StartCoroutine(HalfScreenShow(12f));
                 //SetWaterColor(defaultWater);
             }
         }
@@ -297,52 +322,148 @@ public class PlayOneManager : MonoBehaviour
                 // no car shall go so fail
                 StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                 StartCoroutine(CarRunning(2f));
-                StartCoroutine(FullScreenPop("Fail", 5f, 2f, false, false));
-                StartCoroutine(LevelStart(CaseID, 7f));
+                StartCoroutine(FullScreenPop("Stop! Don't kill people!", 5f, 5f, false, false));
+                StartCoroutine(LevelStart(CaseID, 8f));
+            }
+            else if (result == 0)
+            {
+                StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
+                StartCoroutine(CarRunning(2f));
+                StartCoroutine(FullScreenPop("0 makes Neural Networks confused.Try again!", 5f, 5f, false, false));
+                StartCoroutine(LevelStart(CaseID, 8f));
             }
             else
             {
                 StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                StartCoroutine(FullScreenPop("Success!", 5f, 2f, false, true));
+                StartCoroutine(FullScreenPop("Thanks! You make our city safer.", 5f, 4f, false, true));
 
                 // #TODO NEED UPDATE
-                StartCoroutine(LevelStart(3, 7f));
+                StartCoroutine(LevelStart(3, 10f));
                 CaseID = 3;
 
-                StartCoroutine(HalfScreenShow(8f));
+                StartCoroutine(HalfScreenShow(12f));
             }
         }
         else if (CaseID == 3)
         {
-
-            if (result > 0)
+            if (wb1.weightValue == 0 || wb2.weightValue == 0 || result == 0)
             {
-                // no car shall go so fail
-                StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
-                StartCoroutine(CarRunning(2f));
-                StartCoroutine(FullScreenPop("Fail", 5f, 2f, false, false));
-                StartCoroutine(LevelStart(CaseID, 7f));
+                if (result > 0){
+                    StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
+                    StartCoroutine(CarRunning(2f));
+                }
+                else
+                {
+                    StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+                }
+                //StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
+                
+                StartCoroutine(FullScreenPop("0 makes Neural Networks confused.Try again!", 5f, 4f, false, false));
+                StartCoroutine(LevelStart(CaseID, 12f));
             }
-            else if (result == 0)
-            {
-                StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                StartCoroutine(FullScreenPop("0 make Neural Network confused", 5f, 2f, true, false));
-                StartCoroutine(LevelStart(CaseID, 7f));
-            }
-            else if (result < 0 && wb1.weightValue < 0)
-            {
-                StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                StartCoroutine(FullScreenPop("Hmm, if no one cross the road later, the car probably won't go...", 5f, 2f, true, false));
-                StartCoroutine(LevelStart(CaseID, 7f));
-            }
-            else if (result < 0 && wb1.weightValue > 0)
+            if ((math.abs(wb1.weightValue) > math.abs(wb2.weightValue)))
             {
 
-                StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                StartCoroutine(FullScreenPop("Success, Lv1 passed!", 5f, 200f, false, true));
-                StartCoroutine(StopCar(7f));
+
+                if (wb1.weightValue > 0 && wb2.weightValue > 0)
+                {
+                    StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
+                    StartCoroutine(CarRunning(2f));
+                    StartCoroutine(FullScreenPop("Remeber? Don't kill people!", 5f, 4f, false, false));
+                    StartCoroutine(LevelStart(CaseID, 12f));
+                }
+                else if (wb1.weightValue < 0 && wb2.weightValue < 0)
+                {
+                    StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+                    StartCoroutine(CarRunning(2f));
+                    StartCoroutine(FullScreenPop("But when green light is on, the car still need to go forward.", 5f, 4f, false, false));
+                    StartCoroutine(LevelStart(CaseID, 12f));
+                }
+                else if (wb1.weightValue > 0 && wb2.weightValue < 0)
+                {
+                    StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
+                    StartCoroutine(CarRunning(2f));
+                    StartCoroutine(FullScreenPop("Nearly there! But the pedestrain's life is more important than the traffic rules.", 5f, 4f, false, false));
+                    StartCoroutine(LevelStart(CaseID, 12f));
+                }
+                else if (wb1.weightValue < 0 && wb2.weightValue > 0)
+                {
+                    StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+                    StartCoroutine(CarRunning(2f));
+                    StartCoroutine(FullScreenPop("Remeber? Don't kill people!", 5f, 4f, false, false));
+                    StartCoroutine(LevelStart(CaseID, 12f));
+                }
+            }
+
+            if ((math.abs(wb1.weightValue) < math.abs(wb2.weightValue)))
+            {
+                if (wb1.weightValue > 0 && wb2.weightValue < 0)
+                {
+                    Debug.Log("==========Correct ======");
+                    StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+                    StartCoroutine(FullScreenPop("That's right! The pedestrain's life is more important than the traffic rules. Now the car can always make the right choice!", 5f, 200f, false, true));
+                    StartCoroutine(StopCar(7f));
+                }
+
+                else if (wb1.weightValue < 0 && wb2.weightValue < 0)
+                {
+                    StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+                    StartCoroutine(CarRunning(2f));
+                    StartCoroutine(FullScreenPop("But the car still need to go forward when green light is on.", 5f, 4f, false, false));
+                    StartCoroutine(LevelStart(CaseID, 12f));
+                }
+
+                else if (wb1.weightValue > 0 && wb2.weightValue > 0)
+                {
+                    StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
+                    StartCoroutine(CarRunning(2f));
+                    StartCoroutine(FullScreenPop("Remeber? Don't kill people!", 5f, 4f, false, false));
+                    StartCoroutine(LevelStart(CaseID, 12f));
+                }
+
+                else if (wb1.weightValue < 0 && wb2.weightValue > 0)
+                {
+                    StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
+                    StartCoroutine(CarRunning(2f));
+                    StartCoroutine(FullScreenPop("Remeber? Don't kill people! And the car still need to go forward when green light is on.", 5f, 4f, false, false));
+                    StartCoroutine(LevelStart(CaseID, 12f));
+                }
 
             }
+
+
+
+
+
+            ////---
+            //if (result > 0)
+            //{
+            //    // no car shall go so fail
+            //    StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
+            //    StartCoroutine(CarRunning(2f));
+            //    StartCoroutine(FullScreenPop("Fail", 5f, 2f, false, false));
+            //    StartCoroutine(LevelStart(CaseID, 7f));
+            //}
+            //else if (result == 0)
+            //{
+            //    StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+            //    StartCoroutine(FullScreenPop("0 make Neural Network confused", 5f, 2f, true, false));
+            //    StartCoroutine(LevelStart(CaseID, 7f));
+            //}
+            //else if (result < 0 && wb1.weightValue < 0)
+            //{
+            //    StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+            //    StartCoroutine(FullScreenPop("Hmm, if no one cross the road later, the car probably won't go...", 5f, 2f, true, false));
+            //    StartCoroutine(LevelStart(CaseID, 7f));
+            //}
+            //else if (result < 0 && wb1.weightValue > 0)
+            //{
+
+            //    StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+            //    StartCoroutine(FullScreenPop("Right! The pedestrain's life is more important than the traffic rules. But when green light is on, the car can still go forward.", 5f, 200f, false, true));
+            //    StartCoroutine(StopCar(7f));
+
+            //}
         }
 
 
@@ -352,11 +473,54 @@ public class PlayOneManager : MonoBehaviour
     public void DisableHalf()
     {
         HalfCanvas.SetActive(false);
+        // Clean all particles;
+
+        //if (CaseID == 0)
+        //{
+        //    for (int i = 1; i < spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length; i++) {
+        //        Destroy(spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects[i]);
+        //    }
+        //    Array.Clear(spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects, 1, spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length-1);
+        //}
+        //else if (CaseID == 1)
+        //{
+        //    for (int i = 1; i < spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length; i++)
+        //    {
+        //        Destroy(spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects[i]);
+        //    }
+        //    Array.Clear(spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects, 1, spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length-1);
+        //    //spawner2.GenerateAndSpawn();
+        //}
+        //else if (CaseID == 2)
+        //{
+        //    for (int i = 1; i < spawner2.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length; i++)
+        //    {
+        //        Destroy(spawner2.GetComponent<Water2D_Spawner>().WaterDropsObjects[i]);
+        //    }
+        //    Array.Clear(spawner2.GetComponent<Water2D_Spawner>().WaterDropsObjects, 1, spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length - 1);
+        //}
+        //else if (CaseID == 3)
+        //{
+        //    for (int i = 1; i < spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length; i++)
+        //    {
+        //        Destroy(spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects[i]);
+        //    }
+        //    Array.Clear(spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects, 1, spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length - 1);
+        //    for (int i = 1; i < spawner2.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length; i++)
+        //    {
+        //        Destroy(spawner2.GetComponent<Water2D_Spawner>().WaterDropsObjects[i]);
+        //    }
+        //    Array.Clear(spawner2.GetComponent<Water2D_Spawner>().WaterDropsObjects, 1, spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length - 1);
+        //}
+
     }
 
     public void EnableHalf()
     {
         HalfCanvas.SetActive(true);
+
+        Brake.SetActive(true);
+
         if (CaseID == 0)
         {
             spawner1.GenerateAndSpawn();
@@ -376,11 +540,11 @@ public class PlayOneManager : MonoBehaviour
             spawner2.GenerateAndSpawn();
         }
 
-        wb1.ParticleCheck();
-        if (CaseID != 0)
-        {
-            wb2.ParticleCheck();
-        }
+        //wb1.ParticleCheck();
+        //if (CaseID != 0)
+        //{
+        //    wb2.ParticleCheck();
+        //}
 
         // Reset water material;
         //SetWaterColor(waterMaterial);
@@ -390,12 +554,12 @@ public class PlayOneManager : MonoBehaviour
 
     public void DisableLiquidCamera()
     {
-        CameraFluid.SetActive(false);
+        //CameraFluid.SetActive(false);
     }
 
     public void EnableLiquidCamera()
     {
-        CameraFluid.SetActive(true);
+        //CameraFluid.SetActive(true);
     }
 
     public void EnableNextLevelButton()

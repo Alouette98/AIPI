@@ -29,7 +29,7 @@ public class WeightBar : MonoBehaviour
     {
         weightValue = 0;
         firstTime = true;
-        ParticleCheck();
+        //ParticleCheck();
     }
 
     public void ChangeWeight(float weight)
@@ -37,73 +37,73 @@ public class WeightBar : MonoBehaviour
         lastWeightValue = weightValue;
         weightValue = weight;
         firstTime = false;
-        if (mgr != null)
-        {
-            if ((mgr.X1 == 1 && weightID == 1) || (mgr.X2 == 1 && weightID == 2))
-            {
-                if (weightValue - lastWeightValue == 1)
-                {
-                    // Generate a positive liquid; or if a negative exists, cancel one.
-                    if (negativeParticles.Count != 0)
-                    {
-                        Destroy(negativeParticles[0]);
-                        negativeParticles.RemoveAt(0);
-                    }
-                    else
-                    {
-                        positiveParticles.Add(Instantiate(PositiveParticle, this.transform.position + new Vector3(0.7f, 0, 0), Quaternion.identity));
-                    }
-                }
-                else if (weightValue - lastWeightValue == -1)
-                {
-                    // Generate a positive liquid; or if a negative exists, cancel one.
-                    if (positiveParticles.Count != 0)
-                    {
-                        Destroy(positiveParticles[0]);
-                        positiveParticles.RemoveAt(0);
-                    }
-                    else
-                    {
-                        negativeParticles.Add(Instantiate(NegativeParticle, this.transform.position + new Vector3(0.7f, 0, 0), Quaternion.identity));
-                    }
-                }
-            }
-        }
+        //if (mgr != null)
+        //{
+        //    if ((mgr.X1 == 1 && weightID == 1) || (mgr.X2 == 1 && weightID == 2))
+        //    {
+        //        if (weightValue - lastWeightValue == 1)
+        //        {
+        //            // Generate a positive liquid; or if a negative exists, cancel one.
+        //            if (negativeParticles.Count != 0)
+        //            {
+        //                Destroy(negativeParticles[0]);
+        //                negativeParticles.RemoveAt(0);
+        //            }
+        //            else
+        //            {
+        //                positiveParticles.Add(Instantiate(PositiveParticle, this.transform.position + new Vector3(0.7f, 0, 0), Quaternion.identity));
+        //            }
+        //        }
+        //        else if (weightValue - lastWeightValue == -1)
+        //        {
+        //            // Generate a positive liquid; or if a negative exists, cancel one.
+        //            if (positiveParticles.Count != 0)
+        //            {
+        //                Destroy(positiveParticles[0]);
+        //                positiveParticles.RemoveAt(0);
+        //            }
+        //            else
+        //            {
+        //                negativeParticles.Add(Instantiate(NegativeParticle, this.transform.position + new Vector3(0.7f, 0, 0), Quaternion.identity));
+        //            }
+        //        }
+        //    }
+        //}
     }
 
-    public void ParticleCheck()
-    {
-        if (mgr != null)
-        {
-            if ((mgr.X1 == 1 && weightID == 1) || (mgr.X2 == 1 && weightID == 2))
-            {
-                if (weightValue - (positiveParticles.Count - negativeParticles.Count) != 0)
-                {
-                    if (weightValue - (positiveParticles.Count - negativeParticles.Count) > 0)
-                    {
-                        for (int i = 0; i < weightValue - (positiveParticles.Count - negativeParticles.Count); i++)
-                        {
-                            positiveParticles.Add(Instantiate(PositiveParticle, this.transform.position + new Vector3(0.7f, 0, 0), Quaternion.identity));
-                        }
-                    }
-                    else if (weightValue - (positiveParticles.Count - negativeParticles.Count) < 0)
-                    {
-                        for (int i = 0; i < -(weightValue - (positiveParticles.Count - negativeParticles.Count)); i++)
-                        {
-                            negativeParticles.Add(Instantiate(NegativeParticle, this.transform.position + new Vector3(0.7f, 0, 0), Quaternion.identity));
-                        }
-                    }
-                }
-                if (positiveParticles.Count > 0 && negativeParticles.Count > 0)
-                {
-                    Destroy(positiveParticles[0]);
-                    positiveParticles.RemoveAt(0);
-                    Destroy(negativeParticles[0]);
-                    negativeParticles.RemoveAt(0);
-                }
-            }
-        }
-    }
+    //public void ParticleCheck()
+    //{
+    //    if (mgr != null)
+    //    {
+    //        if ((mgr.X1 == 1 && weightID == 1) || (mgr.X2 == 1 && weightID == 2))
+    //        {
+    //            if (weightValue - (positiveParticles.Count - negativeParticles.Count) != 0)
+    //            {
+    //                if (weightValue - (positiveParticles.Count - negativeParticles.Count) > 0)
+    //                {
+    //                    for (int i = 0; i < weightValue - (positiveParticles.Count - negativeParticles.Count); i++)
+    //                    {
+    //                        positiveParticles.Add(Instantiate(PositiveParticle, this.transform.position + new Vector3(0.7f, 0, 0), Quaternion.identity));
+    //                    }
+    //                }
+    //                else if (weightValue - (positiveParticles.Count - negativeParticles.Count) < 0)
+    //                {
+    //                    for (int i = 0; i < -(weightValue - (positiveParticles.Count - negativeParticles.Count)); i++)
+    //                    {
+    //                        negativeParticles.Add(Instantiate(NegativeParticle, this.transform.position + new Vector3(0.7f, 0, 0), Quaternion.identity));
+    //                    }
+    //                }
+    //            }
+    //            if (positiveParticles.Count > 0 && negativeParticles.Count > 0)
+    //            {
+    //                Destroy(positiveParticles[0]);
+    //                positiveParticles.RemoveAt(0);
+    //                Destroy(negativeParticles[0]);
+    //                negativeParticles.RemoveAt(0);
+    //            }
+    //        }
+    //    }
+    //}
 
 
     //public  ParticleCheck()
@@ -158,12 +158,12 @@ public class WeightBar : MonoBehaviour
         {
             this.gameObject.GetComponentInChildren<Collider2D>().enabled = false;
         }
-        if (mgr != null)
-        {
-            if (!mgr.mixed)
-            {
-                ParticleCheck();
-            }
+        //if (mgr != null)
+        //{
+        //    if (!mgr.mixed)
+        //    {
+        //        ParticleCheck();
+        //    }
         }
 
 
@@ -203,5 +203,5 @@ public class WeightBar : MonoBehaviour
 
 
 
-    }
+    
 }

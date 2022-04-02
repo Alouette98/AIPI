@@ -392,7 +392,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: X1W1+X2W2+X0=Y
+  m_text: X1W1+X0=Y
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -4740,7 +4740,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "X1\xB7W1+X2\xB7W2+X0=Y"
+  m_text: "X1\xB7W1+X0=Y"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -5297,6 +5297,7 @@ MonoBehaviour:
   LifeTime: 0.5
   witinTarget: 0
   slider1: {fileID: 854209415}
+  mgr: {fileID: 0}
 --- !u!96 &891758811
 TrailRenderer:
   serializedVersion: 2
@@ -6732,7 +6733,6 @@ MonoBehaviour:
   LifeTime: 33.6
   DelayBetweenParticles: 0.05
   WaterMaterial: {fileID: 2100000, guid: d7dbb6442eb62904fbbc46442f2c798f, type: 2}
-  NoChangeMaterial: {fileID: 0}
   FillColor: {r: 0, g: 0.4392157, b: 1, a: 1}
   StrokeColor: {r: 0.015686275, g: 0.6117647, b: 1, a: 1}
   initSpeed: {x: 1, y: 0}
@@ -8995,7 +8995,6 @@ MonoBehaviour:
   LifeTime: 33.6
   DelayBetweenParticles: 0.05
   WaterMaterial: {fileID: 2100000, guid: d7dbb6442eb62904fbbc46442f2c798f, type: 2}
-  NoChangeMaterial: {fileID: 0}
   FillColor: {r: 0, g: 0.4392157, b: 1, a: 1}
   StrokeColor: {r: 0.015686275, g: 0.6117647, b: 1, a: 1}
   initSpeed: {x: 1, y: 0}
@@ -10116,6 +10115,7 @@ MonoBehaviour:
   LifeTime: 0.5
   witinTarget: 0
   slider1: {fileID: 854209415}
+  mgr: {fileID: 0}
 --- !u!96 &1662669065
 TrailRenderer:
   serializedVersion: 2
@@ -11558,7 +11558,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1825097322}
         m_TargetAssemblyTypeName: NextButtonL1, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: NextClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
