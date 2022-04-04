@@ -16,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Fluids
-  - 
+  - TextSpeechBubble
   - 
   - 
   - 
@@ -50,4 +50,7 @@ TagManager:
     locked: 0
   - name: SettingsLayer
     uniqueID: 1419988049
+    locked: 0
+  - name: TextSpeechBubble
+    uniqueID: 220208391
     locked: 0

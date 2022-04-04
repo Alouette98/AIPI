@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject OverlayObj;
 
+    public GameObject CircleTutObj;
+    private GameObject CircleTutObjGenerate;
+
 
     // Half Show
     public GameObject HalfShowObj;
@@ -47,6 +50,8 @@ public class GameManager : MonoBehaviour
     // ------------------------------------//
 
     public GameObject canv;
+    public GameObject highlightcanv;
+
 
     public bool Completed;
 
@@ -66,7 +71,7 @@ public class GameManager : MonoBehaviour
         isTutorialFinished = false;
         // When the game starts, automaticlly add a bubble to the scene.
         SpeechBubble = Instantiate(Bubble, new Vector3(-5.89f, -2.08f, 0), Quaternion.identity);
-        SpeechBubble.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Welcome students! You are now the brain of a self driving car.";
+        SpeechBubble.GetComponentInChildren<TMPro.TextMeshPro>().text = "Welcome students! You are now the brain of a self driving car.";
         SpeechBubble.transform.SetParent(canv.transform, false);
     }
 
@@ -81,8 +86,8 @@ public class GameManager : MonoBehaviour
         {
             HalfShowObj.SetActive(true);
             Destroy(SpeechBubble);
-            SpeechBubble = Instantiate(Bubble, new Vector3(-5.89f, -2.08f, 0), Quaternion.identity);
-            SpeechBubble.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Left side shows the self driving car and the right side is the brain of the self driving car.";
+            SpeechBubble = Instantiate(Bubble, new Vector3(-8.89f, -2.08f, 0), Quaternion.identity);
+            SpeechBubble.GetComponentInChildren<TMPro.TextMeshPro>().text = "Left side shows the self driving car and the right side is the brain of the self driving car.";
             SpeechBubble.transform.SetParent(canv.transform, false);
             Completed = true;
             
@@ -98,8 +103,8 @@ public class GameManager : MonoBehaviour
             FixedObj2.SetActive(true);
 
             Destroy(SpeechBubble);
-            SpeechBubble = Instantiate(Bubble, new Vector3(-10.4f, -3.26f, 0), Quaternion.identity);
-            SpeechBubble.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "These are the different sections of the brain";
+            SpeechBubble = Instantiate(Bubble, new Vector3(-11.4f, 2.26f, 0), Quaternion.identity);
+            SpeechBubble.GetComponentInChildren<TMPro.TextMeshPro>().text = "These are the different sections of the brain";
             SpeechBubble.transform.SetParent(canv.transform, false);
             Completed = true;
         }
@@ -114,29 +119,41 @@ public class GameManager : MonoBehaviour
             FixedObj.SetActive(true);
             FixedObj2.SetActive(true);
 
+            CircleTutObj.SetActive(true);
+            CircleTutObjGenerate = Instantiate(CircleTutObj, new Vector3(-12.4f, -0.7f, 0f), Quaternion.identity);
+            CircleTutObjGenerate.transform.SetParent(highlightcanv.transform, false);
+
             Destroy(SpeechBubble);
-            SpeechBubble = Instantiate(Bubble, new Vector3(-10.55f, 0.63f, 0), Quaternion.identity);
-            SpeechBubble.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "X1 is the Traffic Light Sensor Input. If X1 = 0, light sensor is off";
+            SpeechBubble = Instantiate(Bubble, new Vector3(-10.55f, 0.63f, -0.01f), Quaternion.identity);
+            SpeechBubble.GetComponentInChildren<TMPro.TextMeshPro>().text = "X1 is the Traffic Light Sensor Input. If X1 = 0, light sensor is off";
             SpeechBubble.transform.SetParent(canv.transform, false);
             Completed = true;
         }
         else if ((Step == 3) && (Completed == false))
         // Meaning it just starts.
         {
+            Destroy(CircleTutObjGenerate);
+            CircleTutObjGenerate = Instantiate(CircleTutObj, new Vector3(-12.4f, -0.7f, 0f), Quaternion.identity);
+            CircleTutObjGenerate.transform.SetParent(highlightcanv.transform, false);
+
             Destroy(SpeechBubble);
-            SpeechBubble = Instantiate(Bubble, new Vector3(-10.55f, 0.63f, 0), Quaternion.identity);
+            SpeechBubble = Instantiate(Bubble, new Vector3(-10.55f, 0.63f, -0.01f), Quaternion.identity);
             TrafficLightObj.GetComponent<SpriteRenderer>().sprite = LightOn;
-            SpeechBubble.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "If X1 = 1, light sensor is on and green light is detected.";
+            SpeechBubble.GetComponentInChildren<TMPro.TextMeshPro>().text = "If X1 = 1, light sensor is on and green light is detected.";
             SpeechBubble.transform.SetParent(canv.transform, false);
             Completed = true;
         }
         else if ((Step == 4) && (Completed == false))
         // Meaning it just starts.
         {
+            Destroy(CircleTutObjGenerate);
+            CircleTutObjGenerate = Instantiate(CircleTutObj, new Vector3(-8.66f, -1.669f, 0f), Quaternion.identity);
+            CircleTutObjGenerate.transform.SetParent(highlightcanv.transform, false);
+
             Destroy(SpeechBubble);
             TrafficLightObj.GetComponent<SpriteRenderer>().sprite = LightOff;
-            SpeechBubble = Instantiate(Bubble, new Vector3(-6.78999996f, 0.439999998f, 0), Quaternion.identity);
-            SpeechBubble.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Drag and adjust the weights on the pipes to control the 'neural juice' and see how it affects your car.";
+            SpeechBubble = Instantiate(Bubble, new Vector3(-6.79f, 0.096f, -0.01f), Quaternion.identity);
+            SpeechBubble.GetComponentInChildren<TMPro.TextMeshPro>().text = "Drag and adjust the weights on the pipes to control the 'neural juice' and see how it affects your car.";
             SpeechBubble.transform.SetParent(canv.transform, false);
             Completed = true;
         }
@@ -144,11 +161,16 @@ public class GameManager : MonoBehaviour
         else if ((Step == 5) && (Completed == false))
         // Meaning it just starts.
         {
+            Destroy(CircleTutObjGenerate);
+            CircleTutObjGenerate = Instantiate(CircleTutObj, new Vector3(-3.17f, -4.94f, 0f), Quaternion.identity);
+            CircleTutObjGenerate.transform.SetParent(highlightcanv.transform, false);
+
+
             Destroy(SpeechBubble);
             TrafficLightObj.GetComponent<SpriteRenderer>().sprite = LightOff;
             RunButtonObj.SetActive(true);
-            SpeechBubble = Instantiate(Bubble, new Vector3(-1.59000003f, -3.80999994f, 0), Quaternion.identity);
-            SpeechBubble.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Whenever you click the Run button, the juice flows to the output and this is called Front Propagation.";
+            SpeechBubble = Instantiate(Bubble, new Vector3(-1.59f, -3.42f, -0.01f), Quaternion.identity);
+            SpeechBubble.GetComponentInChildren<TMPro.TextMeshPro>().text = "Whenever you click the Run button, the juice flows to the output and this is called Front Propagation.";
             SpeechBubble.transform.SetParent(canv.transform, false);
             Completed = true;
             isTutorialFinished = true;
