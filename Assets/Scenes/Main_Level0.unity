@@ -4663,8 +4663,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 1653081759}
   m_HandleRect: {fileID: 1699894124}
   m_Direction: 2
-  m_MinValue: -3
-  m_MaxValue: 3
+  m_MinValue: -1
+  m_MaxValue: 1
   m_WholeNumbers: 1
   m_Value: -0
   m_OnValueChanged:
@@ -4830,6 +4830,12 @@ MonoBehaviour:
   spawner2: {fileID: 0}
   nextLevelButton: {fileID: 1800210524}
   car: {fileID: 2011356608}
+  trafficLogo: {fileID: 0}
+  pedestrianLogo: {fileID: 0}
+  traffic_green: {fileID: 0}
+  traffic_gray: {fileID: 0}
+  ped_green: {fileID: 0}
+  ped_gray: {fileID: 0}
   waterMaterial: {fileID: 2100000, guid: d7dbb6442eb62904fbbc46442f2c798f, type: 2}
 --- !u!4 &859460261
 Transform:
@@ -7875,6 +7881,7 @@ MonoBehaviour:
   TrafficLightObj: {fileID: 1679530883}
   GoStopIndicatorObj: {fileID: 1101215376}
   OverlayObj: {fileID: 0}
+  CircleTutObj: {fileID: 0}
   HalfShowObj: {fileID: 0}
   BackgroundObj: {fileID: 0}
   FixedObj: {fileID: 0}
@@ -7888,6 +7895,7 @@ MonoBehaviour:
   GreenGo: {fileID: 21300000, guid: 6bc6ea64e37701a47b6a0a7e0314ef6e, type: 3}
   RedStop: {fileID: 21300000, guid: 192454ecdb980e4418dcae2c4d2c4fa3, type: 3}
   canv: {fileID: 64815241}
+  highlightcanv: {fileID: 0}
   Completed: 0
 --- !u!4 &1369677909
 Transform:

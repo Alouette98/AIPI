@@ -81,12 +81,12 @@ public class MetaballParticleClass : MonoBehaviour
 
 			if (transform.position.x > slider1.transform.position.x && mgr.result > 0)
 			{
-				changeColour(new Color(0f, mgr.result / 6.0f, 0));
+				changeColour(new Color(0f, mgr.result / 4.0f * (156f/256f) + 100f/256f, 0));
 			}
 
 			if (transform.position.x > slider1.transform.position.x && mgr.result < 0)
 			{
-				changeColour(new Color((-mgr.result) / 6.0f, 0f, 0));
+				changeColour(new Color((-mgr.result) / 4.0f * (156f / 256f) + 100f / 256f, 0f, 0));
 			}
 
 			if (transform.position.x > slider1.transform.position.x && slider1.GetComponent<WeightBar>().weightID == 2)
