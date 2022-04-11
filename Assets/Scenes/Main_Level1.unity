@@ -5235,6 +5235,7 @@ MonoBehaviour:
   sad_face: {fileID: 21300000, guid: 8397f651b80e4e64286dd8dc37e4e8b2, type: 3}
   TubeX1: {fileID: 1887622163}
   TubeX2: {fileID: 1992986775}
+  RunButton: {fileID: 1918965316}
   waterMaterial: {fileID: 2100000, guid: d7dbb6442eb62904fbbc46442f2c798f, type: 2}
 --- !u!4 &859460261
 Transform:
@@ -7715,8 +7716,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Start
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e954a651059263b41a6e1e565687aec1, type: 2}
+  m_sharedMaterial: {fileID: 2628228951331592353, guid: e954a651059263b41a6e1e565687aec1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7740,8 +7741,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 155.68
-  m_fontSizeBase: 155.68
+  m_fontSize: 128
+  m_fontSizeBase: 128
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9085,10 +9086,14 @@ MonoBehaviour:
   GoStopIndicatorObj: {fileID: 1101215376}
   OverlayObj: {fileID: 0}
   CircleTutObj: {fileID: 0}
+  LeftBlackScreen: {fileID: 0}
+  RightBlackScreen: {fileID: 0}
   HalfShowObj: {fileID: 0}
   BackgroundObj: {fileID: 0}
   FixedObj: {fileID: 0}
   FixedObj2: {fileID: 0}
+  BlueLiquidShow: {fileID: 0}
+  RedLiquidShow: {fileID: 0}
   NextButtonObj: {fileID: 0}
   RunButtonObj: {fileID: 1918965316}
   LightOn: {fileID: 21300000, guid: 689cbd2cea0c3354c9e7a8f43b1f10cd, type: 3}
