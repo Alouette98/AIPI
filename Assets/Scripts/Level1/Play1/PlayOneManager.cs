@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Water2D;
 
 public class PlayOneManager : MonoBehaviour
@@ -82,6 +83,7 @@ public class PlayOneManager : MonoBehaviour
     public GameObject TubeX1;
     public GameObject TubeX2;
 
+    public GameObject RunButton;
 
     // -- Liquid Color ---
     private Color defaultWater = new Color(0, 112 / 255f, 255 / 255f, 1);
@@ -92,20 +94,29 @@ public class PlayOneManager : MonoBehaviour
 
     //public List<Coroutine> coroutineList = new List<Coroutine>();
 
+
+
+
     void Start()
     {
         clickedTime = 0;
         hasEnteredCase = false;
-        //CaseID = 1;
         pedAniSpeed = 0.31f;
         StartCoroutine(LevelStart(CaseID, 0f));
         mixed = false;
 
     }
 
+
+
+
+
+
+
     public IEnumerator LevelStart(int levelID, float waitTime)
 
     {
+        
         yield return new WaitForSeconds(waitTime);
 
         DisableNextLevelButton();
@@ -128,8 +139,8 @@ public class PlayOneManager : MonoBehaviour
         mixed = false;
 
         // Clear list
-        wb1.ClearAllParticles();
-        if (CaseID != 0) { wb2.ClearAllParticles(); }
+        //wb1.ClearAllParticles();
+        //if (CaseID != 0) { wb2.ClearAllParticles(); }
 
         // Reset water color
         //SetWaterColor(defaultWater);
@@ -151,9 +162,20 @@ public class PlayOneManager : MonoBehaviour
             TubeX2.SetActive(false);
         }
 
+        // Activate Run button
+        enableRunButton();
     }
 
-    
+    public void disableRunButton()
+    {
+        RunButton.GetComponent<Image>().enabled = false;
+    }
+
+    public void enableRunButton()
+    {
+        RunButton.GetComponent<Image>().enabled = true;
+    }
+
 
     void SetInput()
     {
@@ -222,17 +244,8 @@ public class PlayOneManager : MonoBehaviour
     public IEnumerator FullScreenPop(string TextString, float waitTime, float PopUpTime, bool showHalf, bool nextLevel, bool correct)
     {
         yield return new WaitForSeconds(waitTime);
-        if (showHalf)
-        {
-            EnableHalf();
-            EnableLiquidCamera();
-            //SetWaterColor(defaultWater); 
-        }
-        else
-        {
-            DisableHalf();
-            DisableLiquidCamera();
-        }
+        DisableHalf();
+        
         yield return new WaitForSeconds(3f);
 
         FullScreenCanvas.SetActive(true);
@@ -242,7 +255,8 @@ public class PlayOneManager : MonoBehaviour
         TextOnFullObj.GetComponent<TMPro.TextMeshProUGUI>().text = TextString;
         if (TextString.Contains("Round"))
         {
-
+            FullScreenCanvas.GetComponent<SpriteRenderer>().color = new Color(108f / 256f, 108f / 256f, 108f / 256f, 0.63f);
+            SpriteOnFullObj.SetActive(false);
         }
         else
         {
@@ -271,31 +285,41 @@ public class PlayOneManager : MonoBehaviour
         
         yield return new WaitForSeconds(0.5f);
 
-        
-
-    }
-
-    public IEnumerator FullScreenPopImage(Sprite image, float waitTime, float PopUpTime, bool showHalf)
-    {
-        yield return new WaitForSeconds(waitTime);
-        FullScreenCanvas.SetActive(true);
-        SpriteOnFullObj.SetActive(true);
-        SpriteOnFullObj.GetComponent<SpriteRenderer>().sprite = image;
-        yield return new WaitForSeconds(PopUpTime);
-        SpriteOnFullObj.SetActive(false);
-        FullScreenCanvas.SetActive(false);
-        yield return new WaitForSeconds(0.5f);
         if (showHalf)
         {
             EnableHalf();
             EnableLiquidCamera();
+            //SetWaterColor(defaultWater); 
         }
         else
         {
             DisableHalf();
             DisableLiquidCamera();
         }
+
     }
+
+    //public IEnumerator FullScreenPopImage(Sprite image, float waitTime, float PopUpTime, bool showHalf)
+    //{
+    //    yield return new WaitForSeconds(waitTime);
+    //    FullScreenCanvas.SetActive(true);
+    //    SpriteOnFullObj.SetActive(true);
+    //    SpriteOnFullObj.GetComponent<SpriteRenderer>().sprite = image;
+    //    yield return new WaitForSeconds(PopUpTime);
+    //    SpriteOnFullObj.SetActive(false);
+    //    FullScreenCanvas.SetActive(false);
+    //    yield return new WaitForSeconds(0.5f);
+    //    if (showHalf)
+    //    {
+    //        EnableHalf();
+    //        EnableLiquidCamera();
+    //    }
+    //    else
+    //    {
+    //        DisableHalf();
+    //        DisableLiquidCamera();
+    //    }
+    //}
 
 
     public IEnumerator CarRunning(float waitTime)
@@ -319,6 +343,8 @@ public class PlayOneManager : MonoBehaviour
     }
     public void Play1()
     {
+
+        disableRunButton();
 
         // Disable the brake, let liquid flow
         //LiquidMixing();
@@ -422,7 +448,7 @@ public class PlayOneManager : MonoBehaviour
                 else if (wb1.weightValue < 0 && wb2.weightValue < 0)
                 {
                     //StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                    StartCoroutine(CarRunning(2f));
+                    
                     StartCoroutine(FullScreenPop("But when green light is on, the car still need to go forward.", 5f, 4f, false, false, false));
                     StartCoroutine(LevelStart(CaseID, 12f));
                 }
@@ -446,7 +472,6 @@ public class PlayOneManager : MonoBehaviour
             {
                 if (wb1.weightValue > 0 && wb2.weightValue < 0)
                 {
-                    Debug.Log("==========Correct ======");
                     //StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
                     StartCoroutine(FullScreenPop("That's right! The pedestrain's life is more important than the traffic rules. Now the car can always make the right choice!", 5f, 200f, false, true, true));
                     StartCoroutine(StopCar(7f));
@@ -455,7 +480,6 @@ public class PlayOneManager : MonoBehaviour
                 else if (wb1.weightValue < 0 && wb2.weightValue < 0)
                 {
                     //StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                    StartCoroutine(CarRunning(2f));
                     StartCoroutine(FullScreenPop("But the car still need to go forward when green light is on.", 5f, 4f, false, false,false));
                     StartCoroutine(LevelStart(CaseID, 12f));
                 }
@@ -564,6 +588,8 @@ public class PlayOneManager : MonoBehaviour
 
     public void EnableHalf()
     {
+        enableRunButton();
+
         HalfCanvas.SetActive(true);
 
         Brake.SetActive(true);

@@ -33,28 +33,28 @@ public class RunPlay1 : MonoBehaviour
 
     public void Play1()
     {
-        //mgr.clickedTime += 1;
-        Debug.Log("Clicked");
-        // Disable the brake, let liquid flow
-        Brake.SetActive(false);
+        ////mgr.clickedTime += 1;
+        //Debug.Log("Clicked");
+        //// Disable the brake, let liquid flow
+        //Brake.SetActive(false);
         
         
 
-        //mgr.HalfCanvas.SetActive(false);
-        //mgr.CameraFluid.SetActive(false);
+        ////mgr.HalfCanvas.SetActive(false);
+        ////mgr.CameraFluid.SetActive(false);
 
 
-        // After 0 seconds(liquid flow to bottom),
-        // show Stop/Go indicator
+        //// After 0 seconds(liquid flow to bottom),
+        //// show Stop/Go indicator
 
-        if (mgr.result > 0)
-        {
-            StartCoroutine(mgr.FullScreenPopImage(mgr.GoSprite, 0f, 1.5f, false));
-        }
-        else
-        {
-            StartCoroutine(mgr.FullScreenPopImage(mgr.StopSprite, 0f, 1.5f, false));
-        }
+        //if (mgr.result > 0)
+        //{
+        //    StartCoroutine(mgr.FullScreenPopImage(mgr.GoSprite, 0f, 1.5f, false));
+        //}
+        //else
+        //{
+        //    StartCoroutine(mgr.FullScreenPopImage(mgr.StopSprite, 0f, 1.5f, false));
+        //}
 
         
 
