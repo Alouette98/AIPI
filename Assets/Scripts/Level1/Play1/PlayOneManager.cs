@@ -16,7 +16,6 @@ public class PlayOneManager : MonoBehaviour
     public GameObject NegativeParticle;
     public bool mixed;
 
-    public bool RunClicked;
     public int particleStage;
 
     // === Numerical ===
@@ -90,7 +89,6 @@ public class PlayOneManager : MonoBehaviour
 
     void Start()
     {
-        RunClicked = false;
         
         hasEnteredCase = false;
 
@@ -104,16 +102,15 @@ public class PlayOneManager : MonoBehaviour
     public IEnumerator LevelStart(int levelID, float waitTime)
 
     {
+
+        // reset liquid stage
         particleStage = 0;
 
         yield return new WaitForSeconds(waitTime);
 
-        DisableNextLevelButton();
-
         //Reenable collider
         wb1.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
         wb2.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
-
 
         // Show fullscreen text:"start level ?"
         startCoroutine = FullScreenPop("Round " + levelID.ToString(), 0f, 1.5f, true, false, true);
@@ -190,7 +187,7 @@ public class PlayOneManager : MonoBehaviour
     {
 
         // Use car position to identify the CaseID;
-        if (car.gameObject.transform.position.z > 20 && car.gameObject.transform.position.z <= 21)
+        if (car.gameObject.transform.position.z > 20 && car.gameObject.transform.position.z <= 20.1)
         {
             CaseID = 2;
             if (!hasEnteredCase)
@@ -199,7 +196,7 @@ public class PlayOneManager : MonoBehaviour
             }
 
         }
-        else if (car.gameObject.transform.position.z > 35 && car.gameObject.transform.position.z <= 36)
+        else if (car.gameObject.transform.position.z > 35 && car.gameObject.transform.position.z <= 35.1)
         {
             CaseID = 3;
             if (!hasEnteredCase)
@@ -226,14 +223,14 @@ public class PlayOneManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         DisableHalf();
-        
-        //yield return new WaitForSeconds(3f);
 
         FullScreenCanvas.SetActive(true);
         TextOnFullObj.SetActive(true);
         SpriteOnFullObj.SetActive(true);
 
         TextOnFullObj.GetComponent<TMPro.TextMeshProUGUI>().text = TextString;
+        
+        // Change canvas background color
         if (TextString.Contains("Round"))
         {
             FullScreenCanvas.GetComponent<SpriteRenderer>().color = new Color(108f / 256f, 108f / 256f, 108f / 256f, 0.63f);
@@ -258,8 +255,12 @@ public class PlayOneManager : MonoBehaviour
             //EnableNextLevelButton();
             hasEnteredCase = false;
         }
+
+
+
         yield return new WaitForSeconds(PopUpTime);
 
+        // Well, time to close canvas.
         SpriteOnFullObj.SetActive(false);
         TextOnFullObj.SetActive(false);
         FullScreenCanvas.SetActive(false);
@@ -299,11 +300,28 @@ public class PlayOneManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         SceneManager.LoadScene(id);
     }
+
+    public IEnumerator LiquidFree(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        Debug.LogWarning("change to state 1");
+        particleStage = 1;
+    }
+
+    public IEnumerator LiquidMixing(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        Debug.LogWarning("!!! change to state 2");
+        particleStage = 2;
+        
+    }
+
     public void Play1()
     {
 
-        particleStage = 1;
-        RunClicked = true;
+
+        StartCoroutine(LiquidFree(0.5f));
+        StartCoroutine(LiquidMixing(3f));
         
         // remove the collider on valve
         wb1.gameObject.GetComponentInChildren<Collider2D>().enabled = false;
@@ -317,50 +335,20 @@ public class PlayOneManager : MonoBehaviour
             for (int i = 199; i > math.abs(wb1.weightValue) * 100; i--)
             {
                 spawner1.WaterDropsObjects[i].SetActive(false);
-                //Array.Clear(spawner1.WaterDropsObjects, 0, 1);
             }
-            //for (int i = 0; i < 200 ; i++)
-            //{
-            //    if (spawner1.WaterDropsObjects[i].activeSelf)
-            //    {
-            //        if (wb1.weightValue > 0)
-            //        {
-            //            spawner1.WaterDropsObjects[i].GetComponent<MetaballParticleClass>().changeColour(new Color(0f, result / 4.0f * (156f / 256f) + 100f / 256f, 0));
-            //        }else if (wb1.weightValue < 0)
-            //        {
-            //            spawner1.WaterDropsObjects[i].GetComponent<MetaballParticleClass>().changeColour(new Color((-result) / 4.0f * (156f / 256f) + 100f / 256f, 0f, 0));
-            //        }
-            //    }
-            //    //Array.Clear(spawner1.WaterDropsObjects, 0, 1);
-            //}
 
         }
 
         if (X2 == 1)
         {
 
-            for (int i = 0; i < 200 - math.abs(wb2.weightValue) * 100; i++)
+            for (int i = 199; i > math.abs(wb2.weightValue) * 100; i--)
             {
                 spawner2.WaterDropsObjects[i].SetActive(false);
-                //Array.Clear(spawner1.WaterDropsObjects, 0, 1);
-            }
-            for (int i = 0; i < 200; i++)
-            {
-                if (spawner2.WaterDropsObjects[i].activeSelf)
-                {
-                    if (wb2.weightValue > 0)
-                    {
-                        spawner2.WaterDropsObjects[i].GetComponent<MetaballParticleClass>().changeColour(new Color(0f, result / 4.0f * (156f / 256f) + 100f / 256f, 0));
-                    }
-                    else if (wb1.weightValue < 0)
-                    {
-                        spawner2.WaterDropsObjects[i].GetComponent<MetaballParticleClass>().changeColour(new Color((-result) / 4.0f * (156f / 256f) + 100f / 256f, 0f, 0));
-                    }
-                }
-                //Array.Clear(spawner1.WaterDropsObjects, 0, 1);
             }
 
         }
+
         disableRunButton();
 
         // Brake.SetActive(false);
@@ -413,14 +401,14 @@ public class PlayOneManager : MonoBehaviour
                 //StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                 StartCoroutine(CarRunning(2f));
                 StartCoroutine(FullScreenPop("Stop! Don't kill people!", 5f, 5f, false, false,false));
-                StartCoroutine(LevelStart(CaseID, 8f));
+                StartCoroutine(LevelStart(CaseID, 12f));
             }
             else if (result == 0)
             {
                 //StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                 StartCoroutine(CarRunning(2f));
                 StartCoroutine(FullScreenPop("0 makes Neural Networks confused.Try again!", 5f, 5f, false, false, false));
-                StartCoroutine(LevelStart(CaseID, 8f));
+                StartCoroutine(LevelStart(CaseID, 12f));
             }
             else
             {
@@ -526,6 +514,26 @@ public class PlayOneManager : MonoBehaviour
     public void DisableHalf()
     {
         HalfCanvas.SetActive(false);
+
+        if (X1 == 1 && spawner1.WaterDropsObjects.Length >0 )
+        {
+
+            for (int i = 0; i < spawner1.WaterDropsObjects.Length; i++)
+            {
+                spawner1.WaterDropsObjects[i].SetActive(false);
+            }
+            
+        }
+
+        if (X2== 1 && spawner2.WaterDropsObjects.Length > 0)
+        {
+
+            for (int i = 0; i < spawner2.WaterDropsObjects.Length; i++)
+            {
+                spawner2.WaterDropsObjects[i].SetActive(false);
+            }
+
+        }
     }
 
     public void EnableHalf()

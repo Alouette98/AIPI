@@ -81,20 +81,23 @@ public class MetaballParticleClass : MonoBehaviour
 
 			if (mgr.particleStage == 1)
             {
-				Debug.Log("Stage1");
+				Debug.LogWarning("Stage1");
 				if (transform.position.x > slider1.transform.position.x && slider1.GetComponent<WeightBar>().weightValue == 0)
 				{
 					changeColour(new Color(67f / 255f, 143f / 255f, 241 / 255f));
+					Debug.LogWarning("Stage1, 0");
 				}
 
 				if (transform.position.x > slider1.transform.position.x && slider1.GetComponent<WeightBar>().weightValue > 0)
 				{
-					changeColour(new Color(0f, mgr.result / 4.0f * (156f / 256f) + 100f / 256f, 0));
+					changeColour(new Color(0f, 0.5f, 0f));
+					Debug.LogWarning("Stage1, >0");
 				}
 
 				if (transform.position.x > slider1.transform.position.x && slider1.GetComponent<WeightBar>().weightValue < 0)
 				{
-					changeColour(new Color((-mgr.result) / 4.0f * (156f / 256f) + 100f / 256f, 0f, 0));
+					changeColour(new Color(0.5f, 0f, 0));
+					Debug.LogWarning("Stage1, <0");
 				}
 
 			}
