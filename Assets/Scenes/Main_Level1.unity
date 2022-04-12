@@ -5201,7 +5201,8 @@ MonoBehaviour:
   PositiveParticle: {fileID: 0}
   NegativeParticle: {fileID: 0}
   mixed: 0
-  clickedTime: 0
+  RunClicked: 0
+  shouldMix: 0
   X1: 0
   X2: 0
   pedAniSpeed: 0
@@ -7527,8 +7528,8 @@ MonoBehaviour:
   - {fileID: 1058218560}
   - {fileID: 1058218560}
   size: 0.13
-  LifeTime: 33.6
-  DelayBetweenParticles: 0.05
+  LifeTime: 60
+  DelayBetweenParticles: 0.005
   WaterMaterial: {fileID: 2100000, guid: d7dbb6442eb62904fbbc46442f2c798f, type: 2}
   FillColor: {r: 0, g: 0.4392157, b: 1, a: 1}
   StrokeColor: {r: 0.015686275, g: 0.6117647, b: 1, a: 1}
@@ -9528,8 +9529,8 @@ MonoBehaviour:
   - {fileID: 1817047835}
   - {fileID: 1817047835}
   size: 0.13
-  LifeTime: 33.6
-  DelayBetweenParticles: 0.05
+  LifeTime: 60
+  DelayBetweenParticles: 0.005
   WaterMaterial: {fileID: 2100000, guid: d7dbb6442eb62904fbbc46442f2c798f, type: 2}
   FillColor: {r: 0, g: 0.4392157, b: 1, a: 1}
   StrokeColor: {r: 0.015686275, g: 0.6117647, b: 1, a: 1}
@@ -10492,7 +10493,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.031690598, y: -1.5694354}
+  m_Offset: {x: 0.031690598, y: -1.6667304}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10503,7 +10504,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16.545536, y: 5.2851815}
+  m_Size: {x: 16.545536, y: 17.155247}
   m_EdgeRadius: 0
 --- !u!114 &1602818012
 MonoBehaviour:
@@ -11480,7 +11481,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.031690598, y: -1.5694354}
+  m_Offset: {x: 0.031690598, y: -1.6667318}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -11491,7 +11492,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16.545536, y: 5.2851815}
+  m_Size: {x: 16.545536, y: 15.987701}
   m_EdgeRadius: 0
 --- !u!1 &1721944313
 GameObject:
@@ -13568,7 +13569,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918965316}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba3fc291c6750864e86214d7bcba2cbf, type: 3}
   m_Name: 

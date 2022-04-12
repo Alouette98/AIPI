@@ -11,12 +11,13 @@ public class PlayOneManager : MonoBehaviour
 {
     // Particle list;
     public List<GameObject> particles = new List<GameObject>();
+
     public GameObject PositiveParticle;
     public GameObject NegativeParticle;
     public bool mixed;
 
-    // private int clickedTime;
-    public int clickedTime;
+    public bool RunClicked;
+    public int particleStage;
 
     // === Numerical ===
     public int X1;
@@ -29,7 +30,7 @@ public class PlayOneManager : MonoBehaviour
     // ---- CaseID ----
     public int CaseID;
     public bool hasEnteredCase;
-
+   
 
     public float result;
     public WeightBar wb1;
@@ -85,22 +86,14 @@ public class PlayOneManager : MonoBehaviour
 
     public GameObject RunButton;
 
-    // -- Liquid Color ---
-    private Color defaultWater = new Color(0, 112 / 255f, 255 / 255f, 1);
-    private Color RedWater = new Color(200 / 255f, 55 / 255f, 20 / 255f, 1);
-    private Color GreenWater = new Color(26 / 255f, 192 / 255f, 73 / 255f);
-
     public Material waterMaterial;
-
-    //public List<Coroutine> coroutineList = new List<Coroutine>();
-
-
-
 
     void Start()
     {
-        clickedTime = 0;
+        RunClicked = false;
+        
         hasEnteredCase = false;
+
         pedAniSpeed = 0.31f;
         StartCoroutine(LevelStart(CaseID, 0f));
         mixed = false;
@@ -108,43 +101,35 @@ public class PlayOneManager : MonoBehaviour
     }
 
 
-
-
-
-
-
     public IEnumerator LevelStart(int levelID, float waitTime)
 
     {
-        
+        particleStage = 0;
+
         yield return new WaitForSeconds(waitTime);
 
         DisableNextLevelButton();
 
+        //Reenable collider
+        wb1.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
+        wb2.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
+
+
         // Show fullscreen text:"start level ?"
-        startCoroutine = FullScreenPop("Round " + levelID.ToString(), 0f, 2f, true, false, true);
+        startCoroutine = FullScreenPop("Round " + levelID.ToString(), 0f, 1.5f, true, false, true);
         StartCoroutine(startCoroutine);
 
-        // Let brake reactivate again.
+        // Let brake reactivate again. 
         Brake.SetActive(true);
 
         // Set X1,X2;
         SetInput();
 
-        // Car move to original position(TODO)
+        // Car move to original position
         ResetCarPosition(levelID);
 
         // Set boolean to true to avoid repeated LevelStart
         hasEnteredCase = true;
-        mixed = false;
-
-        // Clear list
-        //wb1.ClearAllParticles();
-        //if (CaseID != 0) { wb2.ClearAllParticles(); }
-
-        // Reset water color
-        //SetWaterColor(defaultWater);
-
 
         // Detect x1,x2, change traffic sprites, activate and deactivate sliders
         if (CaseID == 2){
@@ -203,8 +188,6 @@ public class PlayOneManager : MonoBehaviour
 
     void Update()
     {
-        // Liquid mixing;
-        LiquidMixing();
 
         // Use car position to identify the CaseID;
         if (car.gameObject.transform.position.z > 20 && car.gameObject.transform.position.z <= 21)
@@ -225,9 +208,7 @@ public class PlayOneManager : MonoBehaviour
             }
         }
 
-        // Calculate the value result and update it to canvas
-        
-        
+        // Calculate the value result and update it to canvas real-time
         if (CaseID == 0)
         {
             result = wb1.weightValue;
@@ -246,7 +227,7 @@ public class PlayOneManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         DisableHalf();
         
-        yield return new WaitForSeconds(3f);
+        //yield return new WaitForSeconds(3f);
 
         FullScreenCanvas.SetActive(true);
         TextOnFullObj.SetActive(true);
@@ -299,29 +280,6 @@ public class PlayOneManager : MonoBehaviour
 
     }
 
-    //public IEnumerator FullScreenPopImage(Sprite image, float waitTime, float PopUpTime, bool showHalf)
-    //{
-    //    yield return new WaitForSeconds(waitTime);
-    //    FullScreenCanvas.SetActive(true);
-    //    SpriteOnFullObj.SetActive(true);
-    //    SpriteOnFullObj.GetComponent<SpriteRenderer>().sprite = image;
-    //    yield return new WaitForSeconds(PopUpTime);
-    //    SpriteOnFullObj.SetActive(false);
-    //    FullScreenCanvas.SetActive(false);
-    //    yield return new WaitForSeconds(0.5f);
-    //    if (showHalf)
-    //    {
-    //        EnableHalf();
-    //        EnableLiquidCamera();
-    //    }
-    //    else
-    //    {
-    //        DisableHalf();
-    //        DisableLiquidCamera();
-    //    }
-    //}
-
-
     public IEnumerator CarRunning(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
@@ -344,11 +302,70 @@ public class PlayOneManager : MonoBehaviour
     public void Play1()
     {
 
+        particleStage = 1;
+        RunClicked = true;
+        
+        // remove the collider on valve
+        wb1.gameObject.GetComponentInChildren<Collider2D>().enabled = false;
+        wb2.gameObject.GetComponentInChildren<Collider2D>().enabled = false;
+
+
+        // remove liquid particle
+        if (X1 == 1)
+        {
+
+            for (int i = 199; i > math.abs(wb1.weightValue) * 100; i--)
+            {
+                spawner1.WaterDropsObjects[i].SetActive(false);
+                //Array.Clear(spawner1.WaterDropsObjects, 0, 1);
+            }
+            //for (int i = 0; i < 200 ; i++)
+            //{
+            //    if (spawner1.WaterDropsObjects[i].activeSelf)
+            //    {
+            //        if (wb1.weightValue > 0)
+            //        {
+            //            spawner1.WaterDropsObjects[i].GetComponent<MetaballParticleClass>().changeColour(new Color(0f, result / 4.0f * (156f / 256f) + 100f / 256f, 0));
+            //        }else if (wb1.weightValue < 0)
+            //        {
+            //            spawner1.WaterDropsObjects[i].GetComponent<MetaballParticleClass>().changeColour(new Color((-result) / 4.0f * (156f / 256f) + 100f / 256f, 0f, 0));
+            //        }
+            //    }
+            //    //Array.Clear(spawner1.WaterDropsObjects, 0, 1);
+            //}
+
+        }
+
+        if (X2 == 1)
+        {
+
+            for (int i = 0; i < 200 - math.abs(wb2.weightValue) * 100; i++)
+            {
+                spawner2.WaterDropsObjects[i].SetActive(false);
+                //Array.Clear(spawner1.WaterDropsObjects, 0, 1);
+            }
+            for (int i = 0; i < 200; i++)
+            {
+                if (spawner2.WaterDropsObjects[i].activeSelf)
+                {
+                    if (wb2.weightValue > 0)
+                    {
+                        spawner2.WaterDropsObjects[i].GetComponent<MetaballParticleClass>().changeColour(new Color(0f, result / 4.0f * (156f / 256f) + 100f / 256f, 0));
+                    }
+                    else if (wb1.weightValue < 0)
+                    {
+                        spawner2.WaterDropsObjects[i].GetComponent<MetaballParticleClass>().changeColour(new Color((-result) / 4.0f * (156f / 256f) + 100f / 256f, 0f, 0));
+                    }
+                }
+                //Array.Clear(spawner1.WaterDropsObjects, 0, 1);
+            }
+
+        }
         disableRunButton();
 
-        // Disable the brake, let liquid flow
-        //LiquidMixing();
-        Brake.SetActive(false);
+        // Brake.SetActive(false);
+
+
         // OK, lets check whether the result is correct according to the caseID;
         if (CaseID == 0)
         {
@@ -501,42 +518,7 @@ public class PlayOneManager : MonoBehaviour
                 }
 
             }
-
-
-
-
-
-            ////---
-            //if (result > 0)
-            //{
-            //    // no car shall go so fail
-            //    StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
-            //    StartCoroutine(CarRunning(2f));
-            //    StartCoroutine(FullScreenPop("Fail", 5f, 2f, false, false));
-            //    StartCoroutine(LevelStart(CaseID, 7f));
-            //}
-            //else if (result == 0)
-            //{
-            //    StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-            //    StartCoroutine(FullScreenPop("0 make Neural Network confused", 5f, 2f, true, false));
-            //    StartCoroutine(LevelStart(CaseID, 7f));
-            //}
-            //else if (result < 0 && wb1.weightValue < 0)
-            //{
-            //    StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-            //    StartCoroutine(FullScreenPop("Hmm, if no one cross the road later, the car probably won't go...", 5f, 2f, true, false));
-            //    StartCoroutine(LevelStart(CaseID, 7f));
-            //}
-            //else if (result < 0 && wb1.weightValue > 0)
-            //{
-
-            //    StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-            //    StartCoroutine(FullScreenPop("Right! The pedestrain's life is more important than the traffic rules. But when green light is on, the car can still go forward.", 5f, 200f, false, true));
-            //    StartCoroutine(StopCar(7f));
-
-            //}
         }
-
 
     }
 
@@ -544,51 +526,15 @@ public class PlayOneManager : MonoBehaviour
     public void DisableHalf()
     {
         HalfCanvas.SetActive(false);
-        // Clean all particles;
-
-        //if (CaseID == 0)
-        //{
-        //    for (int i = 1; i < spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length; i++) {
-        //        Destroy(spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects[i]);
-        //    }
-        //    Array.Clear(spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects, 1, spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length-1);
-        //}
-        //else if (CaseID == 1)
-        //{
-        //    for (int i = 1; i < spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length; i++)
-        //    {
-        //        Destroy(spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects[i]);
-        //    }
-        //    Array.Clear(spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects, 1, spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length-1);
-        //    //spawner2.GenerateAndSpawn();
-        //}
-        //else if (CaseID == 2)
-        //{
-        //    for (int i = 1; i < spawner2.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length; i++)
-        //    {
-        //        Destroy(spawner2.GetComponent<Water2D_Spawner>().WaterDropsObjects[i]);
-        //    }
-        //    Array.Clear(spawner2.GetComponent<Water2D_Spawner>().WaterDropsObjects, 1, spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length - 1);
-        //}
-        //else if (CaseID == 3)
-        //{
-        //    for (int i = 1; i < spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length; i++)
-        //    {
-        //        Destroy(spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects[i]);
-        //    }
-        //    Array.Clear(spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects, 1, spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length - 1);
-        //    for (int i = 1; i < spawner2.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length; i++)
-        //    {
-        //        Destroy(spawner2.GetComponent<Water2D_Spawner>().WaterDropsObjects[i]);
-        //    }
-        //    Array.Clear(spawner2.GetComponent<Water2D_Spawner>().WaterDropsObjects, 1, spawner1.GetComponent<Water2D_Spawner>().WaterDropsObjects.Length - 1);
-        //}
-
     }
 
     public void EnableHalf()
     {
         enableRunButton();
+        
+        wb1.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
+        wb2.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
+
 
         HalfCanvas.SetActive(true);
 
@@ -612,16 +558,6 @@ public class PlayOneManager : MonoBehaviour
             spawner1.GenerateAndSpawn();
             spawner2.GenerateAndSpawn();
         }
-
-        //wb1.ParticleCheck();
-        //if (CaseID != 0)
-        //{
-        //    wb2.ParticleCheck();
-        //}
-
-        // Reset water material;
-        //SetWaterColor(waterMaterial);
-
 
     }
 
@@ -680,54 +616,54 @@ public class PlayOneManager : MonoBehaviour
 
     }
 
-    public void LiquidMixing()
-    {
-        // if this is tutorial :
-        if (CaseID == 0)
-        {
-            mixed = true;
-            //if (result > 0)
-            //{
-            //    SetWaterColor(GreenWater);
-            //}
-            //else if (result < 0)
-            //{
-            //    SetWaterColor(RedWater);
-            //}
-        }
-        else
-        {
+    //public void LiquidMixing()
+    //{
+    //    // if this is tutorial :
+    //    if (CaseID == 0)
+    //    {
+    //        mixed = true;
+    //        //if (result > 0)
+    //        //{
+    //        //    SetWaterColor(GreenWater);
+    //        //}
+    //        //else if (result < 0)
+    //        //{
+    //        //    SetWaterColor(RedWater);
+    //        //}
+    //    }
+    //    else
+    //    {
 
-            mixed = true;
-            Debug.Log("----Mixing Liquid---");
-            while (wb1.negativeParticles.Count != 0 && wb2.positiveParticles.Count != 0)
-            {
-                Debug.Log("-------Step1------");
-                Destroy(wb1.negativeParticles[0]);
-                wb1.negativeParticles.RemoveAt(0);
-                Destroy(wb2.positiveParticles[0]);
-                wb2.positiveParticles.RemoveAt(0);
-            }
+    //        mixed = true;
+    //        Debug.Log("----Mixing Liquid---");
+    //        while (wb1.negativeParticles.Count != 0 && wb2.positiveParticles.Count != 0)
+    //        {
+    //            Debug.Log("-------Step1------");
+    //            Destroy(wb1.negativeParticles[0]);
+    //            wb1.negativeParticles.RemoveAt(0);
+    //            Destroy(wb2.positiveParticles[0]);
+    //            wb2.positiveParticles.RemoveAt(0);
+    //        }
 
-            while (wb1.positiveParticles.Count != 0 && wb2.negativeParticles.Count != 0)
-            {
-                Debug.Log("-------Step2------");
-                Destroy(wb1.positiveParticles[0]);
-                wb1.positiveParticles.RemoveAt(0);
-                Destroy(wb2.negativeParticles[0]);
-                wb2.negativeParticles.RemoveAt(0);
-            }
+    //        while (wb1.positiveParticles.Count != 0 && wb2.negativeParticles.Count != 0)
+    //        {
+    //            Debug.Log("-------Step2------");
+    //            Destroy(wb1.positiveParticles[0]);
+    //            wb1.positiveParticles.RemoveAt(0);
+    //            Destroy(wb2.negativeParticles[0]);
+    //            wb2.negativeParticles.RemoveAt(0);
+    //        }
 
-            //if (result > 0)
-            //{
-            //    SetWaterColor(GreenWater);
-            //}
-            //else if (result < 0)
-            //{
-            //    SetWaterColor(RedWater);
-            //}
-        }
-    }
+    //        //if (result > 0)
+    //        //{
+    //        //    SetWaterColor(GreenWater);
+    //        //}
+    //        //else if (result < 0)
+    //        //{
+    //        //    SetWaterColor(RedWater);
+    //        //}
+    //    }
+    //}
 
     //public void SetWaterColor(Color newColor)
     //{

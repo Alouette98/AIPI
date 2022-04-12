@@ -150,14 +150,14 @@ public class WeightBar : MonoBehaviour
             WeightText.text = "W" + weightID.ToString()+ "=" + weightValue.ToString();
         }
 
-        if (weightValue == 0)
-        {
-            this.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
-        }
-        else
-        {
-            this.gameObject.GetComponentInChildren<Collider2D>().enabled = false;
-        }
+        //if (weightValue == 0)
+        //{
+        //    this.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
+        //}
+        //else
+        //{
+        //    this.gameObject.GetComponentInChildren<Collider2D>().enabled = false;
+        //}
         //if (mgr != null)
         //{
         //    if (!mgr.mixed)

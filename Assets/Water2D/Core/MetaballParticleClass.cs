@@ -74,30 +74,58 @@ public class MetaballParticleClass : MonoBehaviour
 
 		if (mgr != null)
 		{
-			if (transform.position.x > slider1.transform.position.x && mgr.result == 0)
+			if (transform.position.x < slider1.transform.position.x)
 			{
-				changeColour(new Color(67f / 255f, 143f / 255f, 241 / 255f));
+				changeColour(new Color(67f / 255f, 143f / 255f, 241f / 255f));
 			}
 
-			if (transform.position.x > slider1.transform.position.x && mgr.result > 0)
-			{
-				changeColour(new Color(0f, mgr.result / 4.0f * (156f/256f) + 100f/256f, 0));
+			if (mgr.particleStage == 1)
+            {
+				Debug.Log("Stage1");
+				if (transform.position.x > slider1.transform.position.x && slider1.GetComponent<WeightBar>().weightValue == 0)
+				{
+					changeColour(new Color(67f / 255f, 143f / 255f, 241 / 255f));
+				}
+
+				if (transform.position.x > slider1.transform.position.x && slider1.GetComponent<WeightBar>().weightValue > 0)
+				{
+					changeColour(new Color(0f, mgr.result / 4.0f * (156f / 256f) + 100f / 256f, 0));
+				}
+
+				if (transform.position.x > slider1.transform.position.x && slider1.GetComponent<WeightBar>().weightValue < 0)
+				{
+					changeColour(new Color((-mgr.result) / 4.0f * (156f / 256f) + 100f / 256f, 0f, 0));
+				}
+
 			}
 
-			if (transform.position.x > slider1.transform.position.x && mgr.result < 0)
-			{
-				changeColour(new Color((-mgr.result) / 4.0f * (156f / 256f) + 100f / 256f, 0f, 0));
+
+			if (mgr.particleStage == 2)
+            {
+
+				if (transform.position.x > slider1.transform.position.x && mgr.result == 0)
+				{
+					changeColour(new Color(67f / 255f, 143f / 255f, 241 / 255f));
+				}
+
+				if (transform.position.x > slider1.transform.position.x && mgr.result > 0)
+				{
+					changeColour(new Color(0f, mgr.result / 4.0f * (156f / 256f) + 100f / 256f, 0));
+				}
+
+				if (transform.position.x > slider1.transform.position.x && mgr.result < 0)
+				{
+					changeColour(new Color((-mgr.result) / 4.0f * (156f / 256f) + 100f / 256f, 0f, 0));
+				}
 			}
+			
 
 			if (transform.position.x > slider1.transform.position.x && slider1.GetComponent<WeightBar>().weightID == 2)
 			{
 				GetComponent<Rigidbody2D>().gravityScale = 1;
 			}
 
-			if (transform.position.x < slider1.transform.position.x)
-			{
-				changeColour(new Color(67f / 255f, 143f / 255f, 241f / 255f));
-			}
+	
 
 			if (transform.position.x < slider1.transform.position.x && slider1.GetComponent<WeightBar>().weightID == 2)
 			{
@@ -109,7 +137,7 @@ public class MetaballParticleClass : MonoBehaviour
 	}
 
 
-	void changeColour(Color newColor)
+	public void changeColour(Color newColor)
 	{
 		Gradient gradient = new Gradient();
 		GradientColorKey[] colorKey = new GradientColorKey[2];
