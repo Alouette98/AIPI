@@ -5692,7 +5692,7 @@ MonoBehaviour:
   PositiveParticle: {fileID: 0}
   NegativeParticle: {fileID: 0}
   mixed: 0
-  clickedTime: 0
+  particleStage: 0
   X1: 0
   X2: 0
   pedAniSpeed: 0
@@ -5715,7 +5715,7 @@ MonoBehaviour:
   spawner1: {fileID: 1391397337}
   spawner2: {fileID: 1067376641}
   nextLevelButton: {fileID: 1800210524}
-  car: {fileID: 2011356608}
+  car: {fileID: 4341065612487212094}
   trafficLogo: {fileID: 1987547409}
   pedestrianLogo: {fileID: 1037600961}
   traffic_green: {fileID: 21300000, guid: 689cbd2cea0c3354c9e7a8f43b1f10cd, type: 3}
@@ -5726,6 +5726,7 @@ MonoBehaviour:
   sad_face: {fileID: 21300000, guid: 8397f651b80e4e64286dd8dc37e4e8b2, type: 3}
   TubeX1: {fileID: 1887622163}
   TubeX2: {fileID: 1992986775}
+  RunButton: {fileID: 1918965316}
   waterMaterial: {fileID: 2100000, guid: d7dbb6442eb62904fbbc46442f2c798f, type: 2}
 --- !u!4 &859460261
 Transform:
@@ -9933,10 +9934,14 @@ MonoBehaviour:
   GoStopIndicatorObj: {fileID: 1101215376}
   OverlayObj: {fileID: 0}
   CircleTutObj: {fileID: 0}
+  LeftBlackScreen: {fileID: 0}
+  RightBlackScreen: {fileID: 0}
   HalfShowObj: {fileID: 0}
   BackgroundObj: {fileID: 0}
   FixedObj: {fileID: 0}
   FixedObj2: {fileID: 0}
+  BlueLiquidShow: {fileID: 0}
+  RedLiquidShow: {fileID: 0}
   NextButtonObj: {fileID: 0}
   RunButtonObj: {fileID: 1918965316}
   LightOn: {fileID: 21300000, guid: 689cbd2cea0c3354c9e7a8f43b1f10cd, type: 3}
@@ -11408,7 +11413,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.031690598, y: -1.5694354}
+  m_Offset: {x: 0.031690598, y: -1.6620505}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -11419,7 +11424,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16.545536, y: 5.2851815}
+  m_Size: {x: 16.545536, y: 16.213743}
   m_EdgeRadius: 0
 --- !u!114 &1602818012
 MonoBehaviour:
@@ -12534,7 +12539,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.031690598, y: -1.5694354}
+  m_Offset: {x: 0.031690598, y: -1.5694344}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -12545,7 +12550,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16.545536, y: 5.2851815}
+  m_Size: {x: 16.545536, y: 16.647327}
   m_EdgeRadius: 0
 --- !u!1 &1721944313
 GameObject:
@@ -18627,7 +18632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   running: 0
-  velocity: 0.006
+  velocity: 0.02
 --- !u!95 &4341065612487212095
 Animator:
   serializedVersion: 3

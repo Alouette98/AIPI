@@ -473,7 +473,7 @@ public class PlayOneManager : MonoBehaviour
                 }
             }
 
-            if ((math.abs(wb1.weightValue) < math.abs(wb2.weightValue)))
+            else if ((math.abs(wb1.weightValue) < math.abs(wb2.weightValue)))
             {
                 if (wb1.weightValue > 0 && wb2.weightValue < 0)
                 {
@@ -503,6 +503,21 @@ public class PlayOneManager : MonoBehaviour
                     StartCoroutine(CarRunning(2f));
                     StartCoroutine(FullScreenPop("Remeber? Don't kill people! And the car still need to go forward when green light is on.", 5f, 4f, false, false,false));
                     StartCoroutine(LevelStart(CaseID, 12f));
+                }
+
+                // NEW ADD CASE
+                else if ((math.abs(wb1.weightValue) == math.abs(wb2.weightValue))){
+                    if (wb1.weightValue > 0)
+                    {
+                        StartCoroutine(CarRunning(2f));
+                        StartCoroutine(FullScreenPop("Remeber? Don't kill people! ", 5f, 4f, false, false, false));
+                        StartCoroutine(LevelStart(CaseID, 12f));
+                    }
+                    else if (wb1.weightValue < 0)
+                    {
+                        StartCoroutine(FullScreenPop("But the car still need to go forward when green light is on.", 5f, 4f, false, false, false));
+                        StartCoroutine(LevelStart(CaseID, 12f));
+                    }
                 }
 
             }
@@ -594,13 +609,13 @@ public class PlayOneManager : MonoBehaviour
         if (CaseID == 2)
         {
             car.running = false;
-            car.transform.position = new Vector3(27.1100006f, -4.27790403f, 23.3939075f);
+            car.transform.position = new Vector3(28.757f, -3.861f, 23.3939075f);
 
         }
         else if (CaseID == 3)
         {
             car.running = false;
-            car.transform.position = new Vector3(27.1100006f, -4.27790403f, 37.4686317f);
+            car.transform.position = new Vector3(28.757f, -4.27790403f, 37.4686317f);
         }
 
     }
