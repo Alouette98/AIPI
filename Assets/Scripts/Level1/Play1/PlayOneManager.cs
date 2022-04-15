@@ -69,6 +69,9 @@ public class PlayOneManager : MonoBehaviour
     // ---------- Animation ----------
     public CarBehaviour car;
 
+    public PedestrianBehaviour ped1;
+    public PedestrianBehaviour ped2;
+
     public GameObject trafficLogo;
     public GameObject pedestrianLogo;
 
@@ -136,12 +139,16 @@ public class PlayOneManager : MonoBehaviour
             TubeX1.SetActive(true);
             TubeX2.SetActive(false);
 
-        }else if (CaseID == 3)
+            ped1.pedAnimator.SetInteger("State", 0);
+        }
+        else if (CaseID == 3)
         {
             trafficLogo.GetComponent<SpriteRenderer>().sprite = traffic_green;
 
             TubeX1.SetActive(false);
             TubeX2.SetActive(false);
+
+            ped2.pedAnimator.SetInteger("State", 0);
         }
 
         // Activate Run button
