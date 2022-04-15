@@ -399,7 +399,13 @@ public class PlayOneManager : MonoBehaviour
                 StartCoroutine(CarRunning(2f));
                 StartCoroutine(FullScreenPop("Great Job! Keep on training the network!", 5f, 4f, false, true, true));
             }
-            else
+            else if (result == 0)
+            {
+                //StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
+                //StartCoroutine(CarRunning(2f));
+                StartCoroutine(FullScreenPop("0 makes Neural Networks confused.Try again!", 5f, 5f, false, false, false));
+                StartCoroutine(LevelStart(CaseID, 12f));
+            }else
             {
                 //StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
                 StartCoroutine(FullScreenPop("Not moving? GREEN light is on!", 5f, 4f, false, false,false));
