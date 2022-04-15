@@ -22603,10 +22603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a08b6cd5e850834eba24fd1132465b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mgr: {fileID: 0}
   PedestrianID: 2
-  state: 0
-  velocity: 0
+  pedAnimator: {fileID: 0}
 --- !u!65 &657542622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59224,15 +59222,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810833497}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1}
-  m_LocalScale: {x: 0.009695904, y: 0.020253185, z: 0.020253189}
+  m_LocalPosition: {x: 0, y: 0, z: 0.3}
+  m_LocalScale: {x: 0.0115295155, y: 0.023786064, z: 0.014413409}
   m_Children: []
   m_Father: {fileID: 64815245}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.9100013, y: -6.0200033}
+  m_AnchoredPosition: {x: 1.298614, y: -6.244118}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1810833499
@@ -59247,7 +59245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3849ac7b46d82524c9f616690719384b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1369677908}
+  gameManager: {fileID: 0}
 --- !u!114 &1810833500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59324,7 +59322,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f2bb23daabd63b143a631877496d86da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c01d3aad8660bd4aa6aa8d0bd7bb8e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -60879,7 +60877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3849ac7b46d82524c9f616690719384b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1369677908}
+  gameManager: {fileID: 0}
 --- !u!114 &1825097323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61494,10 +61492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a08b6cd5e850834eba24fd1132465b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mgr: {fileID: 0}
   PedestrianID: 1
-  state: 0
-  velocity: 0
+  pedAnimator: {fileID: 0}
 --- !u!65 &1847423716
 BoxCollider:
   m_ObjectHideFlags: 0

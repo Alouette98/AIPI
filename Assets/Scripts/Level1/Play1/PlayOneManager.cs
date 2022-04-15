@@ -113,7 +113,11 @@ public class PlayOneManager : MonoBehaviour
 
         //Reenable collider
         wb1.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
-        wb2.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
+        if (CaseID != 0)
+        {
+            wb2.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
+        }
+        
 
         // Show fullscreen text:"start level ?"
         startCoroutine = FullScreenPop("Round " + levelID.ToString(), 0f, 1.5f, true, false, true);
@@ -332,7 +336,10 @@ public class PlayOneManager : MonoBehaviour
         
         // remove the collider on valve
         wb1.gameObject.GetComponentInChildren<Collider2D>().enabled = false;
-        wb2.gameObject.GetComponentInChildren<Collider2D>().enabled = false;
+        if (CaseID != 0)
+        {
+            wb2.gameObject.GetComponentInChildren<Collider2D>().enabled = false;
+        }
 
 
         // remove liquid particle
@@ -369,7 +376,7 @@ public class PlayOneManager : MonoBehaviour
                 //StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                 StartCoroutine(CarRunning(2f));
                 StartCoroutine(FullScreenPop("Great Job! Now you know that controlling the weight can decide the output of the Neural Networks!", 5f, 6f, false, true,true));
-                StartCoroutine(LoadSceneWithID(12f, 3));
+                StartCoroutine(LoadSceneWithID(12f, 4));
             }
             else if (result == 0)
             {
@@ -563,7 +570,11 @@ public class PlayOneManager : MonoBehaviour
         enableRunButton();
         
         wb1.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
-        wb2.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
+        if (CaseID != 0)
+        {
+            wb2.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
+        }
+        
 
 
         HalfCanvas.SetActive(true);

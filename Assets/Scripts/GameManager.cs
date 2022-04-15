@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
 
         if (Step == 11)
         {
-            SceneManager.LoadSceneAsync(2);
+            SceneManager.LoadScene(3);
         }
 
 
@@ -173,6 +173,10 @@ public class GameManager : MonoBehaviour
             images[15].SetActive(true);
         }
 
+        if (Step == 17)
+        {
+            SceneManager.LoadScene(5);
+        }
     }
 
 }
