@@ -11,15 +11,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Video.unity
     guid: 6447c62ea016a6c409aa6b6fa0bdc4e7
-  - enabled: 1
-    path: Assets/Scenes/TutorialLevel0.unity
-    guid: dac19fd7cbe80014385b43fb217da5e8
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Main_Level0.unity
     guid: 203c0e4b58c84ef43a994b53b52c8cb7
-  - enabled: 1
-    path: Assets/Scenes/TutorialLevel1.unity
-    guid: bc0534cf000ad684caf1dac1c651cff3
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Main_Level1.unity
     guid: 9e5a49066b56e5d4692cd5a2a886ae69

@@ -44,7 +44,9 @@ public class GameManager : MonoBehaviour
 
     public bool Completed;
 
-  
+    public GameObject nextbutton;
+
+  private int c = 0;
 
 
 
@@ -64,7 +66,12 @@ public class GameManager : MonoBehaviour
 
          if (Step == 0)
         {
-            images[0].SetActive(false);
+            images[0].SetActive(true);
+             if(c == 0)
+            {
+                nextbutton.transform.position += new Vector3(8f, 0f, 0f);
+                c++;
+            }
 
         }
 
@@ -72,6 +79,11 @@ public class GameManager : MonoBehaviour
         {
             images[0].SetActive(false);
             images[1].SetActive(true);
+           if(c == 1)
+            {
+                nextbutton.transform.position += new Vector3(-8f, 0f, 0f);
+                c++;
+            }
 
         }
 
@@ -80,6 +92,12 @@ public class GameManager : MonoBehaviour
         {
             images[1].SetActive(false);
             images[2].SetActive(true);
+            if(c == 2)
+            {
+                nextbutton.transform.position += new Vector3(8f, 0f, 0f);
+                c++;
+            }
+             
         }
         
 
@@ -133,50 +151,46 @@ public class GameManager : MonoBehaviour
         if (Step == 10)
         // Meaning it just starts.
         {
-            images[9].SetActive(false);
-            images[10].SetActive(true);
+            SceneManager.LoadScene(3);
         }
 
         if (Step == 11)
         {
-            SceneManager.LoadScene(3);
+            images[11].SetActive(true);
         }
 
 
 
         if (Step == 12)
         {
-            images[11].SetActive(true);
-        }
-
-        if (Step == 13)
-        {
             images[11].SetActive(false);
             images[12].SetActive(true);
         }
 
-        if (Step == 14)
+        if (Step == 13)
         {
             images[12].SetActive(false);
             images[13].SetActive(true);
         }
 
-        if (Step == 15)
+        if (Step == 14)
         {
             images[13].SetActive(false);
             images[14].SetActive(true);
         }
 
-        if (Step == 16)
+        if (Step == 15)
         {
             images[14].SetActive(false);
             images[15].SetActive(true);
         }
+        
 
-        if (Step == 17)
+        if (Step == 16)
         {
             SceneManager.LoadScene(5);
         }
+
     }
 
 }
