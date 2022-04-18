@@ -9430,7 +9430,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9a209018bbd4c3a4892768ae070ffbc6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fc629f0c37837f14da82586e481d96ba, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16151,7 +16151,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 39f163efc159a794897cb7f948c43043, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0e884e0142b5b44e9d9d0ceb8b34401, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22758,10 +22758,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a08b6cd5e850834eba24fd1132465b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mgr: {fileID: 0}
   PedestrianID: 2
-  state: 0
-  velocity: 0
+  pedAnimator: {fileID: 0}
 --- !u!65 &657542622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32568,7 +32566,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d582a0094703dcd4cbb1b3bd1e366ce8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9f287310927b0848be7f856baf8cec8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -35948,7 +35946,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 400260a861b8f0f47875ada1886d131d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86b6f24e3994ca84284b2d82cb30d3d8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -45092,7 +45090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTutorialFinished: 0
-  Step: 12
+  Step: 11
   BlueLiquidShow: {fileID: 0}
   RedLiquidShow: {fileID: 0}
   NextButtonObj: {fileID: 0}
@@ -45123,6 +45121,7 @@ MonoBehaviour:
   - {fileID: 1053422382}
   - {fileID: 481655495}
   Completed: 0
+  nextbutton: {fileID: 0}
 --- !u!4 &1369677909
 Transform:
   m_ObjectHideFlags: 0
@@ -50185,7 +50184,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 30da732e9efb3b442959dfdca94d4bc2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d26fbb8f22b5064e8946eb10258c6c4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -61880,10 +61879,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a08b6cd5e850834eba24fd1132465b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mgr: {fileID: 0}
   PedestrianID: 1
-  state: 0
-  velocity: 0
+  pedAnimator: {fileID: 0}
 --- !u!65 &1847423716
 BoxCollider:
   m_ObjectHideFlags: 0
