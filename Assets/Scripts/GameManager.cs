@@ -41,10 +41,14 @@ public class GameManager : MonoBehaviour
     public GameObject highlightcanv;
     public GameObject[] images;
 
+    public GameObject[] PlayStartImages;
 
     public bool Completed;
 
     public GameObject nextbutton;
+
+    public GameObject nb1;
+    public GameObject nb2;
 
   private int c = 0;
 
@@ -154,43 +158,70 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(3);
         }
 
+
         if (Step == 11)
         {
-            images[11].SetActive(true);
+
+            //here, we should display "LEVEL1" Image first.
+            StartCoroutine(PlayStartLevel1());
+            Step += 1;
         }
 
 
 
-        if (Step == 12)
+        if (Step == 13)
         {
             images[11].SetActive(false);
             images[12].SetActive(true);
         }
 
-        if (Step == 13)
+        if (Step == 14)
         {
             images[12].SetActive(false);
             images[13].SetActive(true);
         }
 
-        if (Step == 14)
+        if (Step == 15)
         {
             images[13].SetActive(false);
             images[14].SetActive(true);
         }
 
-        if (Step == 15)
+        if (Step == 16)
         {
             images[14].SetActive(false);
             images[15].SetActive(true);
         }
         
-
-        if (Step == 16)
+        // After this, jump to LEVEL 2, with starting image "LEVEL 2"
+        if (Step == 17)
         {
             SceneManager.LoadScene(5);
         }
 
     }
+
+    public IEnumerator PlayStartLevel1()
+    {
+        // first temporarly stop next button
+        nb1.SetActive(false);
+        PlayStartImages[0].SetActive(true);
+        yield return new WaitForSeconds(3f);
+        nb1.SetActive(true);
+        PlayStartImages[0].SetActive(false);
+        images[11].SetActive(true);
+
+    }
+
+    //public IEnumerator PlayStartandJumpToLevel2()
+    //{
+    //    // first temporarly stop next button
+    //    nb2.SetActive(false);
+    //    PlayStartImages[1].SetActive(true);
+    //    yield return new WaitForSeconds(3f);
+    //    nb2.SetActive(true);
+    //    PlayStartImages[1].SetActive(false);
+    //    SceneManager.LoadScene(5);
+    //}
 
 }
