@@ -90,6 +90,9 @@ public class PlayOneManager : MonoBehaviour
 
     public Material waterMaterial;
 
+    public Sprite[] lvstart_hint;
+    public GameObject hintObject;
+
     void Start()
     {
         
@@ -117,11 +120,13 @@ public class PlayOneManager : MonoBehaviour
         {
             wb2.gameObject.GetComponentInChildren<Collider2D>().enabled = true;
         }
-        
+
 
         // Show fullscreen text:"start level ?"
-        startCoroutine = FullScreenPop("Round " + levelID.ToString(), 0f, 1.5f, true, false, true);
-        StartCoroutine(startCoroutine);
+        //startCoroutine = FullScreenPop("Round " + levelID.ToString(), 0f, 1.5f, true, false, true);
+        //StartCoroutine(startCoroutine);
+
+        StartCoroutine(Lvstart_lvhint(0f,3f, lvstart_hint[levelID]));
 
         // Let brake reactivate again. 
         Brake.SetActive(true);
@@ -229,6 +234,18 @@ public class PlayOneManager : MonoBehaviour
         }
 
     }
+    public IEnumerator Lvstart_lvhint(float waitTime, float PopUpTime, Sprite hintSprite)
+    {
+        DisableHalf();
+        yield return new WaitForSeconds(waitTime);
+        hintObject.SetActive(true);
+        hintObject.GetComponent<SpriteRenderer>().sprite = hintSprite;
+        yield return new WaitForSeconds(PopUpTime);
+        hintObject.SetActive(false);
+        EnableHalf();
+    }
+
+
 
     public IEnumerator FullScreenPop(string TextString, float waitTime, float PopUpTime, bool showHalf, bool nextLevel, bool correct)
     {
