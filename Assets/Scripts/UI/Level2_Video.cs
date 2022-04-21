@@ -11,7 +11,7 @@ public class Level2_Video : MonoBehaviour
     {
         vidplayer = GetComponent<VideoPlayer>();
         //vidplayer.url = url;
-        vidplayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, "intro.mp4");
+        vidplayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, "level2new.mp4");
 
     }
 
@@ -23,11 +23,10 @@ public class Level2_Video : MonoBehaviour
 
     void Play()
     {
-        if (Input.anyKey)
-        {
+        
             vidplayer.Play();
             vidplayer.isLooping = true;
-        }
+       
 
     }
 }

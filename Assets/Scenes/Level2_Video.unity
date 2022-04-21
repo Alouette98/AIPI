@@ -2981,11 +2981,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1639226385}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 970f91aa337d4124d8fee06d60063be4, type: 3}
+  m_Script: {fileID: 11500000, guid: 667bb84e0da4ae24fa41d532dca12d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSceneID: 2
-  backgroundImage: {fileID: 0}
 --- !u!114 &1639226388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3031,8 +3029,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1639226387}
-        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: LoadNextLevel
+        m_TargetAssemblyTypeName: Simulation, Assembly-CSharp
+        m_MethodName: LoadLevel2Anim
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4004,7 +4002,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: 2.57}
+  m_AnchoredPosition: {x: -14.21, y: 2.64}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2027584715
