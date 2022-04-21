@@ -16,7 +16,7 @@ public class Level2_Summary : MonoBehaviour
 
     private IEnumerator AnimEnded()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(10);
         nextbutton.SetActive(true);
     }
 
