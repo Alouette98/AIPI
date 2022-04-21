@@ -9737,7 +9737,7 @@ Animator:
   m_GameObject: {fileID: 657542619}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dc02416c7340c234c87702c87bb81a9b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1dcb22d0f835c194b8d1a12cc3dbaf17, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -9778,6 +9778,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 10165b48204e83f459c8556f8f77e6ed, type: 3}
   m_PrefabInstance: {fileID: 657542618}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &657542626
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657542619}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1001 &664799788
 PrefabInstance:
   m_ObjectHideFlags: 0
