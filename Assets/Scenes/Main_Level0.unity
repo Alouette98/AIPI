@@ -5425,7 +5425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &425786222
 Transform:
   m_ObjectHideFlags: 0
@@ -12672,7 +12672,7 @@ MonoBehaviour:
     can see the text effect on Unity Scene in realtime to make adjustments. You can
     remove these text as your wish.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 277717d2327c9b84bad587dd79e99138, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -12736,7 +12736,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -586.188, w: -553.0895}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1072384814
@@ -15876,7 +15876,7 @@ MonoBehaviour:
   - {fileID: 1220638660}
   - {fileID: 1220638660}
   size: 0.23
-  LifeTime: 33.6
+  LifeTime: 100
   DelayBetweenParticles: 0.05
   WaterMaterial: {fileID: 2100000, guid: d7dbb6442eb62904fbbc46442f2c798f, type: 2}
   FillColor: {r: 0, g: 0.4392157, b: 1, a: 1}
@@ -17688,6 +17688,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 10165b48204e83f459c8556f8f77e6ed, type: 3}
       propertyPath: m_Name
       value: pedestrian1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 10165b48204e83f459c8556f8f77e6ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1046811493917164537, guid: 10165b48204e83f459c8556f8f77e6ed, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -21776,6 +21780,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 10165b48204e83f459c8556f8f77e6ed, type: 3}
       propertyPath: m_Name
       value: pedestrian2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 10165b48204e83f459c8556f8f77e6ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1046811493917164537, guid: 10165b48204e83f459c8556f8f77e6ed, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -28643,7 +28651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2027584714
 RectTransform:
   m_ObjectHideFlags: 0
