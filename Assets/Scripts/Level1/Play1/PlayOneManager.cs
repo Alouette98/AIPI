@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Water2D;
 
+
 public class PlayOneManager : MonoBehaviour
 {
     // Particle list;
@@ -571,6 +572,7 @@ public class PlayOneManager : MonoBehaviour
                     StartCoroutine(FullScreenPop("That's right! The pedestrain's life is more important than the traffic rules. Now the car can always make the right choice!", 5f, 200f, false, true, true));
                     PlaySuccess();
                     StartCoroutine(StopCar(7f));
+                    StartCoroutine(Level2());
                 }
 
                 else if (wb1.weightValue < 0 && wb2.weightValue < 0)
@@ -748,6 +750,12 @@ public class PlayOneManager : MonoBehaviour
     {
 
     }
+    private IEnumerator Level2()
+    {
+        yield return new WaitForSeconds(10);
+        SceneManager.LoadScene(6);
+    }
+    
 
     //public void LiquidMixing()
     //{
