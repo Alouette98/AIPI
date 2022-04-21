@@ -11,7 +11,7 @@ public class Intro_Video : MonoBehaviour
     {
         vidplayer = GetComponent<VideoPlayer>();
         //vidplayer.url = url;
-        vidplayer.url = System.IO.Path.Combine (Application.streamingAssetsPath,"intro.mp4");
+        vidplayer.url = System.IO.Path.Combine (Application.streamingAssetsPath,"intro_v2.mp4");
         
     }
 
