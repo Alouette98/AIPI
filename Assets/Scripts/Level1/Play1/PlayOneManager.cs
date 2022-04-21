@@ -93,6 +93,11 @@ public class PlayOneManager : MonoBehaviour
     public Sprite[] lvstart_hint;
     public GameObject hintObject;
 
+    public GameObject carspriteOnFullObj;
+    public Sprite[] carsprite;
+    public GameObject FireworkObj;
+    public GameObject newFireworkObj;
+
     void Start()
     {
         
@@ -254,7 +259,12 @@ public class PlayOneManager : MonoBehaviour
 
         FullScreenCanvas.SetActive(true);
         TextOnFullObj.SetActive(true);
-        SpriteOnFullObj.SetActive(true);
+        if (CaseID != 0)
+        {
+            SpriteOnFullObj.SetActive(true);
+            newFireworkObj.SetActive(false);
+        }
+        
 
         TextOnFullObj.GetComponent<TMPro.TextMeshProUGUI>().text = TextString;
         
@@ -266,15 +276,36 @@ public class PlayOneManager : MonoBehaviour
         }
         else
         {
-            if (correct)
+            if (CaseID == 0)
             {
-                FullScreenCanvas.GetComponent<SpriteRenderer>().color = new Color(50f / 256f, 164f / 256f, 10f / 256f, 0.3f);
-                SpriteOnFullObj.GetComponent<SpriteRenderer>().sprite = happy_face;
+                {
+                    if (correct)
+                    {
+                        carspriteOnFullObj.GetComponent<SpriteRenderer>().sprite = carsprite[0];
+                        FireworkObj.SetActive(true);
+                    }
+                    else
+                    {
+                        carspriteOnFullObj.GetComponent<SpriteRenderer>().sprite = carsprite[1];
+                    }
+
+                }
             }
             else
             {
-                FullScreenCanvas.GetComponent<SpriteRenderer>().color = new Color(166f / 256f, 70f / 256f, 70f / 256f, 0.3f);
-                SpriteOnFullObj.GetComponent<SpriteRenderer>().sprite = sad_face;
+                if (correct)
+                {
+                    //carspriteOnFullObj.SetActive(false);
+                    FullScreenCanvas.GetComponent<SpriteRenderer>().color = new Color(50f / 256f, 164f / 256f, 10f / 256f, 0.3f);
+                    SpriteOnFullObj.GetComponent<SpriteRenderer>().sprite = happy_face;
+                    newFireworkObj.SetActive(true);
+                }
+                else
+                {
+                    //carspriteOnFullObj.SetActive(false);
+                    FullScreenCanvas.GetComponent<SpriteRenderer>().color = new Color(166f / 256f, 70f / 256f, 70f / 256f, 0.3f);
+                    SpriteOnFullObj.GetComponent<SpriteRenderer>().sprite = sad_face;
+                }
             }
         }
 
@@ -291,7 +322,11 @@ public class PlayOneManager : MonoBehaviour
         // Well, time to close canvas.
         SpriteOnFullObj.SetActive(false);
         TextOnFullObj.SetActive(false);
-        FullScreenCanvas.SetActive(false);
+        if (CaseID != 0)
+        {
+            FullScreenCanvas.SetActive(false);
+        }
+        
         
         yield return new WaitForSeconds(0.5f);
 
