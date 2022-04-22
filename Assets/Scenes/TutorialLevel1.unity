@@ -1928,6 +1928,7 @@ RectTransform:
   - {fileID: 1806655692}
   - {fileID: 129612095}
   - {fileID: 1791609474}
+  - {fileID: 300829935}
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9703,6 +9704,164 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 486282, guid: 1c5fea894b39b534ca9499ead78fb437, type: 3}
   m_PrefabInstance: {fileID: 292997372}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &300829934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 300829935}
+  - component: {fileID: 300829939}
+  - component: {fileID: 300829938}
+  - component: {fileID: 300829937}
+  - component: {fileID: 300829936}
+  m_Layer: 5
+  m_Name: PrevButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &300829935
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300829934}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalScale: {x: 0.01626391, y: 0.04755837, z: 0.0339727}
+  m_Children: []
+  m_Father: {fileID: 64815245}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -13.06, y: -6.0200033}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &300829936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300829934}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3849ac7b46d82524c9f616690719384b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1369677908}
+--- !u!114 &300829937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300829934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 300829938}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1369677908}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: previous
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 584923053}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayNextSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &300829938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300829934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 6ca0e2e9819642845b22ee0bbb031ec9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &300829939
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300829934}
+  m_CullTransparentMesh: 1
 --- !u!1001 &306882083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26149,12 +26308,18 @@ MonoBehaviour:
   weightValue: 0
   weightID: 1
   WeightText: {fileID: 1378519528}
+  WeightTextOnValve: {fileID: 0}
   firstTime: 0
   Spawner: {fileID: 0}
   PositiveParticle: {fileID: 4550172387510075979, guid: b704c2bbcf54b4140ae2762223b03c19, type: 3}
   NegativeParticle: {fileID: 8558943973914947052, guid: 935844e562e3a43499b274106da56742, type: 3}
   positiveParticles: []
   negativeParticles: []
+  maxAbsValue: 0
+  minusButton: {fileID: 0}
+  plusButton: {fileID: 0}
+  arrow1: {fileID: 0}
+  arrow2: {fileID: 0}
 --- !u!114 &761201223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29173,12 +29338,18 @@ MonoBehaviour:
   weightValue: 0
   weightID: 1
   WeightText: {fileID: 969093177}
+  WeightTextOnValve: {fileID: 0}
   firstTime: 0
   Spawner: {fileID: 1391397337}
   PositiveParticle: {fileID: 4550172387510075979, guid: b704c2bbcf54b4140ae2762223b03c19, type: 3}
   NegativeParticle: {fileID: 8558943973914947052, guid: 935844e562e3a43499b274106da56742, type: 3}
   positiveParticles: []
   negativeParticles: []
+  maxAbsValue: 0
+  minusButton: {fileID: 0}
+  plusButton: {fileID: 0}
+  arrow1: {fileID: 0}
+  arrow2: {fileID: 0}
 --- !u!1001 &855458943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45346,6 +45517,8 @@ MonoBehaviour:
   nextbutton: {fileID: 0}
   nb1: {fileID: 1810833497}
   nb2: {fileID: 1810833497}
+  PreviousButton1: {fileID: 0}
+  PreviousButton2: {fileID: 300829934}
 --- !u!4 &1369677909
 Transform:
   m_ObjectHideFlags: 0

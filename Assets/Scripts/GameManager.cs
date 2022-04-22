@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
     public GameObject nb1;
     public GameObject nb2;
 
+    public GameObject PreviousButton1;
+    public GameObject PreviousButton2;
+
   private int c = 0;
 
 
@@ -71,24 +74,16 @@ public class GameManager : MonoBehaviour
          if (Step == 0)
         {
             images[0].SetActive(true);
-             if(c == 0)
-            {
-                nextbutton.transform.position += new Vector3(8f, 0f, 0f);
-                c++;
-            }
-
+            images[1].SetActive(false);
+            PreviousButton1.SetActive(false);
         }
 
         if (Step == 1)
         {
             images[0].SetActive(false);
             images[1].SetActive(true);
-           if(c == 1)
-            {
-                nextbutton.transform.position += new Vector3(-8f, 0f, 0f);
-                c++;
-            }
-
+            images[2].SetActive(false);
+            PreviousButton1.SetActive(true);
         }
 
         if (Step == 2)
@@ -96,11 +91,7 @@ public class GameManager : MonoBehaviour
         {
             images[1].SetActive(false);
             images[2].SetActive(true);
-            if(c == 2)
-            {
-                nextbutton.transform.position += new Vector3(8f, 0f, 0f);
-                c++;
-            }
+            images[3].SetActive(false);
              
         }
         
@@ -110,12 +101,14 @@ public class GameManager : MonoBehaviour
         {
             images[2].SetActive(false);
             images[3].SetActive(true);
+            images[4].SetActive(false);
         }
         if (Step == 4)
         // Meaning it just starts.
         {
             images[3].SetActive(false);
             images[4].SetActive(true);
+            images[5].SetActive(false);
         }
 
         if (Step == 5)
@@ -123,6 +116,7 @@ public class GameManager : MonoBehaviour
         {
            images[4].SetActive(false);
             images[5].SetActive(true);
+            images[6].SetActive(false);
         }
 
         if (Step == 6)
@@ -130,6 +124,7 @@ public class GameManager : MonoBehaviour
         {
             images[5].SetActive(false);
             images[6].SetActive(true);
+            images[7].SetActive(false);
         }
 
         if (Step == 7)
@@ -137,6 +132,7 @@ public class GameManager : MonoBehaviour
         {
             images[6].SetActive(false);
             images[7].SetActive(true);
+            images[8].SetActive(false);
         }
 
         if (Step == 8)
@@ -144,6 +140,7 @@ public class GameManager : MonoBehaviour
         {
             images[7].SetActive(false);
             images[8].SetActive(true);
+            images[9].SetActive(false);
         }
 
         if (Step == 9)
@@ -167,24 +164,34 @@ public class GameManager : MonoBehaviour
             Step += 1;
         }
 
-
+         if (Step == 12)
+        {
+            images[11].SetActive(true);
+           images[12].SetActive(false);
+            PreviousButton2.SetActive(false);
+        }
 
         if (Step == 13)
         {
             images[11].SetActive(false);
             images[12].SetActive(true);
+            images[13].SetActive(false);
+            PreviousButton2.SetActive(true);
         }
 
         if (Step == 14)
         {
             images[12].SetActive(false);
             images[13].SetActive(true);
+            images[14].SetActive(false);
+            
         }
 
         if (Step == 15)
         {
             images[13].SetActive(false);
             images[14].SetActive(true);
+            images[15].SetActive(false);
         }
 
         if (Step == 16)
@@ -211,6 +218,16 @@ public class GameManager : MonoBehaviour
         PlayStartImages[0].SetActive(false);
         images[11].SetActive(true);
 
+    }
+
+
+    public void previous()
+    {
+        if(Step > 0)
+        {
+ Step--;
+        }
+       
     }
 
     //public IEnumerator PlayStartandJumpToLevel2()

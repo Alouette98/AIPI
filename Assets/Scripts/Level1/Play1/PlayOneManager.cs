@@ -109,6 +109,8 @@ public class PlayOneManager : MonoBehaviour
     public AudioClip success;
     public AudioClip fail;
 
+    public GameObject[] PlayStartImages;
+
     void Start()
     {
         
@@ -822,8 +824,12 @@ public class PlayOneManager : MonoBehaviour
     }
     private IEnumerator Level2()
     {
+        
         yield return new WaitForSeconds(10);
         SceneManager.LoadScene(6);
+         PlayStartImages[1].SetActive(true);
+        yield return new WaitForSeconds(3f);
+        PlayStartImages[1].SetActive(false);
     }
     
 
