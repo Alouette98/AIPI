@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Water2D;
 
 public class WeightBar : MonoBehaviour
@@ -13,6 +14,7 @@ public class WeightBar : MonoBehaviour
     public int weightID;
 
     public TMPro.TextMeshProUGUI WeightText;
+    public TMPro.TextMeshProUGUI WeightTextOnValve;
 
 
     public bool firstTime;
@@ -25,12 +27,57 @@ public class WeightBar : MonoBehaviour
     public List<GameObject> positiveParticles = new List<GameObject>();
     public List<GameObject> negativeParticles = new List<GameObject>();
 
+
+    public float maxAbsValue;
+    public Button minusButton;
+    public Button plusButton;
+
+    public GameObject arrow1;
+    public GameObject arrow2;
+
     void Start()
     {
         weightValue = 0;
-        firstTime = true;
+        firstTime = false;
         //ParticleCheck();
     }
+
+    public void weightPlusOne()
+    {
+        if (weightValue < maxAbsValue)
+        {
+            weightValue += 1f;
+        }
+
+        if (mgr)
+        {
+            if (mgr.CaseID == 0)
+            {
+                arrow1.SetActive(false);
+                arrow2.SetActive(true);
+            }
+        }
+        
+    }
+
+    public void weightMinusOne()
+    {
+        if (weightValue > -maxAbsValue)
+        {
+            weightValue -= 1f;
+        }
+
+        if (mgr)
+        {
+            if (mgr.CaseID == 0)
+            {
+                arrow1.SetActive(false);
+                arrow2.SetActive(true);
+            }
+        }
+
+    }
+
 
     public void ChangeWeight(float weight)
     {
@@ -144,10 +191,25 @@ public class WeightBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (weightValue == maxAbsValue)
+        {
+            plusButton.interactable = false;
+        }
+        else if (weightValue == -maxAbsValue)
+        {
+            minusButton.interactable = false;
+        }
+        else
+        {
+            plusButton.interactable = true;
+            minusButton.interactable = true;
+        }
+
+
         if (!firstTime)
         {
             WeightText.text = "W" + weightID.ToString()+ "=" + weightValue.ToString();
+            WeightTextOnValve.text = weightValue.ToString();
         }
 
         //if (weightValue == 0)

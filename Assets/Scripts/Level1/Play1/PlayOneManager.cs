@@ -10,6 +10,10 @@ using Water2D;
 
 public class PlayOneManager : MonoBehaviour
 {
+    public bool hasUpdateShown;
+    public GameObject infobox;
+    public GameObject arrow2;
+
     // Particle list;
     public List<GameObject> particles = new List<GameObject>();
 
@@ -109,7 +113,7 @@ public class PlayOneManager : MonoBehaviour
     {
         
         hasEnteredCase = false;
-
+        hasUpdateShown = false;
         pedAniSpeed = 0.31f;
         StartCoroutine(LevelStart(CaseID, 0f));
         mixed = false;
@@ -409,7 +413,10 @@ public class PlayOneManager : MonoBehaviour
 
     public void Play1()
     {
-
+        if (CaseID == 0)
+        {
+            arrow2.SetActive(false);
+        }
 
         StartCoroutine(LiquidFree(0.5f));
         StartCoroutine(LiquidMixing(3f));
@@ -699,8 +706,23 @@ public class PlayOneManager : MonoBehaviour
         }
     }
 
+    public IEnumerator ShowUpdate()
+    {
+        Time.timeScale = 0;
+        infobox.SetActive(true);
+        yield return new WaitForSecondsRealtime(3f);
+        infobox.SetActive(false);
+        Time.timeScale = 1;
+    }
+
     public void EnableHalf()
     {
+        if (CaseID == 1 && !hasUpdateShown)
+        {
+            StartCoroutine(ShowUpdate());
+            hasUpdateShown = true;
+        }
+
         enableRunButton();
 
         wb1.gameObject.GetComponentInChildren<Slider>().interactable = true;
