@@ -2344,12 +2344,18 @@ MonoBehaviour:
   weightValue: 0
   weightID: 1
   WeightText: {fileID: 969093177}
+  WeightTextOnValve: {fileID: 0}
   firstTime: 0
   Spawner: {fileID: 1391397337}
   PositiveParticle: {fileID: 4550172387510075979, guid: b704c2bbcf54b4140ae2762223b03c19, type: 3}
   NegativeParticle: {fileID: 8558943973914947052, guid: 935844e562e3a43499b274106da56742, type: 3}
   positiveParticles: []
   negativeParticles: []
+  maxAbsValue: 0
+  minusButton: {fileID: 0}
+  plusButton: {fileID: 0}
+  arrow1: {fileID: 0}
+  arrow2: {fileID: 0}
 --- !u!114 &354899158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5405,12 +5411,18 @@ MonoBehaviour:
   weightValue: 0
   weightID: 1
   WeightText: {fileID: 969093177}
+  WeightTextOnValve: {fileID: 0}
   firstTime: 0
   Spawner: {fileID: 1391397337}
   PositiveParticle: {fileID: 4550172387510075979, guid: b704c2bbcf54b4140ae2762223b03c19, type: 3}
   NegativeParticle: {fileID: 8558943973914947052, guid: 935844e562e3a43499b274106da56742, type: 3}
   positiveParticles: []
   negativeParticles: []
+  maxAbsValue: 0
+  minusButton: {fileID: 0}
+  plusButton: {fileID: 0}
+  arrow1: {fileID: 0}
+  arrow2: {fileID: 0}
 --- !u!1 &859460259
 GameObject:
   m_ObjectHideFlags: 0
@@ -5440,6 +5452,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd6f5bba5e987d40a59f1057421847e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasUpdateShown: 0
+  infobox: {fileID: 0}
+  arrow2: {fileID: 0}
   particles: []
   PositiveParticle: {fileID: 0}
   NegativeParticle: {fileID: 0}
@@ -5456,6 +5471,7 @@ MonoBehaviour:
   EquationText: {fileID: 2067093740}
   Ped1: {fileID: 0}
   Ped2: {fileID: 0}
+  trafficlight2: {fileID: 0}
   GoStopIndicatorObj: {fileID: 1101215376}
   GoSprite: {fileID: 21300000, guid: 6bc6ea64e37701a47b6a0a7e0314ef6e, type: 3}
   StopSprite: {fileID: 21300000, guid: 192454ecdb980e4418dcae2c4d2c4fa3, type: 3}
@@ -5491,6 +5507,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   success: {fileID: 0}
   fail: {fileID: 0}
+  PlayStartImages: []
 --- !u!4 &859460261
 Transform:
   m_ObjectHideFlags: 0
@@ -5643,12 +5660,18 @@ MonoBehaviour:
   weightValue: 0
   weightID: 1
   WeightText: {fileID: 969093177}
+  WeightTextOnValve: {fileID: 0}
   firstTime: 0
   Spawner: {fileID: 1391397337}
   PositiveParticle: {fileID: 4550172387510075979, guid: b704c2bbcf54b4140ae2762223b03c19, type: 3}
   NegativeParticle: {fileID: 8558943973914947052, guid: 935844e562e3a43499b274106da56742, type: 3}
   positiveParticles: []
   negativeParticles: []
+  maxAbsValue: 0
+  minusButton: {fileID: 0}
+  plusButton: {fileID: 0}
+  arrow1: {fileID: 0}
+  arrow2: {fileID: 0}
 --- !u!114 &865280787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6469,12 +6492,18 @@ MonoBehaviour:
   weightValue: 0
   weightID: 1
   WeightText: {fileID: 969093177}
+  WeightTextOnValve: {fileID: 0}
   firstTime: 0
   Spawner: {fileID: 1391397337}
   PositiveParticle: {fileID: 4550172387510075979, guid: b704c2bbcf54b4140ae2762223b03c19, type: 3}
   NegativeParticle: {fileID: 8558943973914947052, guid: 935844e562e3a43499b274106da56742, type: 3}
   positiveParticles: []
   negativeParticles: []
+  maxAbsValue: 0
+  minusButton: {fileID: 0}
+  plusButton: {fileID: 0}
+  arrow1: {fileID: 0}
+  arrow2: {fileID: 0}
 --- !u!114 &913781472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15714,12 +15743,18 @@ MonoBehaviour:
   weightValue: 0
   weightID: 1
   WeightText: {fileID: 969093177}
+  WeightTextOnValve: {fileID: 0}
   firstTime: 0
   Spawner: {fileID: 1391397337}
   PositiveParticle: {fileID: 4550172387510075979, guid: b704c2bbcf54b4140ae2762223b03c19, type: 3}
   NegativeParticle: {fileID: 8558943973914947052, guid: 935844e562e3a43499b274106da56742, type: 3}
   positiveParticles: []
   negativeParticles: []
+  maxAbsValue: 0
+  minusButton: {fileID: 0}
+  plusButton: {fileID: 0}
+  arrow1: {fileID: 0}
+  arrow2: {fileID: 0}
 --- !u!114 &1395722937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17788,12 +17823,18 @@ MonoBehaviour:
   weightValue: 0
   weightID: 1
   WeightText: {fileID: 969093177}
+  WeightTextOnValve: {fileID: 0}
   firstTime: 0
   Spawner: {fileID: 1391397337}
   PositiveParticle: {fileID: 4550172387510075979, guid: b704c2bbcf54b4140ae2762223b03c19, type: 3}
   NegativeParticle: {fileID: 8558943973914947052, guid: 935844e562e3a43499b274106da56742, type: 3}
   positiveParticles: []
   negativeParticles: []
+  maxAbsValue: 0
+  minusButton: {fileID: 0}
+  plusButton: {fileID: 0}
+  arrow1: {fileID: 0}
+  arrow2: {fileID: 0}
 --- !u!114 &1662710427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18162,12 +18203,18 @@ MonoBehaviour:
   weightValue: 0
   weightID: 1
   WeightText: {fileID: 969093177}
+  WeightTextOnValve: {fileID: 0}
   firstTime: 0
   Spawner: {fileID: 1391397337}
   PositiveParticle: {fileID: 4550172387510075979, guid: b704c2bbcf54b4140ae2762223b03c19, type: 3}
   NegativeParticle: {fileID: 8558943973914947052, guid: 935844e562e3a43499b274106da56742, type: 3}
   positiveParticles: []
   negativeParticles: []
+  maxAbsValue: 0
+  minusButton: {fileID: 0}
+  plusButton: {fileID: 0}
+  arrow1: {fileID: 0}
+  arrow2: {fileID: 0}
 --- !u!114 &1696034566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20710,12 +20757,18 @@ MonoBehaviour:
   weightValue: 0
   weightID: 1
   WeightText: {fileID: 969093177}
+  WeightTextOnValve: {fileID: 0}
   firstTime: 0
   Spawner: {fileID: 1391397337}
   PositiveParticle: {fileID: 4550172387510075979, guid: b704c2bbcf54b4140ae2762223b03c19, type: 3}
   NegativeParticle: {fileID: 8558943973914947052, guid: 935844e562e3a43499b274106da56742, type: 3}
   positiveParticles: []
   negativeParticles: []
+  maxAbsValue: 0
+  minusButton: {fileID: 0}
+  plusButton: {fileID: 0}
+  arrow1: {fileID: 0}
+  arrow2: {fileID: 0}
 --- !u!114 &1958335407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21418,14 +21471,14 @@ RectTransform:
   m_GameObject: {fileID: 2004615038}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.016961783, y: 0.046027515, z: 0.027895465}
+  m_LocalScale: {x: 0.013639817, y: 0.029304447, z: 0.024924597}
   m_Children: []
   m_Father: {fileID: 64815245}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.41, y: -6.32}
+  m_AnchoredPosition: {x: 1.56, y: -6.24}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2004615040
@@ -21504,7 +21557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2c01d3aad8660bd4aa6aa8d0bd7bb8e6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27a4a095cfd06c84d88fecea3789da4d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
