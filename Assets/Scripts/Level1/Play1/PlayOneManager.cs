@@ -111,6 +111,8 @@ public class PlayOneManager : MonoBehaviour
 
     public GameObject[] PlayStartImages;
 
+    private Coroutine nextLevelCoroutine;
+
     void Start()
     {
         
@@ -126,6 +128,8 @@ public class PlayOneManager : MonoBehaviour
     public IEnumerator LevelStart(int levelID, float waitTime)
 
     {
+        DisableNextLevelButton();
+        nextLevelCoroutine = null;
 
         // reset liquid stage
         particleStage = 0;
@@ -199,27 +203,38 @@ public class PlayOneManager : MonoBehaviour
     }
 
 
-    void SetInput()
+    public void SetInput()
     {
         if (CaseID == 0)
         {
             X1 = 1;
             X2 = 0;
+
+            
         }
         if (CaseID == 1)
         {
             X1 = 1;
             X2 = 0;
+
+            wb1.maxAbsValue = 2;
+            wb2.maxAbsValue = 0;
         }
         else if (CaseID == 2)
         {
             X1 = 0;
             X2 = 1;
+
+            wb1.maxAbsValue = 0;
+            wb2.maxAbsValue = 2;
         }
         else if (CaseID == 3)
         {
             X1 = 1;
             X2 = 1;
+
+            wb1.maxAbsValue = 2;
+            wb2.maxAbsValue = 2;
         }
     }
 
@@ -272,11 +287,15 @@ public class PlayOneManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         hintObject.SetActive(true);
         hintObject.GetComponent<SpriteRenderer>().sprite = hintSprite;
-        yield return new WaitForSeconds(PopUpTime);
+        //yield return new WaitForSeconds(PopUpTime);
+        
+    }
+
+    public void Lvstart_lvhint_close()
+    {
         hintObject.SetActive(false);
         EnableHalf();
     }
-
 
 
     public IEnumerator FullScreenPop(string TextString, float waitTime, float PopUpTime, bool showHalf, bool nextLevel, bool correct)
@@ -329,6 +348,8 @@ public class PlayOneManager : MonoBehaviour
                     FullScreenCanvas.GetComponent<SpriteRenderer>().color = new Color(74f / 256f, 92f / 256f, 62f / 256f, 0.9f);
                     SpriteOnFullObj.GetComponent<SpriteRenderer>().sprite = happy_face;
                     newFireworkObj.SetActive(true);
+
+                    EnableNextLevelButton();
                 }
                 else
                 {
@@ -413,8 +434,32 @@ public class PlayOneManager : MonoBehaviour
         
     }
 
+    public void SkipToNextLevelStart()
+    {
+        if (CaseID == 0)
+        {
+
+        }
+        else if (CaseID == 1 || CaseID == 2)
+        {
+
+            FullScreenCanvas.SetActive(false);
+
+            if (nextLevelCoroutine != null) { 
+                StopCoroutine(nextLevelCoroutine);
+                nextLevelCoroutine = null;
+            }
+
+            StartCoroutine(LevelStart(CaseID + 1, 0f));
+            CaseID += 1;
+        }
+        
+    }
+
     public void Play1()
     {
+
+
         if (CaseID == 0)
         {
             arrow2.SetActive(false);
@@ -466,7 +511,15 @@ public class PlayOneManager : MonoBehaviour
 
         disableRunButton();
 
-        // Brake.SetActive(false);
+        
+       if (CaseID == 1 || CaseID == 2 || CaseID ==3)
+        {
+            wb1.maxAbsValue = 0;
+            wb2.maxAbsValue = 0;
+        }
+    
+
+
 
 
         // OK, lets check whether the result is correct according to the caseID;
@@ -474,6 +527,7 @@ public class PlayOneManager : MonoBehaviour
         {
             if (result > 0)
             {
+                ////////////////////////////////////////////////////////////////////////////SUCCESS///////////////////////////////////////////////////////////////
                 //StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                 StartCoroutine(CarRunning(2f));
                 StartCoroutine(FullScreenPop("Great Job! Now you know that controlling the weight can decide the output of the Neural Networks!", 5f, 6f, false, true,true));
@@ -496,9 +550,11 @@ public class PlayOneManager : MonoBehaviour
         {
             if (result > 0)
             {
+                ////////////////////////////////////////////////////////////////////////////SUCCESS///////////////////////////////////////////////////////////////
                 //StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                 StartCoroutine(CarRunning(2f));
-                StartCoroutine(FullScreenPop("Great Job! The car now knows that the green light is important. Keep on training the network!", 5f, 4f, false, true, true));
+                nextLevelCoroutine = StartCoroutine(FullScreenPop("Great Job! The car now knows that the green light is important. Keep on training the network!", 5f, 4f, false, true, true));
+                EnableNextLevelButton();
             }
             else if (result == 0)
             {
@@ -533,12 +589,14 @@ public class PlayOneManager : MonoBehaviour
             }
             else
             {
-                //StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
+                ////////////////////////////////////////////////////////////////////////////SUCCESS///////////////////////////////////////////////////////////////
+                // StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
                 StartCoroutine(FullScreenPop("Thanks! The car now knows to stop when it sees a pedestrian. You made our city safer.", 4f, 4f, false, true, true));
-                PlaySuccess();
+                EnableNextLevelButton();
+                
                 // #TODO NEED UPDATE
-                StartCoroutine(LevelStart(3, 9f));
-                CaseID = 3;
+                nextLevelCoroutine = StartCoroutine(LevelStart(3, 9f));
+                
 
                 StartCoroutine(HalfScreenShow(12f));
             }
@@ -598,6 +656,7 @@ public class PlayOneManager : MonoBehaviour
             {
                 if (wb1.weightValue > 0 && wb2.weightValue < 0)
                 {
+                    ////////////////////////////////////////////////////////////////////////////SUCCESS///////////////////////////////////////////////////////////////
                     //StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
                     StartCoroutine(FullScreenPop("That's right! The pedestrain's life is more important than the traffic rules. Now the car can always make the right choice!", 5f, 200f, false, true, true));
                     StartCoroutine(StopCar(7f));
@@ -690,15 +749,35 @@ public class PlayOneManager : MonoBehaviour
 
     public IEnumerator ShowUpdate()
     {
+        /// Tell players that they have an updated valve.
+        ///
         Time.timeScale = 0;
         infobox.SetActive(true);
+
+        while (infobox.GetComponent<Transform>().localScale.x < 1f)
+        {
+            infobox.GetComponent<Transform>().localScale += new Vector3(0.02f, 0.02f, 0.02f);
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+
         yield return new WaitForSecondsRealtime(3f);
+
+        while (infobox.GetComponent<Transform>().localScale.x > 0f)
+        {
+            infobox.GetComponent<Transform>().localScale -= new Vector3(0.02f, 0.02f, 0.02f);
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
         infobox.SetActive(false);
+
+        RunButton.SetActive(true);
         Time.timeScale = 1;
     }
 
+
     public void EnableHalf()
     {
+        SetInput();
+
         if (CaseID == 1 && !hasUpdateShown)
         {
             StartCoroutine(ShowUpdate());
@@ -746,6 +825,7 @@ public class PlayOneManager : MonoBehaviour
             spawner2.GenerateAndSpawn();
         }
 
+        
     }
 
     public void DisableLiquidCamera()

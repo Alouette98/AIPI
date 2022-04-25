@@ -191,7 +191,12 @@ public class WeightBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (weightValue == maxAbsValue)
+        if (maxAbsValue == 0)
+        {
+            plusButton.interactable = false;
+            minusButton.interactable = false;
+        }
+        else if(weightValue == maxAbsValue)
         {
             plusButton.interactable = false;
         }
