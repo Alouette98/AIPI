@@ -326,6 +326,7 @@ public class PlayOneManager : MonoBehaviour
                 {
                     if (correct)
                     {
+                        PlaySuccess();
                         carspriteOnFullObj.SetActive(true);
                         FullScreenCanvas.GetComponent<SpriteRenderer>().color = new Color(74f / 256f, 92f / 256f, 62f / 256f, 0.9f);
                         carspriteOnFullObj.GetComponent<SpriteRenderer>().sprite = carsprite[0];
@@ -333,6 +334,7 @@ public class PlayOneManager : MonoBehaviour
                     }
                     else
                     {
+                        PlayFail();
                         carspriteOnFullObj.SetActive(true);
                         FullScreenCanvas.GetComponent<SpriteRenderer>().color = new Color(51f / 256f, 26f / 256f, 26f / 256f, 0.9f);
                         carspriteOnFullObj.GetComponent<SpriteRenderer>().sprite = carsprite[1];
@@ -344,6 +346,7 @@ public class PlayOneManager : MonoBehaviour
             {
                 if (correct)
                 {
+                    PlaySuccess();
                     //carspriteOnFullObj.SetActive(false);
                     FullScreenCanvas.GetComponent<SpriteRenderer>().color = new Color(74f / 256f, 92f / 256f, 62f / 256f, 0.9f);
                     SpriteOnFullObj.GetComponent<SpriteRenderer>().sprite = happy_face;
@@ -353,6 +356,7 @@ public class PlayOneManager : MonoBehaviour
                 }
                 else
                 {
+                    PlayFail();
                     //carspriteOnFullObj.SetActive(false);
                     FullScreenCanvas.GetComponent<SpriteRenderer>().color = new Color(51f / 256f, 26f / 256f, 26f / 256f, 0.9f);
                     SpriteOnFullObj.GetComponent<SpriteRenderer>().sprite = sad_face;

@@ -10498,7 +10498,7 @@ MonoBehaviour:
   FireworkObj: {fileID: 1744403142}
   newFireworkObj: {fileID: 0}
   audioSource: {fileID: 276387843}
-  success: {fileID: 8300000, guid: 878ea346bb6c8b64094b9823b140a7b3, type: 3}
+  success: {fileID: 8300000, guid: a58c5e4416f76dd4eadf0fe0154165c6, type: 3}
   fail: {fileID: 8300000, guid: 167c6f8876f343042865467920b5c6b7, type: 3}
   PlayStartImages: []
 --- !u!4 &859460261
