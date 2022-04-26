@@ -6,6 +6,7 @@ public class Level2intro : MonoBehaviour
 {
     public GameObject[] PlayStartimages;
     public GameObject hint;
+    public GameObject video;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,5 +28,6 @@ public class Level2intro : MonoBehaviour
         hint.SetActive(true);
         yield return new WaitForSeconds(5f);
         hint.SetActive(false);
+        video.SetActive(true);
     }
 }
