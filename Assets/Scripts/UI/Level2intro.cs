@@ -6,6 +6,7 @@ public class Level2intro : MonoBehaviour
 {
     public GameObject[] PlayStartimages;
     public GameObject hint;
+
     public GameObject video;
 
     public GameObject[] halfshow;
