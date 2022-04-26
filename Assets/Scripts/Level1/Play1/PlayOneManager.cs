@@ -112,6 +112,8 @@ public class PlayOneManager : MonoBehaviour
     public GameObject[] PlayStartImages;
 
     private Coroutine nextLevelCoroutine;
+    private Coroutine nextScene;
+
 
     void Start()
     {
@@ -128,6 +130,8 @@ public class PlayOneManager : MonoBehaviour
     public IEnumerator LevelStart(int levelID, float waitTime)
 
     {
+        FullScreenCanvas.SetActive(false);
+
         DisableNextLevelButton();
         nextLevelCoroutine = null;
 
@@ -525,19 +529,19 @@ public class PlayOneManager : MonoBehaviour
             FullScreenCanvas.SetActive(false);
             carspriteOnFullObj.SetActive(false);
         }        
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
-        if (showHalf)
-        {
-            EnableHalf();
-            EnableLiquidCamera();
+        //if (showHalf)
+        //{
+        //    EnableHalf();
+        //    EnableLiquidCamera();
             //SetWaterColor(defaultWater); 
-        }
-        else
-        {
-            DisableHalf();
-            DisableLiquidCamera();
-        }
+        //}
+        //else
+        //{
+        //    DisableHalf();
+        //    DisableLiquidCamera();
+        //}
 
     }
 
@@ -591,9 +595,18 @@ public class PlayOneManager : MonoBehaviour
                 StopCoroutine(nextLevelCoroutine);
                 nextLevelCoroutine = null;
             }
-
-            StartCoroutine(LevelStart(CaseID + 1, 0f));
             CaseID += 1;
+            StartCoroutine(LevelStart(CaseID, 0f));
+            
+        }
+        else if (CaseID == 3)
+        {
+            if (nextLevelCoroutine != null)
+            {
+                StopCoroutine(nextScene);
+                nextScene = null;
+            }
+            StartCoroutine(Level2_immediately());
         }
         
     }
@@ -678,12 +691,12 @@ public class PlayOneManager : MonoBehaviour
             else if (result == 0)
             {
                 //StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                StartCoroutine(FullScreenPop("0 in input means disabling the input, I think our car should give some importance to the green light. Try again!", 5f, 4f, false, false,false));
+                StartCoroutine(FullScreenPop("0 in input means disabling the input, I think our car should give some importance to the green light. Try again!", 5f, 7f, false, false,false));
                 StartCoroutine(HalfScreenShow(12f));
             }else
             {
                 //StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                StartCoroutine(FullScreenPop("Postive Green means GO. Negative Red means STOP. The green light is on right now. Try Again!", 5f, 4f, false, false, false));
+                StartCoroutine(FullScreenPop("Postive Green means GO. Negative Red means STOP. The green light is on right now. Try Again!", 5f, 7f, false, false, false));
                 StartCoroutine(HalfScreenShow(12f));
                 //SetWaterColor(defaultWater);
             }
@@ -695,19 +708,19 @@ public class PlayOneManager : MonoBehaviour
                 ////////////////////////////////////////////////////////////////////////////SUCCESS///////////////////////////////////////////////////////////////
                 //StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                 StartCoroutine(CarRunning(2f));
-                nextLevelCoroutine = StartCoroutine(FullScreenPop("Great Job! The car now knows that the green light is important. Keep on training the network!", 5f, 4f, false, true, true));
+                nextLevelCoroutine = StartCoroutine(FullScreenPop("Great Job! The car now knows that the green light is important. Keep on training the network!", 5f, 100f, false, true, true));
                 EnableNextLevelButton();
             }
             else if (result == 0)
             {
                 //StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                 //StartCoroutine(CarRunning(2f));
-                StartCoroutine(FullScreenPop("0 makes Neural Networks confused.Try again!", 5f, 5f, false, false, false));
+                StartCoroutine(FullScreenPop("0 makes Neural Networks confused.Try again!", 4f, 6.5f, false, false, false));
                 StartCoroutine(LevelStart(CaseID, 12f));
             }else
             {
                 //StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                StartCoroutine(FullScreenPop("Not moving? GREEN light is on!", 5f, 4f, false, false,false));
+                StartCoroutine(FullScreenPop("Not moving? GREEN light is on!", 4f, 6.5f, false, false,false));
                 StartCoroutine(HalfScreenShow(12f));
                 //SetWaterColor(defaultWater);
             }
@@ -733,14 +746,14 @@ public class PlayOneManager : MonoBehaviour
             {
                 ////////////////////////////////////////////////////////////////////////////SUCCESS///////////////////////////////////////////////////////////////
                 // StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                StartCoroutine(FullScreenPop("Thanks! The car now knows to stop when it sees a pedestrian. You made our city safer.", 4f, 4f, false, true, true));
+                StartCoroutine(FullScreenPop("Thanks! The car now knows to stop when it sees a pedestrian. You made our city safer.", 4f, 1000f, false, true, true));
                 EnableNextLevelButton();
                 
                 // #TODO NEED UPDATE
-                nextLevelCoroutine = StartCoroutine(LevelStart(3, 9f));
+                //nextLevelCoroutine = StartCoroutine(LevelStart(3, 9f));
                 
 
-                StartCoroutine(HalfScreenShow(12f));
+                //StartCoroutine(HalfScreenShow(12f));
             }
         }
         else if (CaseID == 3)
@@ -757,7 +770,7 @@ public class PlayOneManager : MonoBehaviour
                 }
                 //StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                 
-                StartCoroutine(FullScreenPop("0 makes Neural Networks confused.Try again!", 5f, 4f, false, false, false));
+                StartCoroutine(FullScreenPop("0 makes Neural Networks confused.Try again!", 4f, 6f, false, false, false));
                 StartCoroutine(LevelStart(CaseID, 12f));
             }
             if ((math.abs(wb1.weightValue) > math.abs(wb2.weightValue)))
@@ -768,7 +781,7 @@ public class PlayOneManager : MonoBehaviour
                 {
                     //StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                     StartCoroutine(CarRunning(2f));
-                    StartCoroutine(FullScreenPop("Remember? Don't kill people!", 5f, 4f, false, false, false));
+                    StartCoroutine(FullScreenPop("Remember? Don't kill people!", 4f, 6f, false, false, false));
                     StartCoroutine(LevelStart(CaseID, 12f));
                 }
                 else if (wb1.weightValue < 0 && wb2.weightValue < 0)
@@ -782,14 +795,14 @@ public class PlayOneManager : MonoBehaviour
                 {
                     //StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                     StartCoroutine(CarRunning(2f));
-                    StartCoroutine(FullScreenPop("Nearly there! But the pedestrain's life is more important than the traffic rules.", 5f, 4f, false, false, false));
+                    StartCoroutine(FullScreenPop("Nearly there! But the pedestrain's life is more important than the traffic rules.", 4f, 6f, false, false, false));
                     StartCoroutine(LevelStart(CaseID, 12f));
                 }
                 else if (wb1.weightValue < 0 && wb2.weightValue > 0)
                 {
                     //StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
                     StartCoroutine(CarRunning(2f));
-                    StartCoroutine(FullScreenPop("Remember? Don't hurt people!", 5f, 4f, false, false, false));
+                    StartCoroutine(FullScreenPop("Remember? Don't hurt people!", 4f, 6f, false, false, false));
                     StartCoroutine(LevelStart(CaseID, 12f));
                 }
             }
@@ -802,13 +815,13 @@ public class PlayOneManager : MonoBehaviour
                     //StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
                     StartCoroutine(FullScreenPop("That's right! The pedestrain's life is more important than the traffic rules. Now the car can always make the right choice!", 5f, 200f, false, true, true));
                     StartCoroutine(StopCar(7f));
-                    StartCoroutine(Level2());
+                    nextScene = StartCoroutine(Level2());
                 }
 
                 else if (wb1.weightValue < 0 && wb2.weightValue < 0)
                 {
                     //StartCoroutine(FullScreenPopImage(StopSprite, 0f, 2f, false));
-                    StartCoroutine(FullScreenPop("But the car still need to go forward when green light is on.", 5f, 4f, false, false, false));
+                    StartCoroutine(FullScreenPop("But the car still need to go forward when green light is on.", 4f, 6f, false, false, false));
                     StartCoroutine(LevelStart(CaseID, 12f));
                 }
 
@@ -816,7 +829,7 @@ public class PlayOneManager : MonoBehaviour
                 {
                     //StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                     StartCoroutine(CarRunning(2f));
-                    StartCoroutine(FullScreenPop("Remember? Don't hurt people!", 5f, 4f, false, false, false));
+                    StartCoroutine(FullScreenPop("Remember? Don't hurt people!", 4f, 6f, false, false, false));
                     StartCoroutine(LevelStart(CaseID, 12f));
                 }
 
@@ -824,7 +837,7 @@ public class PlayOneManager : MonoBehaviour
                 {
                     //StartCoroutine(FullScreenPopImage(GoSprite, 0f, 2f, false));
                     StartCoroutine(CarRunning(2f));
-                    StartCoroutine(FullScreenPop("Remember? Don't hurt people! And the car still need to go forward when green light is on.", 5f, 4f, false, false, false));
+                    StartCoroutine(FullScreenPop("Remember? Don't hurt people! And the car still need to go forward when green light is on.", 4f, 6f, false, false, false));
                     StartCoroutine(LevelStart(CaseID, 12f));
                 }
             }
@@ -834,17 +847,17 @@ public class PlayOneManager : MonoBehaviour
                 if (result > 0)
                 {
                     StartCoroutine(CarRunning(2f));
-                    StartCoroutine(FullScreenPop("Remember? Don't hurt people! ", 5f, 4f, false, false, false));
+                    StartCoroutine(FullScreenPop("Remember? Don't hurt people! ", 4f, 6f, false, false, false));
                     StartCoroutine(LevelStart(CaseID, 12f));
                 }
                 else if (result < 0)
                 {
-                    StartCoroutine(FullScreenPop("But the car still need to go forward when green light is on.", 5f, 4f, false, false, false));
+                    StartCoroutine(FullScreenPop("But the car still need to go forward when green light is on.", 4f, 6f, false, false, false));
                     StartCoroutine(LevelStart(CaseID, 12f));
                 }
                 else if (result ==  0)
                 {
-                    StartCoroutine(FullScreenPop("0 makes Neural Networks confused.Try again!", 5f, 4f, false, false, false));
+                    StartCoroutine(FullScreenPop("0 makes Neural Networks confused.Try again!", 4f, 6f, false, false, false));
                     StartCoroutine(LevelStart(CaseID, 12f));
                 }
 
@@ -902,7 +915,7 @@ public class PlayOneManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.01f);
         }
 
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(5.5f);
 
         while (infobox.GetComponent<Transform>().localScale.x > 0f)
         {
@@ -1024,6 +1037,17 @@ public class PlayOneManager : MonoBehaviour
     {
 
     }
+
+    private IEnumerator Level2_immediately()
+    {
+
+        yield return new WaitForSeconds(0);
+        SceneManager.LoadScene(6);
+        PlayStartImages[1].SetActive(true);
+        yield return new WaitForSeconds(3f);
+        PlayStartImages[1].SetActive(false);
+    }
+
     private IEnumerator Level2()
     {
         
