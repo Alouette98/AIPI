@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Setting_BackButton : MonoBehaviour
 {
+    /*
 
     public GameObject SettingsLayer;
     //public GameObject RoadDisplay;
@@ -49,4 +50,6 @@ public class Setting_BackButton : MonoBehaviour
     {
         
     }
+
+    */
 }
