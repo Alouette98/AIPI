@@ -758,8 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SettingsLayer: {fileID: 1529576364}
-  RoadDisplay: {fileID: 0}
-  gmr: {fileID: 0}
+  StartButton: {fileID: 0}
 --- !u!114 &405020013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2234,8 +2233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SettingsLayer: {fileID: 1109162864}
-  RoadDisplay: {fileID: 0}
-  gmr: {fileID: 0}
+  StartButton: {fileID: 0}
 --- !u!114 &1514591752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2351,7 +2349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1529576365
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3043,6 +3041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CreditsLayer: {fileID: 1109162864}
   RoadDisplay: {fileID: 0}
+  settingscanvas: {fileID: 0}
 --- !u!1 &1953574183
 GameObject:
   m_ObjectHideFlags: 0
@@ -3413,7 +3412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SettingsLayer: {fileID: 584469913}
-  RoadDisplay: {fileID: 0}
+  StartButton: {fileID: 0}
 --- !u!114 &2027584716
 MonoBehaviour:
   m_ObjectHideFlags: 0
