@@ -8,16 +8,16 @@ public class Setting_BackButton : MonoBehaviour
 
     public GameObject SettingsLayer;
     //public GameObject RoadDisplay;
-//<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
     //public GameManager gmr;
 
     public GameObject StartButton;
-//=======
+=======
     public GameObject settingscanvas;
     //public GameManager gmr;
     
-//>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
     // Start is called before the first frame update
     void Start()
@@ -29,19 +29,19 @@ public class Setting_BackButton : MonoBehaviour
     {
         // Show settings layer
         SettingsLayer.SetActive(false);
-        //settingscanvas.SetActive(true);
+        settingscanvas.SetActive(true);
         // Disable RoadDisplay
         //if (gmr.isTutorialFinished == true){
-//<<<<<<< Updated upstream
+<<<<<<< Updated upstream
         //    RoadDisplay.GetComponent<MeshRenderer>().enabled = true;
         //}
 
         StartButton.GetComponent<Button>().interactable = true;
-//=======
+=======
             //RoadDisplay.GetComponent<MeshRenderer>().enabled = true;
             
         //}
-//>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     }
 
     // Update is called once per frame
