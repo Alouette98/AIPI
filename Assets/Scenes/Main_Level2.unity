@@ -2130,11 +2130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01a435b0ac423143ac26f81cb57e647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoplayerobject: {fileID: 0}
+  videoplayerobject: {fileID: 1186062023}
   c: 1
   b: 0
-  simulationbutton: {fileID: 0}
-  thumbnail: {fileID: 0}
+  simulationbutton: {fileID: 2004615038}
+  thumbnail: {fileID: 1835211152}
 --- !u!4 &333662363
 Transform:
   m_ObjectHideFlags: 0
@@ -2655,7 +2655,7 @@ MonoBehaviour:
   - {fileID: 344031619}
   - {fileID: 1204908874}
   hint: {fileID: 1896454685}
-  video: {fileID: 0}
+  video: {fileID: 1186062023}
   halfshow:
   - {fileID: 1835211152}
   - {fileID: 2004615038}
