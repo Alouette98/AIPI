@@ -1354,7 +1354,7 @@ SpriteRenderer:
   m_Size: {x: 2.6, y: 3.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &229183621
@@ -4329,7 +4329,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9da441ec2d1cbef44bdba9a2a3bf289e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -4787,7 +4787,7 @@ SpriteRenderer:
   m_Size: {x: 2.6, y: 3.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &688344282
@@ -4869,7 +4869,7 @@ SpriteRenderer:
   m_Size: {x: 2.6, y: 3.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &714596906
@@ -5798,6 +5798,12 @@ MonoBehaviour:
   success: {fileID: 0}
   fail: {fileID: 0}
   PlayStartImages: []
+  Outputs: []
+  SuccessOrFails: []
+  HintWords: []
+  case1: {fileID: 0}
+  case2: {fileID: 0}
+  case3: {fileID: 0}
 --- !u!4 &859460261
 Transform:
   m_ObjectHideFlags: 0
@@ -6456,8 +6462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SettingsLayer: {fileID: 584469913}
-  RoadDisplay: {fileID: 329048659}
-  gmr: {fileID: 0}
+  StartButton: {fileID: 0}
 --- !u!1 &888475805
 GameObject:
   m_ObjectHideFlags: 0
@@ -20558,7 +20563,7 @@ SpriteRenderer:
   m_Size: {x: 2.6, y: 3.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1886858562
@@ -21070,7 +21075,7 @@ SpriteRenderer:
   m_Size: {x: 2.6, y: 3.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1958335404
@@ -22240,7 +22245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SettingsLayer: {fileID: 584469913}
-  RoadDisplay: {fileID: 329048659}
+  StartButton: {fileID: 0}
 --- !u!114 &2027584716
 MonoBehaviour:
   m_ObjectHideFlags: 0
