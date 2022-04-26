@@ -758,8 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SettingsLayer: {fileID: 1529576364}
-  RoadDisplay: {fileID: 0}
-  gmr: {fileID: 0}
+  StartButton: {fileID: 0}
 --- !u!114 &405020013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -890,7 +889,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.9, y: -1.6}
+  m_AnchoredPosition: {x: -1.8, y: -1.6}
   m_SizeDelta: {x: 204.0527, y: 50.6914}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &502689147
@@ -2234,8 +2233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SettingsLayer: {fileID: 1109162864}
-  RoadDisplay: {fileID: 0}
-  gmr: {fileID: 0}
+  StartButton: {fileID: 0}
 --- !u!114 &1514591752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3736,7 +3734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SettingsLayer: {fileID: 584469913}
-  RoadDisplay: {fileID: 0}
+  StartButton: {fileID: 502689145}
 --- !u!114 &2027584716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4048,6 +4046,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 4824964378359921087, guid: 40501f019b1f9be48a6d23686dd6ffc6, type: 3}
+      propertyPath: StartButton
+      value: 
+      objectReference: {fileID: 502689145}
     - target: {fileID: 4824964378661871920, guid: 40501f019b1f9be48a6d23686dd6ffc6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -298,8 +298,146 @@ public class PlayOneManager : MonoBehaviour
     }
 
 
+
+    public TMPro.TextMeshProUGUI[] Outputs;
+    public TMPro.TextMeshProUGUI[] SuccessOrFails;
+    public TMPro.TextMeshProUGUI[] HintWords;
+
+    public GameObject case1;
+    public GameObject case2;
+    public GameObject case3;
+
+    public void calculateAndFillTestcase()
+    {
+        if (CaseID == 1)
+        {
+            case1.SetActive(true);
+        }
+        if (CaseID == 2)
+        {
+            case2.SetActive(true);
+        }
+        if (CaseID == 3)
+        {
+            case3.SetActive(true);
+        }
+
+
+        if (CaseID != 0)
+        {
+
+            // OUTPUT
+            if (1f * wb1.weightValue + 0f * wb2.weightValue > 0)
+            {
+                Outputs[0].text = "Go";
+            }
+            else
+            {
+                Outputs[0].text = "Stop";
+            }
+
+            if (0f * wb1.weightValue + 1f * wb2.weightValue > 0)
+            {
+                Outputs[1].text = "Go";
+            }
+            else
+            {
+                Outputs[1].text = "Stop";
+            }
+
+            if (1f * wb1.weightValue + 1f * wb2.weightValue > 0)
+            {
+                Outputs[2].text = "Go";
+            }
+            else
+            {
+                Outputs[2].text = "Stop";
+            }
+
+            // SUCCESS OR FAIL
+            if (1f * wb1.weightValue + 0f * wb2.weightValue > 0)
+            {
+                SuccessOrFails[0].text = "Success";
+            }
+            else
+            {
+                SuccessOrFails[0].text = "Fail";
+            }
+
+            if (0f * wb1.weightValue + 1f * wb2.weightValue > 0)
+            {
+                SuccessOrFails[1].text = "Fail";
+            }
+            else if (0f * wb1.weightValue + 1f * wb2.weightValue == 0)
+            {
+                SuccessOrFails[1].text = "Fail";
+            }
+            else
+            {
+                SuccessOrFails[1].text = "Success";
+            }
+
+            if (1f * wb1.weightValue + 1f * wb2.weightValue > 0)
+            {
+                SuccessOrFails[2].text = "Fail";
+            }
+            else if (1f * wb1.weightValue + 1f * wb2.weightValue == 0)
+            {
+                SuccessOrFails[2].text = "Fail";
+            }
+            else
+            {
+                SuccessOrFails[2].text = "Success";
+            }
+
+            // Hint words
+            if (1f * wb1.weightValue + 0f * wb2.weightValue > 0)
+            {
+                HintWords[0].text = "-";
+            }
+            else
+            {
+                HintWords[0].text = "Low w1";
+            }
+
+            if (0f * wb1.weightValue + 1f * wb2.weightValue > 0)
+            {
+                HintWords[1].text = "High w2";
+            }
+            else if (0f * wb1.weightValue + 1f * wb2.weightValue == 0)
+            {
+                HintWords[1].text = "w = 0";
+            }
+            else
+            {
+                HintWords[1].text = "-";
+            }
+
+            if (1f * wb1.weightValue + 1f * wb2.weightValue > 0)
+            {
+                HintWords[2].text = "High w2";
+            }
+            else if ( wb1.weightValue ==0 ||wb2.weightValue == 0)
+            {
+                HintWords[2].text = "w = 0";
+            }
+            else if (1f * wb1.weightValue + 1f * wb2.weightValue == 0)
+            {
+                HintWords[2].text = "High w1";
+            }
+            else
+            {
+                HintWords[2].text = "-";
+            }
+        }
+        
+    }
+
     public IEnumerator FullScreenPop(string TextString, float waitTime, float PopUpTime, bool showHalf, bool nextLevel, bool correct)
     {
+
+        calculateAndFillTestcase();
+
         yield return new WaitForSeconds(waitTime);
         DisableHalf();
 
