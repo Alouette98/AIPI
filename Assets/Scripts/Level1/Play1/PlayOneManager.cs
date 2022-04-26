@@ -909,7 +909,7 @@ public class PlayOneManager : MonoBehaviour
         Time.timeScale = 0;
         infobox.SetActive(true);
 
-        while (infobox.GetComponent<Transform>().localScale.x < 1f)
+        while (infobox.GetComponent<Transform>().localScale.x < 0.9f)
         {
             infobox.GetComponent<Transform>().localScale += new Vector3(0.02f, 0.02f, 0.02f);
             yield return new WaitForSecondsRealtime(0.01f);
