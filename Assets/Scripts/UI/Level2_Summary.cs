@@ -77,6 +77,7 @@ public class Level2_Summary : MonoBehaviour
                 summaryimages[6].SetActive(false);
                 summaryimages[7].SetActive(true);
                 nextbutton.SetActive(false);
+                prevbutton.SetActive(false);
             }
         }
     }
@@ -139,6 +140,7 @@ public class Level2_Summary : MonoBehaviour
             summaryimages[6].SetActive(true);
             c++;
             nextbutton.SetActive(false);
+            
         }
 
 

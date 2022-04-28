@@ -397,7 +397,7 @@ public class PlayOneManager : MonoBehaviour
             // Hint words
             if (1f * wb1.weightValue + 0f * wb2.weightValue > 0)
             {
-                HintWords[0].text = "-";
+                HintWords[0].text = "    -";
             }
             else
             {
@@ -414,7 +414,7 @@ public class PlayOneManager : MonoBehaviour
             }
             else
             {
-                HintWords[1].text = "-";
+                HintWords[1].text = "    -";
             }
 
             if (1f * wb1.weightValue + 1f * wb2.weightValue > 0)
@@ -431,7 +431,7 @@ public class PlayOneManager : MonoBehaviour
             }
             else
             {
-                HintWords[2].text = "-";
+                HintWords[2].text = "    -";
             }
         }
         
