@@ -31,6 +31,7 @@ public class Level2_Video : MonoBehaviour
     {
         if(c == 1)
         {
+            videoplayerobject.SetActive(true);
             thumbnail.SetActive(false);
             vidplayer.Play();
             //vidplayer.isLooping = true;
