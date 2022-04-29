@@ -196,14 +196,15 @@ public class WeightBar : MonoBehaviour
             plusButton.interactable = false;
             minusButton.interactable = false;
         }
-
-        if(weightValue == maxAbsValue)
+        else if(weightValue == maxAbsValue)
         {
             plusButton.interactable = false;
+            minusButton.interactable = true;
         }
         else if (weightValue == -maxAbsValue)
         {
             minusButton.interactable = false;
+            plusButton.interactable = true;
         }
         else
         {
