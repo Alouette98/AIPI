@@ -11,6 +11,7 @@ public class Level2intro : MonoBehaviour
 
     public GameObject[] halfshow;
     public GameObject nextbutton;
+    
     // Start is called before the first frame update
     void Start()
     {

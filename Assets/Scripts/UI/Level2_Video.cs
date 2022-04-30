@@ -12,6 +12,7 @@ public class Level2_Video : MonoBehaviour
     public int b = 0;
     public GameObject simulationbutton;
     public GameObject thumbnail;
+    public GameObject audio;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +39,7 @@ public class Level2_Video : MonoBehaviour
             c++;
             simulationbutton.SetActive(false);
             StartCoroutine(Anim2());
+            audio.SetActive(true);
             //b++;
         }
 
