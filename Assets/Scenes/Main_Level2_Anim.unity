@@ -22570,8 +22570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b6ad67f2397f74e901d9846c28274c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsLayer: {fileID: 584469913}
-  StartButton: {fileID: 0}
+  redMuteSign: {fileID: 0}
 --- !u!114 &2027584716
 MonoBehaviour:
   m_ObjectHideFlags: 0
