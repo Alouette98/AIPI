@@ -6,10 +6,11 @@ public class LoadScene : MonoBehaviour
 {
     public int NextSceneID;
     public GameObject backgroundImage;
+    public GameObject Next;
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        
+        StartCoroutine(NextScene());
     }
 
 
@@ -27,5 +28,11 @@ public class LoadScene : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public IEnumerator NextScene()
+    {
+        yield return new WaitForSeconds(140f);
+        Next.SetActive(true);
     }
 }

@@ -1413,6 +1413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextSceneID: 1
   backgroundImage: {fileID: 0}
+  Next: {fileID: 0}
 --- !u!114 &502689148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3320,6 +3321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextSceneID: 2
   backgroundImage: {fileID: 0}
+  Next: {fileID: 0}
 --- !u!114 &1639226388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4355,6 +4357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextSceneID: 2
   backgroundImage: {fileID: 0}
+  Next: {fileID: 1639226385}
 --- !u!114 &1977975296
 MonoBehaviour:
   m_ObjectHideFlags: 0
